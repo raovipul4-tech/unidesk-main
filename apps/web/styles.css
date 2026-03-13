@@ -234,8 +234,13 @@ header {
     color: #1e293b;
 }
 
-.dropdown {
+.dropdown-wrapper {
     position: relative;
+}
+
+.dropdown-toggle {
+    position: relative;
+    z-index: 100;
 }
 
 .dropdown-menu {
@@ -243,9 +248,8 @@ header {
     top: 100%;
     left: 0;
     margin-top: 16px;
-    width: 380px;
-    max-height: 600px;
-    overflow-y: auto;
+    width: auto;
+    min-width: 600px;
     background-color: white;
     border: 1px solid #e2e8f0;
     border-radius: 12px;
@@ -254,30 +258,26 @@ header {
     visibility: hidden;
     transition: all 0.2s;
     padding: 8px;
-    z-index: 50;
+    z-index: 1000;
+    display: none;
 }
 
-.dropdown:hover .dropdown-menu {
+.dropdown-menu.show-all {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.dropdown-wrapper:hover .dropdown-menu {
     opacity: 1;
     visibility: visible;
+    display: grid;
 }
 
-.dropdown-menu::-webkit-scrollbar {
-    width: 6px;
-}
-
-.dropdown-menu::-webkit-scrollbar-track {
-    background: #f1f5f9;
-    border-radius: 10px;
-}
-
-.dropdown-menu::-webkit-scrollbar-thumb {
-    background: #cbd5e1;
-    border-radius: 10px;
-}
-
-.dropdown-menu::-webkit-scrollbar-thumb:hover {
-    background: #94a3b8;
+.dropdown-column {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
 
 .dropdown-item {
@@ -288,11 +288,12 @@ header {
     text-decoration: none;
     color: inherit;
     transition: background-color 0.3s;
+    white-space: nowrap;
 }
 
 .dropdown-item:hover {
     background-color: #f1f5f9;
-}
+}"
 
 .dropdown-icon {
     width: 40px;
@@ -1523,27 +1524,27 @@ main {
     overflow: hidden;
 }
 
-.crm-bg {
+.product-card-header.crm-bg {
     background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
 }
 
-.chat-bg {
+.product-card-header.chat-bg {
     background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
 }
 
-.unicom-bg {
+.product-card-header.unicom-bg {
     background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
 }
 
-.uniads-bg {
+.product-card-header.uniads-bg {
     background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);
 }
 
-.uniweb-bg {
+.product-card-header.uniweb-bg {
     background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
 }
 
-.unipos-bg {
+.product-card-header.unipos-bg {
     background: linear-gradient(135deg, #fff7ed 0%, #fed7aa 100%);
 }
 
