@@ -66,24 +66,60 @@ export default function Header() {
               Products
               <i className="ph ph-caret-down text-xs"></i>
             </button>
-            <div className="absolute top-full left-0 mt-2 w-64 bg-white border border-slate-200 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-              <div className="p-2">
-                <button onClick={() => router.push('/unicrm')} className="w-full flex items-start gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors group/item cursor-pointer">
-                  <div className="w-10 h-10 bg-brand-50 rounded-lg flex items-center justify-center text-brand-600 text-xl shrink-0">
+            <div className="absolute top-full left-0 mt-2 w-72 bg-white border border-slate-200 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+              <div className="grid grid-cols-2 gap-2 p-3">
+                <button onClick={() => router.push('/unicrm')} className="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-slate-50 transition-colors group/item cursor-pointer text-center">
+                  <div className="w-10 h-10 bg-brand-50 rounded-lg flex items-center justify-center text-brand-600 text-xl">
                     <i className="ph ph-kanban"></i>
                   </div>
                   <div>
-                    <p className="font-semibold text-slate-900 group-hover/item:text-brand-600">UniCRM</p>
+                    <p className="font-semibold text-slate-900 text-sm group-hover/item:text-brand-600">UniCRM</p>
                     <p className="text-xs text-slate-500">CRM Platform</p>
                   </div>
                 </button>
-                <button onClick={() => router.push('/unichat')} className="w-full flex items-start gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors group/item cursor-pointer">
-                  <div className="w-10 h-10 bg-green-50 rounded-lg flex items-center justify-center text-green-600 text-xl shrink-0">
+                <button onClick={() => router.push('/unichat')} className="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-slate-50 transition-colors group/item cursor-pointer text-center">
+                  <div className="w-10 h-10 bg-green-50 rounded-lg flex items-center justify-center text-green-600 text-xl">
                     <i className="ph ph-whatsapp-logo"></i>
                   </div>
                   <div>
-                    <p className="font-semibold text-slate-900 group-hover/item:text-green-600">UniChat</p>
+                    <p className="font-semibold text-slate-900 text-sm group-hover/item:text-green-600">UniChat</p>
                     <p className="text-xs text-slate-500">WhatsApp API</p>
+                  </div>
+                </button>
+                <button onClick={() => router.push('/unicom')} className="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-slate-50 transition-colors group/item cursor-pointer text-center">
+                  <div className="w-10 h-10 bg-purple-50 rounded-lg flex items-center justify-center text-purple-600 text-xl">
+                    <i className="ph ph-phone"></i>
+                  </div>
+                  <div>
+                    <p className="font-semibold text-slate-900 text-sm group-hover/item:text-purple-600">UniCOM</p>
+                    <p className="text-xs text-slate-500">Intercom & Calling</p>
+                  </div>
+                </button>
+                <button onClick={() => router.push('/uniads')} className="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-slate-50 transition-colors group/item cursor-pointer text-center">
+                  <div className="w-10 h-10 bg-red-50 rounded-lg flex items-center justify-center text-red-600 text-xl">
+                    <i className="ph ph-megaphone"></i>
+                  </div>
+                  <div>
+                    <p className="font-semibold text-slate-900 text-sm group-hover/item:text-red-600">UniAds</p>
+                    <p className="text-xs text-slate-500">Ad Management</p>
+                  </div>
+                </button>
+                <button onClick={() => router.push('/uniweb')} className="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-slate-50 transition-colors group/item cursor-pointer text-center">
+                  <div className="w-10 h-10 bg-cyan-50 rounded-lg flex items-center justify-center text-cyan-600 text-xl">
+                    <i className="ph ph-globe"></i>
+                  </div>
+                  <div>
+                    <p className="font-semibold text-slate-900 text-sm group-hover/item:text-cyan-600">UniWeb</p>
+                    <p className="text-xs text-slate-500">Website Builder</p>
+                  </div>
+                </button>
+                <button onClick={() => router.push('/unipos')} className="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-slate-50 transition-colors group/item cursor-pointer text-center">
+                  <div className="w-10 h-10 bg-indigo-50 rounded-lg flex items-center justify-center text-indigo-600 text-xl">
+                    <i className="ph ph-shopping-cart"></i>
+                  </div>
+                  <div>
+                    <p className="font-semibold text-slate-900 text-sm group-hover/item:text-indigo-600">UniPOS</p>
+                    <p className="text-xs text-slate-500">POS System</p>
                   </div>
                 </button>
               </div>
