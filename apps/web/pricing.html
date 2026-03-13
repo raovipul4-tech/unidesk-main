@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - Unidesk CRM & WhatsApp Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400&display=swap">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        .pricing-hero { padding-top: 180px; padding-bottom: 80px; background-color: #f8fafc; }
+        .pricing-toggle { display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 64px; }
+        .toggle-btn { background-color: #e2e8f0; border: none; padding: 8px 16px; border-radius: 9999px; cursor: pointer; font-weight: 600; transition: all 0.3s; }
+        .toggle-btn.active { background-color: #dc2626; color: white; }
+        .pricing-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; }
+        .pricing-card { background-color: white; border-radius: 20px; padding: 40px 32px; border: 2px solid #e2e8f0; transition: all 0.3s; position: relative; }
+        .pricing-card.featured { border-color: #dc2626; box-shadow: 0 20px 25px -5px rgba(220, 38, 38, 0.1); transform: scale(1.05); }
+        .badge { position: absolute; top: -16px; left: 32px; background-color: #dc2626; color: white; padding: 6px 16px; border-radius: 50px; font-size: 12px; font-weight: 700; }
+        .price { font-size: 48px; font-weight: 900; color: #1e293b; margin-bottom: 8px; }
+        .billing-period { color: #64748b; font-size: 14px; margin-bottom: 32px; }
+        .plan-features { list-style: none; margin-bottom: 32px; }
+        .plan-features li { padding: 12px 0; color: #475569; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #e2e8f0; }
+        .plan-features li:last-child { border-bottom: none; }
+        .plan-features i { color: #22c55e; font-size: 18px; }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header class="fixed top-0 left-0 right-0 w-full z-50 bg-white">
+            <div class="announcement-bar">
+                <div class="container announcement-content">
+                    <div class="announcement-left">
+                        <i class="ph ph-envelope"></i>
+                        <a href="mailto:info@unidesk.in">info@unidesk.in</a>
+                    </div>
+                    <div class="announcement-center">
+                        <i class="ph ph-gift"></i>
+                        <span>Limited Offer: Get 20% OFF on Annual Plans!</span>
+                    </div>
+                    <div class="social-buttons">
+                        <a href="https://facebook.com/unidesk.crm" target="_blank" class="social-btn"><i class="ph-bold ph-facebook-logo"></i></a>
+                        <a href="https://twitter.com/unidesk_crm" target="_blank" class="social-btn"><i class="ph-bold ph-twitter-logo"></i></a>
+                        <a href="https://linkedin.com/company/unidesk_crm" target="_blank" class="social-btn"><i class="ph-bold ph-linkedin-logo"></i></a>
+                        <a href="https://instagram.com/unidesk_crm" target="_blank" class="social-btn"><i class="ph-bold ph-instagram-logo"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-border">
+                <div class="container nav-wrapper">
+                    <div class="logo" onclick="goToPage('index.html')">
+                        <img src="https://app-cdn.appgen.com/0e496fc5-3050-498f-ade1-610fc9ef6d40/assets/uploaded_1773130812759_gt5bks.png" alt="Unidesk Logo" />
+                        <span>Unidesk</span>
+                    </div>
+                    <nav class="desktop-nav">
+                        <a href="index.html" class="nav-link">Home</a>
+                        <a href="features.html" class="nav-link">Features</a>
+                        <div class="dropdown">
+                            <button class="nav-link">Products<i class="ph ph-caret-down"></i></button>
+                            <div class="dropdown-menu">
+                                <a href="unicrm.html" class="dropdown-item">
+                                    <div class="dropdown-icon crm"><i class="ph ph-kanban"></i></div>
+                                    <div><p class="dropdown-title">UniCRM</p><p class="dropdown-desc">CRM Platform</p></div>
+                                </a>
+                                <a href="unichat.html" class="dropdown-item">
+                                    <div class="dropdown-icon chat"><i class="ph ph-whatsapp-logo"></i></div>
+                                    <div><p class="dropdown-title">UniChat</p><p class="dropdown-desc">WhatsApp API</p></div>
+                                </a>
+                            </div>
+                        </div>
+                        <a href="pricing.html" class="nav-link">Pricing</a>
+                        <a href="contact.html" class="nav-link">Contact</a>
+                    </nav>
+                    <div class="nav-actions">
+                        <a href="login.html" class="nav-login">Login</a>
+                        <a href="book-demo.html" class="nav-demo">Book Demo</a>
+                    </div>
+                    <button class="mobile-menu-btn"><i class="ph ph-list"></i></button>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <!-- Pricing Hero -->
+            <section class="pricing-hero">
+                <div class="container">
+                    <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                        <h1 style="font-size: 56px; font-weight: 900; margin-bottom: 24px; color: #1e293b;">
+                            Flexible Pricing for Every Business
+                        </h1>
+                        <p style="font-size: 20px; color: #64748b; margin-bottom: 40px;">
+                            Choose the perfect plan for your business. No hidden fees, cancel anytime.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Pricing Plans -->
+            <section style="padding: 96px 0; background-color: white;">
+                <div class="container">
+                    <div class="pricing-toggle">
+                        <button class="toggle-btn active">Monthly Billing</button>
+                        <button class="toggle-btn">Annual Billing</button>
+                    </div>
+
+                    <div class="pricing-cards">
+                        <!-- Starter Plan -->
+                        <div class="pricing-card">
+                            <h3 style="font-size: 24px; font-weight: 700; margin-bottom: 12px; color: #1e293b;">Starter</h3>
+                            <div class="price">₹2,999</div>
+                            <p class="billing-period">per month, billed monthly</p>
+                            <button class="btn btn-secondary" style="width: 100%; margin-bottom: 32px;">Get Started</button>
+                            <ul class="plan-features">
+                                <li><i class="ph-fill ph-check-circle"></i> 500 Leads Management</li>
+                                <li><i class="ph-fill ph-check-circle"></i> Basic CRM Features</li>
+                                <li><i class="ph-fill ph-check-circle"></i> 1 User Account</li>
+                                <li><i class="ph-fill ph-check-circle"></i> Email Support</li>
+                                <li><i class="ph-fill ph-check-circle"></i> Basic Reports</li>
+                            </ul>
+                        </div>
+
+                        <!-- Professional Plan -->
+                        <div class="pricing-card featured">
+                            <div class="badge">Most Popular</div>
+                            <h3 style="font-size: 24px; font-weight: 700; margin-bottom: 12px; color: #1e293b;">Professional</h3>
+                            <div class="price">₹9,999</div>
+                            <p class="billing-period">per month, billed monthly</p>
+                            <button class="btn btn-primary" style="width: 100%; margin-bottom: 32px;">Get Started</button>
+                            <ul class="plan-features">
+                                <li><i class="ph-fill ph-check-circle"></i> Unlimited Leads</li>
+                                <li><i class="ph-fill ph-check-circle"></i> Advanced CRM</li>
+                                <li><i class="ph-fill ph-check-circle"></i> Up to 10 Users</li>
+                                <li><i class="ph-fill ph-check-circle"></i> WhatsApp Integration</li>
+                                <li><i class="ph-fill ph-check-circle"></i> Advanced Analytics</li>
+                                <li><i class="ph-fill ph-check-circle"></i> Priority Support</li>
+                            </ul>
+                        </div>
+
+                        <!-- Enterprise Plan -->
+                        <div class="pricing-card">
+                            <h3 style="font-size: 24px; font-weight: 700; margin-bottom: 12px; color: #1e293b;">Enterprise</h3>
+                            <div class="price">Custom</div>
+                            <p class="billing-period">Contact sales for pricing</p>
+                            <button class="btn btn-secondary" style="width: 100%; margin-bottom: 32px;">Contact Sales</button>
+                            <ul class="plan-features">
+                                <li><i class="ph-fill ph-check-circle"></i> Unlimited Everything</li>
+                                <li><i class="ph-fill ph-check-circle"></i> Custom Integration</li>
+                                <li><i class="ph-fill ph-check-circle"></i> Unlimited Users</li>
+                                <li><i class="ph-fill ph-check-circle"></i> Dedicated Account Manager</li>
+                                <li><i class="ph-fill ph-check-circle"></i> Custom Development</li>
+                                <li><i class="ph-fill ph-check-circle"></i> 24/7 Priority Support</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQ Section -->
+            <section style="padding: 96px 0; background-color: #f8fafc;">
+                <div class="container">
+                    <h2 style="font-size: 40px; font-weight: 900; margin-bottom: 64px; text-align: center; color: #1e293b;">
+                        Frequently Asked Questions
+                    </h2>
+
+                    <div style="max-width: 768px; margin: 0 auto;">
+                        <div style="margin-bottom: 24px; padding: 24px; background-color: white; border-radius: 12px; border: 1px solid #e2e8f0;">
+                            <h4 style="font-size: 18px; font-weight: 700; color: #1e293b; margin-bottom: 12px;">Can I switch plans anytime?</h4>
+                            <p style="color: #64748b;">Yes, you can upgrade or downgrade your plan at any time. Changes take effect in the next billing cycle.</p>
+                        </div>
+                        <div style="margin-bottom: 24px; padding: 24px; background-color: white; border-radius: 12px; border: 1px solid #e2e8f0;">
+                            <h4 style="font-size: 18px; font-weight: 700; color: #1e293b; margin-bottom: 12px;">Do you offer a free trial?</h4>
+                            <p style="color: #64748b;">Yes, we offer a 14-day free trial for all plans. No credit card required to start.</p>
+                        </div>
+                        <div style="margin-bottom: 24px; padding: 24px; background-color: white; border-radius: 12px; border: 1px solid #e2e8f0;">
+                            <h4 style="font-size: 18px; font-weight: 700; color: #1e293b; margin-bottom: 12px;">What payment methods do you accept?</h4>
+                            <p style="color: #64748b;">We accept all major credit cards, UPI, and bank transfers for Indian customers.</p>
+                        </div>
+                        <div style="padding: 24px; background-color: white; border-radius: 12px; border: 1px solid #e2e8f0;">
+                            <h4 style="font-size: 18px; font-weight: 700; color: #1e293b; margin-bottom: 12px;">What about discounts?</h4>
+                            <p style="color: #64748b;">Annual billing offers 20% discount. Contact our sales team for volume discounts.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA -->
+            <section class="cta-section">
+                <div class="container cta-container">
+                    <h2>Ready to Get Started?</h2>
+                    <p>Start your free trial today and transform your business operations.</p>
+                    <div class="cta-buttons">
+                        <a href="book-demo.html" class="btn btn-light">Book a Demo</a>
+                        <a href="book-demo.html" class="btn btn-secondary-light">Start Free Trial</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container footer-content">
+                <div class="footer-grid">
+                    <div class="footer-section company">
+                        <div class="footer-logo">
+                            <img src="https://app-cdn.appgen.com/0e496fc5-3050-498f-ade1-610fc9ef6d40/assets/uploaded_1773130812759_gt5bks.png" alt="Unidesk Logo" />
+                            <span>Unidesk</span>
+                        </div>
+                        <p>Empowering businesses with intelligent CRM solutions and seamless WhatsApp communication.</p>
+                        <div class="footer-socials">
+                            <a href="https://facebook.com/unidesk.crm" target="_blank" class="footer-social-btn"><i class="ph ph-facebook-logo"></i></a>
+                            <a href="https://twitter.com/unidesk_crm" target="_blank" class="footer-social-btn"><i class="ph ph-twitter-logo"></i></a>
+                            <a href="https://linkedin.com/company/unidesk_crm" target="_blank" class="footer-social-btn"><i class="ph ph-linkedin-logo"></i></a>
+                            <a href="https://instagram.com/unidesk_crm" target="_blank" class="footer-social-btn"><i class="ph ph-instagram-logo"></i></a>
+                        </div>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Products</h3>
+                        <ul>
+                            <li><a href="unicrm.html"><i class="ph ph-kanban"></i> UniCRM</a></li>
+                            <li><a href="unichat.html"><i class="ph ph-whatsapp-logo"></i> UniChat</a></li>
+                            <li><a href="features.html">Features</a></li>
+                            <li><a href="pricing.html">Pricing</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Company</h3>
+                        <ul>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="book-demo.html">Book Demo</a></li>
+                            <li><a href="careers.html">Careers</a></li>
+                            <li><a href="blog.html">Blog</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Support</h3>
+                        <ul>
+                            <li><a href="help-center.html">Help Center</a></li>
+                            <li><a href="documentation.html">Documentation</a></li>
+                            <li><a href="api-reference.html">API Reference</a></li>
+                            <li><a href="status.html">Status</a></li>
+                            <li><a href="email-support.html">Email Support</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="container">
+                    <p>© 2024 Unidesk. All rights reserved.</p>
+                    <div class="footer-links">
+                        <a href="privacy-policy.html">Privacy Policy</a>
+                        <a href="terms.html">Terms of Service</a>
+                        <a href="cookie-policy.html">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unidesk - CRM & WhatsApp Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400&display=swap">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header class="fixed top-0 left-0 right-0 w-full z-50 bg-white">
+            <!-- Top Announcement Bar -->
+            <div class="announcement-bar">
+                <div class="container announcement-content">
+                    <!-- Left: Email -->
+                    <div class="announcement-left">
+                        <i class="ph ph-envelope"></i>
+                        <a href="mailto:info@unidesk.in">info@unidesk.in</a>
+                    </div>
+                    
+                    <!-- Center: Offer -->
+                    <div class="announcement-center">
+                        <i class="ph ph-gift"></i>
+                        <span>Limited Offer: Get 20% OFF on Annual Plans!</span>
+                    </div>
+                    
+                    <!-- Right: Social Buttons -->
+                    <div class="social-buttons">
+                        <a href="https://facebook.com/unidesk.crm" target="_blank" rel="noopener noreferrer" class="social-btn">
+                            <i class="ph-bold ph-facebook-logo"></i>
+                        </a>
+                        <a href="https://twitter.com/unidesk_crm" target="_blank" rel="noopener noreferrer" class="social-btn">
+                            <i class="ph-bold ph-twitter-logo"></i>
+                        </a>
+                        <a href="https://linkedin.com/company/unidesk_crm" target="_blank" rel="noopener noreferrer" class="social-btn">
+                            <i class="ph-bold ph-linkedin-logo"></i>
+                        </a>
+                        <a href="https://instagram.com/unidesk_crm" target="_blank" rel="noopener noreferrer" class="social-btn">
+                            <i class="ph-bold ph-instagram-logo"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Navigation -->
+            <div class="nav-border">
+                <div class="container nav-wrapper">
+                    <!-- Logo -->
+                    <div class="logo" onclick="goToPage('index.html')">
+                        <img src="https://app-cdn.appgen.com/0e496fc5-3050-498f-ade1-610fc9ef6d40/assets/uploaded_1773130812759_gt5bks.png" alt="Unidesk Logo" />
+                        <span>Unidesk</span>
+                    </div>
+
+                    <!-- Desktop Nav -->
+                    <nav class="desktop-nav">
+                        <a href="index.html" class="nav-link">Home</a>
+                        <a href="features.html" class="nav-link">Features</a>
+                        <div class="dropdown">
+                            <button class="nav-link">
+                                Products
+                                <i class="ph ph-caret-down"></i>
+                            </button>
+                            <div class="dropdown-menu">
+                                <a href="unicrm.html" class="dropdown-item">
+                                    <div class="dropdown-icon crm">
+                                        <i class="ph ph-kanban"></i>
+                                    </div>
+                                    <div>
+                                        <p class="dropdown-title">UniCRM</p>
+                                        <p class="dropdown-desc">CRM Platform</p>
+                                    </div>
+                                </a>
+                                <a href="unichat.html" class="dropdown-item">
+                                    <div class="dropdown-icon chat">
+                                        <i class="ph ph-whatsapp-logo"></i>
+                                    </div>
+                                    <div>
+                                        <p class="dropdown-title">UniChat</p>
+                                        <p class="dropdown-desc">WhatsApp API</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <a href="pricing.html" class="nav-link">Pricing</a>
+                        <a href="contact.html" class="nav-link">Contact</a>
+                    </nav>
+
+                    <!-- Actions -->
+                    <div class="nav-actions">
+                        <a href="login.html" class="nav-login">Login</a>
+                        <a href="book-demo.html" class="nav-demo">Book Demo</a>
+                    </div>
+
+                    <!-- Mobile Menu Button -->
+                    <button class="mobile-menu-btn">
+                        <i class="ph ph-list"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main>
+            <!-- Hero Section -->
+            <section class="hero-section">
+                <!-- Background Orbs -->
+                <div class="orb orb-1"></div>
+                <div class="orb orb-2"></div>
+                <div class="orb orb-3"></div>
+
+                <div class="container hero-container">
+                    <div class="hero-content">
+                        <div class="hero-badge">
+                            <span class="badge-dot"></span>
+                            Unidesk + UniChat — Two Products, One Platform
+                        </div>
+                        
+                        <h1>All-in-One <br /><span class="gradient-text">CRM & WhatsApp Platform</span></h1>
+                        
+                        <p class="hero-description">
+                            Capture leads, automate WhatsApp conversations, manage customers, and grow your business from one powerful dashboard.
+                        </p>
+
+                        <div class="hero-buttons">
+                            <button class="btn btn-primary">
+                                Start Free Trial
+                                <i class="ph ph-arrow-right"></i>
+                            </button>
+                            <a href="book-demo.html" class="btn btn-secondary">
+                                Book Demo
+                            </a>
+                        </div>
+
+                        <div class="hero-features">
+                            <div class="feature-item">
+                                <i class="ph-fill ph-check-circle"></i>
+                                Smart Lead & Sales CRM
+                            </div>
+                            <div class="feature-item">
+                                <i class="ph-fill ph-check-circle"></i>
+                                WhatsApp Business API
+                            </div>
+                            <div class="feature-item">
+                                <i class="ph-fill ph-check-circle"></i>
+                                Unified Platform
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hero Visual -->
+                    <div class="hero-visual">
+                        <div class="hero-visual-bg"></div>
+                        <div class="hero-panel">
+                            <div class="mockup-header">
+                                <div class="mockup-dot"></div>
+                                <div class="mockup-dot"></div>
+                                <div class="mockup-dot"></div>
+                                <div class="mockup-url">unidesk.in/dashboard</div>
+                            </div>
+                            <div class="mockup-body">
+                                <!-- Sidebar -->
+                                <div class="mockup-sidebar">
+                                    <div class="mockup-item active"></div>
+                                    <div class="mockup-item"></div>
+                                    <div class="mockup-item"></div>
+                                    <div class="mockup-item"></div>
+                                </div>
+                                <!-- Main content area -->
+                                <div class="mockup-content">
+                                    <div class="content-overlay"></div>
+                                    <div class="content-inner">
+                                        <div class="stats-row">
+                                            <div class="stat-card">
+                                                <div class="stat-icon crm"></div>
+                                                <div class="stat-value"></div>
+                                            </div>
+                                            <div class="stat-card">
+                                                <div class="stat-icon chat"></div>
+                                                <div class="stat-value"></div>
+                                            </div>
+                                        </div>
+                                        <div class="chart-placeholder"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Floating notification card -->
+                        <div class="floating-card">
+                            <div class="floating-icon"></div>
+                            <div>
+                                <p class="floating-title">New message</p>
+                                <p class="floating-desc">Hey, interested in the product!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Social Proof -->
+            <section class="social-proof">
+                <div class="container">
+                    <p class="proof-title">Trusted by Growing Businesses Across India</p>
+                    <div class="logos-grid">
+                        <div class="logo-item"><i class="ph-fill ph-diamonds-four"></i> NexaCorp</div>
+                        <div class="logo-item"><i class="ph-fill ph-intersect"></i> VeloTech</div>
+                        <div class="logo-item"><i class="ph-fill ph-circle-dashed"></i> SphereWorks</div>
+                        <div class="logo-item"><i class="ph-fill ph-hexagon"></i> HiveLogics</div>
+                    </div>
+                    
+                    <div class="stats-grid">
+                        <div class="stat">
+                            <p class="stat-number">2,500+</p>
+                            <p class="stat-label">Active Businesses</p>
+                        </div>
+                        <div class="stat">
+                            <p class="stat-number">5M+</p>
+                            <p class="stat-label">Messages Sent</p>
+                        </div>
+                        <div class="stat">
+                            <p class="stat-number">98%</p>
+                            <p class="stat-label">Open Rate</p>
+                        </div>
+                        <div class="stat">
+                            <p class="stat-number">15K+</p>
+                            <p class="stat-label">Leads Daily</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Products Section -->
+            <section class="products-section">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>Two Powerful Products.<br />One Platform.</h2>
+                        <p>Unidesk combines the power of a modern CRM with official WhatsApp & Instagram business automation.</p>
+                    </div>
+
+                    <div class="products-grid">
+                        <!-- Unidesk CRM -->
+                        <div class="product-card">
+                            <div class="card-bg"></div>
+                            <div class="card-content">
+                                <div class="card-icon crm">
+                                    <i class="ph ph-kanban"></i>
+                                </div>
+                                <h3>Unidesk</h3>
+                                <p>Smart lead management system designed specifically for high-velocity sales teams.</p>
+                                
+                                <ul class="feature-list">
+                                    <li><i class="ph-fill ph-check-circle"></i> Lead tracking & Contact Database</li>
+                                    <li><i class="ph-fill ph-check-circle"></i> Visual Sales Pipeline</li>
+                                    <li><i class="ph-fill ph-check-circle"></i> Task & Follow-up reminders</li>
+                                    <li><i class="ph-fill ph-check-circle"></i> Team collaboration & assignments</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- UniChat -->
+                        <div class="product-card dark">
+                            <div class="card-bg"></div>
+                            <div class="card-content">
+                                <div class="card-icons">
+                                    <div class="card-icon chat"></div>
+                                    <div class="card-icon instagram"></div>
+                                </div>
+                                <h3>UniChat</h3>
+                                <p>Automate WhatsApp & Instagram conversations at scale with Official Business APIs.</p>
+                                
+                                <ul class="feature-list">
+                                    <li><i class="ph-fill ph-check-circle"></i> WhatsApp Business API</li>
+                                    <li><i class="ph-fill ph-check-circle"></i> Instagram DM Management</li>
+                                    <li><i class="ph-fill ph-check-circle"></i> Unified Team Inbox</li>
+                                    <li><i class="ph-fill ph-check-circle"></i> Smart Chatbots & Automation</li>
+                                    <li><i class="ph-fill ph-check-circle"></i> Broadcast Campaigns</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features Preview -->
+            <section class="features-section">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>Powerful Tools to Grow Your Business</h2>
+                        <p>Everything you need to capture, nurture, and close deals efficiently.</p>
+                    </div>
+
+                    <div class="features-grid">
+                        <a href="features.html" class="feature-card">
+                            <div class="feature-icon"><i class="ph ph-magnet"></i></div>
+                            <h4>Lead Capture & Management</h4>
+                            <p>Capture and organize leads from your website, WhatsApp, and connected integrations seamlessly.</p>
+                        </a>
+                        <a href="features.html" class="feature-card">
+                            <div class="feature-icon"><i class="ph ph-chat-circle"></i></div>
+                            <h4>WhatsApp & Messaging</h4>
+                            <p>Send unlimited WhatsApp messages and automate conversations with AI-powered chatbots.</p>
+                        </a>
+                        <a href="features.html" class="feature-card">
+                            <div class="feature-icon"><i class="ph ph-chart-line"></i></div>
+                            <h4>Advanced Analytics</h4>
+                            <p>Get real-time insights into your sales pipeline, team performance, and customer interactions.</p>
+                        </a>
+                        <a href="features.html" class="feature-card">
+                            <div class="feature-icon"><i class="ph ph-gear"></i></div>
+                            <h4>Smart Automation</h4>
+                            <p>Automate repetitive tasks and workflows to save time and reduce manual effort.</p>
+                        </a>
+                        <a href="features.html" class="feature-card">
+                            <div class="feature-icon"><i class="ph ph-users"></i></div>
+                            <h4>Team Collaboration</h4>
+                            <p>Keep your entire team aligned with shared tasks, notes, and activity feeds.</p>
+                        </a>
+                        <a href="features.html" class="feature-card">
+                            <div class="feature-icon"><i class="ph ph-plug"></i></div>
+                            <h4>Integrations</h4>
+                            <p>Connect with your favorite tools and platforms for seamless workflow integration.</p>
+                        </a>
+                    </div>
+
+                    <div class="features-cta">
+                        <a href="features.html" class="btn btn-primary">Explore All Features</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA Section -->
+            <section class="cta-section">
+                <div class="container cta-container">
+                    <h2>Ready to Transform Your Business?</h2>
+                    <p>Join thousands of businesses already using Unidesk to streamline their operations and boost productivity.</p>
+                    <div class="cta-buttons">
+                        <a href="book-demo.html" class="btn btn-light">Book a Demo</a>
+                        <a href="pricing.html" class="btn btn-secondary-light">View Pricing</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container footer-content">
+                <div class="footer-grid">
+                    <!-- Company Info -->
+                    <div class="footer-section company">
+                        <div class="footer-logo">
+                            <img src="https://app-cdn.appgen.com/0e496fc5-3050-498f-ade1-610fc9ef6d40/assets/uploaded_1773130812759_gt5bks.png" alt="Unidesk Logo" />
+                            <span>Unidesk</span>
+                        </div>
+                        <p>Empowering businesses with intelligent CRM solutions and seamless WhatsApp communication. Transform your customer relationships today.</p>
+                        <div class="footer-socials">
+                            <a href="https://facebook.com/unidesk.crm" target="_blank" rel="noopener noreferrer" class="footer-social-btn">
+                                <i class="ph ph-facebook-logo"></i>
+                            </a>
+                            <a href="https://twitter.com/unidesk_crm" target="_blank" rel="noopener noreferrer" class="footer-social-btn">
+                                <i class="ph ph-twitter-logo"></i>
+                            </a>
+                            <a href="https://linkedin.com/company/unidesk_crm" target="_blank" rel="noopener noreferrer" class="footer-social-btn">
+                                <i class="ph ph-linkedin-logo"></i>
+                            </a>
+                            <a href="https://instagram.com/unidesk_crm" target="_blank" rel="noopener noreferrer" class="footer-social-btn">
+                                <i class="ph ph-instagram-logo"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Products -->
+                    <div class="footer-section">
+                        <h3>Products</h3>
+                        <ul>
+                            <li><a href="unicrm.html"><i class="ph ph-kanban"></i> UniCRM</a></li>
+                            <li><a href="unichat.html"><i class="ph ph-whatsapp-logo"></i> UniChat</a></li>
+                            <li><a href="features.html">Features</a></li>
+                            <li><a href="pricing.html">Pricing</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Company -->
+                    <div class="footer-section">
+                        <h3>Company</h3>
+                        <ul>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="book-demo.html">Book Demo</a></li>
+                            <li><a href="careers.html">Careers</a></li>
+                            <li><a href="blog.html">Blog</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Support -->
+                    <div class="footer-section">
+                        <h3>Support</h3>
+                        <ul>
+                            <li><a href="help-center.html">Help Center</a></li>
+                            <li><a href="documentation.html">Documentation</a></li>
+                            <li><a href="api-reference.html">API Reference</a></li>
+                            <li><a href="status.html">Status</a></li>
+                            <li><a href="email-support.html">Email Support</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="footer-bottom">
+                <div class="container">
+                    <p>© 2024 Unidesk. All rights reserved.</p>
+                    <div class="footer-links">
+                        <a href="privacy-policy.html">Privacy Policy</a>
+                        <a href="terms.html">Terms of Service</a>
+                        <a href="cookie-policy.html">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
