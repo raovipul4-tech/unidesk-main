@@ -1,11 +1,27 @@
 'use client';
 
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 export default function ContactPage() {
   const router = useRouter();
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    subject: '',
+    message: '',
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Handle form submission
+    alert('Message sent! Our team will contact you soon.');
+    setFormData({ firstName: '', lastName: '', email: '', phone: '', subject: '', message: '' });
+  };
 
     return (
       <>
