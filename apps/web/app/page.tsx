@@ -160,69 +160,103 @@ export default function HomePage() {
         <section className="py-24 bg-slate-50" id="products">
             <div className="max-w-7xl mx-auto px-6">
                 <div className="text-center max-w-2xl mx-auto mb-16">
-                    <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-4 tracking-tight">Two Powerful Products.<br />One Platform.</h2>
-                    <p className="text-lg text-slate-600">Unidesk combines the power of a modern CRM with official WhatsApp & Instagram business automation.</p>
+                    <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-4 tracking-tight">Six Powerful Products.<br />One Unified Platform.</h2>
+                    <p className="text-lg text-slate-600">Everything you need to grow your business - from CRM and messaging to ads, websites, and retail.</p>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
-                    {/* Unidesk CRM */}
-                    <div className="group relative bg-white rounded-3xl p-8 lg:p-12 border border-slate-200 hover:border-brand-300 hover:shadow-2xl hover:shadow-brand-500/10 transition-all duration-300 overflow-hidden">
-                        <div className="absolute top-0 right-0 w-64 h-64 bg-brand-50 rounded-full blur-3xl -mr-20 -mt-20 group-hover:bg-brand-100 transition-colors"></div>
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                    {/* UniCRM */}
+                    <div className="group relative bg-white rounded-3xl p-8 border border-slate-200 hover:border-brand-300 hover:shadow-2xl hover:shadow-brand-500/10 transition-all duration-300 overflow-hidden cursor-pointer" onClick={() => router.push('/unicrm')}>
+                        <div className="absolute top-0 right-0 w-48 h-48 bg-brand-50 rounded-full blur-3xl -mr-20 -mt-20 group-hover:bg-brand-100 transition-colors"></div>
                         <div className="relative z-10">
-                            <div className="w-16 h-16 bg-brand-50 rounded-2xl flex items-center justify-center text-brand-600 text-3xl mb-8 group-hover:scale-110 transition-transform">
+                            <div className="w-12 h-12 bg-brand-50 rounded-2xl flex items-center justify-center text-brand-600 text-2xl mb-6 group-hover:scale-110 transition-transform">
                                 <i className="ph ph-kanban"></i>
                             </div>
-                            <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-3">Unidesk</h3>
-                            <p className="text-slate-600 mb-8 text-lg">Smart lead management system designed specifically for high-velocity sales teams.</p>
-                            
-                            <ul className="space-y-4">
-                                <li className="flex items-center gap-3 text-slate-700 font-medium">
-                                    <i className="ph-fill ph-check-circle text-brand-500 text-xl"></i> Lead tracking & Contact Database
-                                </li>
-                                <li className="flex items-center gap-3 text-slate-700 font-medium">
-                                    <i className="ph-fill ph-check-circle text-brand-500 text-xl"></i> Visual Sales Pipeline
-                                </li>
-                                <li className="flex items-center gap-3 text-slate-700 font-medium">
-                                    <i className="ph-fill ph-check-circle text-brand-500 text-xl"></i> Task & Follow-up reminders
-                                </li>
-                                <li className="flex items-center gap-3 text-slate-700 font-medium">
-                                    <i className="ph-fill ph-check-circle text-brand-500 text-xl"></i> Team collaboration & assignments
-                                </li>
+                            <h3 className="text-xl md:text-2xl font-bold text-slate-900 mb-2">UniCRM</h3>
+                            <p className="text-slate-600 mb-4 text-sm">CRM Platform for sales teams</p>
+                            <ul className="space-y-2 text-sm">
+                                <li className="flex items-center gap-2 text-slate-600"><i className="ph-fill ph-check text-brand-500"></i> Lead tracking</li>
+                                <li className="flex items-center gap-2 text-slate-600"><i className="ph-fill ph-check text-brand-500"></i> Sales pipeline</li>
                             </ul>
                         </div>
                     </div>
 
                     {/* UniChat */}
-                    <div className="group relative bg-slate-900 rounded-3xl p-8 lg:p-12 border border-slate-800 hover:border-blue-500/50 hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300 overflow-hidden text-white">
-                        <div className="absolute top-0 right-0 w-64 h-64 bg-blue-900/50 rounded-full blur-3xl -mr-20 -mt-20 group-hover:bg-blue-800/50 transition-colors"></div>
+                    <div className="group relative bg-gradient-to-br from-green-50 to-emerald-50 rounded-3xl p-8 border border-green-200 hover:border-green-400 hover:shadow-2xl hover:shadow-green-500/10 transition-all duration-300 overflow-hidden cursor-pointer" onClick={() => router.push('/unichat')}>
+                        <div className="absolute top-0 right-0 w-48 h-48 bg-green-100 rounded-full blur-3xl -mr-20 -mt-20 group-hover:bg-green-200 transition-colors"></div>
                         <div className="relative z-10">
-                            <div className="flex items-center gap-4 mb-8">
-                                <div className="w-16 h-16 bg-green-500/20 rounded-2xl flex items-center justify-center text-green-400 text-3xl group-hover:scale-110 transition-transform">
-                                    <i className="ph ph-whatsapp-logo"></i>
-                                </div>
-                                <div className="w-16 h-16 bg-gradient-to-br from-pink-500/20 to-purple-500/20 rounded-2xl flex items-center justify-center text-pink-400 text-3xl group-hover:scale-110 transition-transform">
-                                    <i className="ph-fill ph-instagram-logo"></i>
-                                </div>
+                            <div className="w-12 h-12 bg-green-100 rounded-2xl flex items-center justify-center text-green-600 text-2xl mb-6 group-hover:scale-110 transition-transform">
+                                <i className="ph ph-whatsapp-logo"></i>
                             </div>
-                            <h3 className="text-2xl md:text-3xl font-bold mb-3">UniChat</h3>
-                            <p className="text-slate-400 mb-8 text-lg">Automate WhatsApp & Instagram conversations at scale with Official Business APIs.</p>
-                            
-                            <ul className="space-y-4">
-                                <li className="flex items-center gap-3 text-slate-200 font-medium">
-                                    <i className="ph-fill ph-check-circle text-green-400 text-xl"></i> WhatsApp Business API
-                                </li>
-                                <li className="flex items-center gap-3 text-slate-200 font-medium">
-                                    <i className="ph-fill ph-check-circle text-pink-400 text-xl"></i> Instagram DM Management
-                                </li>
-                                <li className="flex items-center gap-3 text-slate-200 font-medium">
-                                    <i className="ph-fill ph-check-circle text-blue-400 text-xl"></i> Unified Team Inbox
-                                </li>
-                                <li className="flex items-center gap-3 text-slate-200 font-medium">
-                                    <i className="ph-fill ph-check-circle text-purple-400 text-xl"></i> Smart Chatbots & Automation
-                                </li>
-                                <li className="flex items-center gap-3 text-slate-200 font-medium">
-                                    <i className="ph-fill ph-check-circle text-yellow-400 text-xl"></i> Broadcast Campaigns
-                                </li>
+                            <h3 className="text-xl md:text-2xl font-bold text-slate-900 mb-2">UniChat</h3>
+                            <p className="text-slate-600 mb-4 text-sm">WhatsApp & Instagram automation</p>
+                            <ul className="space-y-2 text-sm">
+                                <li className="flex items-center gap-2 text-slate-600"><i className="ph-fill ph-check text-green-600"></i> Chat automation</li>
+                                <li className="flex items-center gap-2 text-slate-600"><i className="ph-fill ph-check text-green-600"></i> Broadcasts</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    {/* UniCOM */}
+                    <div className="group relative bg-gradient-to-br from-purple-50 to-pink-50 rounded-3xl p-8 border border-purple-200 hover:border-purple-400 hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-300 overflow-hidden cursor-pointer" onClick={() => router.push('/unicom')}>
+                        <div className="absolute top-0 right-0 w-48 h-48 bg-purple-100 rounded-full blur-3xl -mr-20 -mt-20 group-hover:bg-purple-200 transition-colors"></div>
+                        <div className="relative z-10">
+                            <div className="w-12 h-12 bg-purple-100 rounded-2xl flex items-center justify-center text-purple-600 text-2xl mb-6 group-hover:scale-110 transition-transform">
+                                <i className="ph ph-phone"></i>
+                            </div>
+                            <h3 className="text-xl md:text-2xl font-bold text-slate-900 mb-2">UniCOM</h3>
+                            <p className="text-slate-600 mb-4 text-sm">Business intercom & calling</p>
+                            <ul className="space-y-2 text-sm">
+                                <li className="flex items-center gap-2 text-slate-600"><i className="ph-fill ph-check text-purple-600"></i> Video calls</li>
+                                <li className="flex items-center gap-2 text-slate-600"><i className="ph-fill ph-check text-purple-600"></i> Team chat</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    {/* UniAds */}
+                    <div className="group relative bg-gradient-to-br from-red-50 to-orange-50 rounded-3xl p-8 border border-red-200 hover:border-red-400 hover:shadow-2xl hover:shadow-red-500/10 transition-all duration-300 overflow-hidden cursor-pointer" onClick={() => router.push('/uniads')}>
+                        <div className="absolute top-0 right-0 w-48 h-48 bg-red-100 rounded-full blur-3xl -mr-20 -mt-20 group-hover:bg-red-200 transition-colors"></div>
+                        <div className="relative z-10">
+                            <div className="w-12 h-12 bg-red-100 rounded-2xl flex items-center justify-center text-red-600 text-2xl mb-6 group-hover:scale-110 transition-transform">
+                                <i className="ph ph-megaphone"></i>
+                            </div>
+                            <h3 className="text-xl md:text-2xl font-bold text-slate-900 mb-2">UniAds</h3>
+                            <p className="text-slate-600 mb-4 text-sm">AI ad management platform</p>
+                            <ul className="space-y-2 text-sm">
+                                <li className="flex items-center gap-2 text-slate-600"><i className="ph-fill ph-check text-red-600"></i> Multi-platform ads</li>
+                                <li className="flex items-center gap-2 text-slate-600"><i className="ph-fill ph-check text-red-600"></i> AI optimization</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    {/* UniWeb */}
+                    <div className="group relative bg-gradient-to-br from-cyan-50 to-blue-50 rounded-3xl p-8 border border-cyan-200 hover:border-cyan-400 hover:shadow-2xl hover:shadow-cyan-500/10 transition-all duration-300 overflow-hidden cursor-pointer" onClick={() => router.push('/uniweb')}>
+                        <div className="absolute top-0 right-0 w-48 h-48 bg-cyan-100 rounded-full blur-3xl -mr-20 -mt-20 group-hover:bg-cyan-200 transition-colors"></div>
+                        <div className="relative z-10">
+                            <div className="w-12 h-12 bg-cyan-100 rounded-2xl flex items-center justify-center text-cyan-600 text-2xl mb-6 group-hover:scale-110 transition-transform">
+                                <i className="ph ph-globe"></i>
+                            </div>
+                            <h3 className="text-xl md:text-2xl font-bold text-slate-900 mb-2">UniWeb</h3>
+                            <p className="text-slate-600 mb-4 text-sm">AI website builder</p>
+                            <ul className="space-y-2 text-sm">
+                                <li className="flex items-center gap-2 text-slate-600"><i className="ph-fill ph-check text-cyan-600"></i> No-code builder</li>
+                                <li className="flex items-center gap-2 text-slate-600"><i className="ph-fill ph-check text-cyan-600"></i> AI content</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    {/* UniPOS */}
+                    <div className="group relative bg-gradient-to-br from-emerald-50 to-teal-50 rounded-3xl p-8 border border-emerald-200 hover:border-emerald-400 hover:shadow-2xl hover:shadow-emerald-500/10 transition-all duration-300 overflow-hidden cursor-pointer" onClick={() => router.push('/unipos')}>
+                        <div className="absolute top-0 right-0 w-48 h-48 bg-emerald-100 rounded-full blur-3xl -mr-20 -mt-20 group-hover:bg-emerald-200 transition-colors"></div>
+                        <div className="relative z-10">
+                            <div className="w-12 h-12 bg-emerald-100 rounded-2xl flex items-center justify-center text-emerald-600 text-2xl mb-6 group-hover:scale-110 transition-transform">
+                                <i className="ph ph-shopping-cart"></i>
+                            </div>
+                            <h3 className="text-xl md:text-2xl font-bold text-slate-900 mb-2">UniPOS</h3>
+                            <p className="text-slate-600 mb-4 text-sm">AI retail POS system</p>
+                            <ul className="space-y-2 text-sm">
+                                <li className="flex items-center gap-2 text-slate-600"><i className="ph-fill ph-check text-emerald-600"></i> Smart billing</li>
+                                <li className="flex items-center gap-2 text-slate-600"><i className="ph-fill ph-check text-emerald-600"></i> Inventory AI</li>
                             </ul>
                         </div>
                     </div>
