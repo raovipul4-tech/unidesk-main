@@ -46,19 +46,22 @@ export default function UniPOSPage() {
             </div>
           </section>
 
-          {/* Features */}
+          {/* Features Grid */}
           <section className="py-24 bg-slate-50">
             <div className="max-w-7xl mx-auto px-6">
-              <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-16 tracking-tight">Complete Retail Solution</h2>
+              <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-16 tracking-tight">Complete Retail & Restaurant Solution</h2>
               
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {[
-                  { icon: 'ph-shopping-cart', title: 'Easy Billing', desc: 'Fast checkout with barcode scanning' },
-                  { icon: 'ph-package', title: 'AI Inventory', desc: 'Smart stock management & reorder alerts' },
-                  { icon: 'ph-credit-card', title: 'All Payment Methods', desc: 'Cash, card, UPI, wallet - everything' },
-                  { icon: 'ph-chart-bar', title: 'Sales Analytics', desc: 'Real-time sales and customer insights' },
-                  { icon: 'ph-users', title: 'Staff Management', desc: 'Employee tracking and performance metrics' },
-                  { icon: 'ph-database', title: 'Works Offline', desc: 'Keep selling even without internet' },
+                  { icon: 'ph-shopping-cart', title: 'Fast Billing', desc: 'Quick checkout with barcode scanning & touch screen' },
+                  { icon: 'ph-package', title: 'Smart Inventory', desc: 'AI-powered stock management with reorder alerts' },
+                  { icon: 'ph-credit-card', title: 'All Payments', desc: 'Cash, cards, UPI, digital wallets accepted' },
+                  { icon: 'ph-chart-bar', title: 'Real-time Analytics', desc: 'Sales, revenue, and customer behavior insights' },
+                  { icon: 'ph-users', title: 'Staff Management', desc: 'Employee tracking, shifts, and performance' },
+                  { icon: 'ph-database', title: 'Offline Mode', desc: 'Keep selling even without internet connection' },
+                  { icon: 'ph-customer', title: 'Customer Loyalty', desc: 'Build customer profiles and loyalty programs' },
+                  { icon: 'ph-report', title: 'Tax & Reports', desc: 'GST compliance and automated reporting' },
+                  { icon: 'ph-sync', title: 'Cloud Backup', desc: 'Auto-backup and multi-branch sync' },
                 ].map((feature, i) => (
                   <div key={i} className="p-8 rounded-2xl bg-white border border-slate-200 hover:shadow-lg hover:border-slate-300 transition-all group">
                     <div className="w-12 h-12 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600 text-2xl mb-6 group-hover:scale-110 transition-transform">
@@ -66,6 +69,75 @@ export default function UniPOSPage() {
                     </div>
                     <h4 className="text-lg font-bold text-slate-900 mb-2">{feature.title}</h4>
                     <p className="text-slate-600 text-sm">{feature.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* Use Cases */}
+          <section className="py-24 bg-white">
+            <div className="max-w-7xl mx-auto px-6">
+              <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-16 tracking-tight">Works for Any Retail Business</h2>
+              
+              <div className="grid md:grid-cols-3 gap-8">
+                <div className="p-8 bg-emerald-50 rounded-3xl border border-emerald-100">
+                  <div className="w-16 h-16 rounded-xl bg-white border border-emerald-200 flex items-center justify-center text-emerald-600 text-3xl mb-6">
+                    <i className="ph-fill ph-storefront"></i>
+                  </div>
+                  <h3 className="text-2xl font-bold text-slate-900 mb-4">Retail Stores</h3>
+                  <p className="text-slate-600 mb-4">Apparel, electronics, grocery stores, pharmacies, and more with complete inventory control.</p>
+                  <ul className="space-y-2 text-sm text-slate-600">
+                    <li className="flex items-center gap-2"><i className="ph-fill ph-check text-emerald-500"></i> SKU management</li>
+                    <li className="flex items-center gap-2"><i className="ph-fill ph-check text-emerald-500"></i> Stock levels by location</li>
+                    <li className="flex items-center gap-2"><i className="ph-fill ph-check text-emerald-500"></i> Discount & promo management</li>
+                  </ul>
+                </div>
+
+                <div className="p-8 bg-orange-50 rounded-3xl border border-orange-100">
+                  <div className="w-16 h-16 rounded-xl bg-white border border-orange-200 flex items-center justify-center text-orange-600 text-3xl mb-6">
+                    <i className="ph-fill ph-utensils"></i>
+                  </div>
+                  <h3 className="text-2xl font-bold text-slate-900 mb-4">Restaurants & Cafes</h3>
+                  <p className="text-slate-600 mb-4">QSR, fine dining, cafes with order management and kitchen integration for fast service.</p>
+                  <ul className="space-y-2 text-sm text-slate-600">
+                    <li className="flex items-center gap-2"><i className="ph-fill ph-check text-orange-500"></i> Table management</li>
+                    <li className="flex items-center gap-2"><i className="ph-fill ph-check text-orange-500"></i> Kitchen display system</li>
+                    <li className="flex items-center gap-2"><i className="ph-fill ph-check text-orange-500"></i> Order management</li>
+                  </ul>
+                </div>
+
+                <div className="p-8 bg-emerald-50 rounded-3xl border border-emerald-100">
+                  <div className="w-16 h-16 rounded-xl bg-white border border-emerald-200 flex items-center justify-center text-emerald-600 text-3xl mb-6">
+                    <i className="ph-fill ph-gift"></i>
+                  </div>
+                  <h3 className="text-2xl font-bold text-slate-900 mb-4">Specialty Stores</h3>
+                  <p className="text-slate-600 mb-4">Salons, spas, service centers with appointment booking and customer management.</p>
+                  <ul className="space-y-2 text-sm text-slate-600">
+                    <li className="flex items-center gap-2"><i className="ph-fill ph-check text-emerald-500"></i> Appointment scheduling</li>
+                    <li className="flex items-center gap-2"><i className="ph-fill ph-check text-emerald-500"></i> Services & packages</li>
+                    <li className="flex items-center gap-2"><i className="ph-fill ph-check text-emerald-500"></i> Staff commission tracking</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Benefits */}
+          <section className="py-24 bg-slate-50">
+            <div className="max-w-7xl mx-auto px-6">
+              <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-16 tracking-tight">Real Results from Our Customers</h2>
+              
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {[
+                  { metric: '3x', desc: 'Faster checkout', color: 'emerald' },
+                  { metric: '50%', desc: 'Stock waste reduced', color: 'emerald' },
+                  { metric: '₹5L+', desc: 'Revenue increase/year', color: 'emerald' },
+                  { metric: '100%', desc: 'Tax compliance', color: 'emerald' },
+                ].map((stat, i) => (
+                  <div key={i} className="p-8 bg-white rounded-2xl border border-slate-200 text-center hover:shadow-lg transition-all">
+                    <p className={`text-4xl lg:text-5xl font-black text-${stat.color}-600 mb-2`}>{stat.metric}</p>
+                    <p className="text-slate-600">{stat.desc}</p>
                   </div>
                 ))}
               </div>

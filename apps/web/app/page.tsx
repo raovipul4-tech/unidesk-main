@@ -563,74 +563,7 @@ export default function HomePage() {
             </div>
         </section>
 
-        {/* Pricing Section */}
-        <section className="py-24 bg-slate-50 mesh-bg" id="pricing">
-            <div className="max-w-7xl mx-auto px-6">
-                <div className="text-center max-w-2xl mx-auto mb-16">
-                    <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-4 tracking-tight">Simple Pricing for Growing Businesses</h2>
-                    <p className="text-lg text-slate-600">Transparent plans designed to scale with your sales team.</p>
-                </div>
 
-                <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto items-center">
-                    {/* Starter */}
-                    <div className="bg-white rounded-3xl p-8 border border-slate-200 shadow-lg shadow-slate-200/50">
-                        <h3 className="text-xl font-bold text-slate-900 mb-2">Starter</h3>
-                        <p className="text-slate-500 text-sm mb-6">Best for small teams starting out.</p>
-                        <div className="mb-8">
-                            <span className="text-4xl font-black text-slate-900">₹999</span>
-                            <span className="text-slate-500">/mo</span>
-                        </div>
-                        <button className="w-full py-3 px-4 bg-slate-100 text-slate-900 rounded-xl font-bold hover:bg-slate-200 transition-colors mb-8">Start Free Trial</button>
-                        <ul className="space-y-4 text-sm font-medium text-slate-700">
-                            <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-brand-500 text-lg shrink-0"></i> CRM access</li>
-                            <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-brand-500 text-lg shrink-0"></i> 1 WhatsApp number</li>
-                            <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-brand-500 text-lg shrink-0"></i> 2 team members</li>
-                            <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-brand-500 text-lg shrink-0"></i> Lead management</li>
-                            <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-brand-500 text-lg shrink-0"></i> Basic automation</li>
-                        </ul>
-                    </div>
-
-                    {/* Growth (Highlighted) */}
-                    <div className="bg-slate-900 rounded-3xl p-8 border border-slate-800 shadow-2xl shadow-brand-500/20 relative transform md:-translate-y-4 text-white">
-                        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-brand-500 text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Most Popular</div>
-                        <h3 className="text-xl font-bold mb-2">Growth</h3>
-                        <p className="text-slate-400 text-sm mb-6">For scaling businesses needing more power.</p>
-                        <div className="mb-8">
-                            <span className="text-5xl font-black">₹2,999</span>
-                            <span className="text-slate-400">/mo</span>
-                        </div>
-                        <button className="w-full py-3 px-4 bg-brand-600 text-white rounded-xl font-bold hover:bg-brand-500 transition-colors mb-8 shadow-lg shadow-brand-600/20">Start Free Trial</button>
-                        <ul className="space-y-4 text-sm font-medium text-slate-200">
-                            <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-brand-400 text-lg shrink-0"></i> Everything in Starter</li>
-                            <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-brand-400 text-lg shrink-0"></i> 5 team members</li>
-                            <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-brand-400 text-lg shrink-0"></i> Broadcast campaigns</li>
-                            <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-brand-400 text-lg shrink-0"></i> Advanced automation</li>
-                            <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-brand-400 text-lg shrink-0"></i> Integrations (Shopify, Woo)</li>
-                        </ul>
-                    </div>
-
-                    {/* Enterprise */}
-                    <div className="bg-white rounded-3xl p-8 border border-slate-200 shadow-lg shadow-slate-200/50">
-                        <h3 className="text-xl font-bold text-slate-900 mb-2">Enterprise</h3>
-                        <p className="text-slate-500 text-sm mb-6">Custom solutions for large volumes.</p>
-                        <div className="mb-8">
-                            <span className="text-4xl font-black text-slate-900">₹7,999</span>
-                            <span className="text-slate-500">/mo</span>
-                        </div>
-                        <button className="w-full py-3 px-4 bg-white border border-slate-200 text-slate-900 rounded-xl font-bold hover:bg-slate-50 transition-colors mb-8">Contact Sales</button>
-                        <ul className="space-y-4 text-sm font-medium text-slate-700">
-                            <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-slate-400 text-lg shrink-0"></i> Unlimited team members</li>
-                            <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-slate-400 text-lg shrink-0"></i> Multiple WhatsApp numbers</li>
-                            <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-slate-400 text-lg shrink-0"></i> API access</li>
-                            <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-slate-400 text-lg shrink-0"></i> Priority support</li>
-                            <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-slate-400 text-lg shrink-0"></i> Custom automation</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <p className="text-center text-sm text-slate-500 mt-8">* WhatsApp conversation charges apply separately based on Meta's official pricing.</p>
-            </div>
-        </section>
 
         {/* Testimonials Section */}
         <section className="py-24 bg-white" id="testimonials">

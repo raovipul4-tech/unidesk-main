@@ -46,19 +46,22 @@ export default function UniWebPage() {
             </div>
           </section>
 
-          {/* Features */}
+          {/* Features Grid */}
           <section className="py-24 bg-slate-50">
             <div className="max-w-7xl mx-auto px-6">
-              <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-16 tracking-tight">Build Websites with AI</h2>
+              <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-16 tracking-tight">Everything to Build Your Online Presence</h2>
               
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {[
-                  { icon: 'ph-sparkle', title: 'AI Content Generator', desc: 'Generate website copy automatically with AI' },
-                  { icon: 'ph-palette', title: 'Drag & Drop Builder', desc: 'Create layouts without any coding' },
-                  { icon: 'ph-device-tablet', title: 'Responsive Design', desc: 'Works perfectly on all devices' },
-                  { icon: 'ph-image', title: 'Stock Images Included', desc: 'Millions of royalty-free images' },
-                  { icon: 'ph-rocket', title: 'SEO Optimized', desc: 'Built-in SEO tools for better ranking' },
-                  { icon: 'ph-chart-bar', title: 'Analytics Built-in', desc: 'Track visitor behavior and conversions' },
+                  { icon: 'ph-sparkle', title: 'AI Content Generator', desc: 'Generate website copy, headlines, and meta descriptions with AI' },
+                  { icon: 'ph-palette', title: 'Drag & Drop Builder', desc: 'Visual builder with 1000+ pre-made sections and blocks' },
+                  { icon: 'ph-device-tablet', title: 'Mobile Responsive', desc: 'Perfect layouts on phones, tablets, and desktops' },
+                  { icon: 'ph-image', title: 'Stock Images', desc: 'Access to 10M+ royalty-free images and videos' },
+                  { icon: 'ph-rocket', title: 'SEO Optimized', desc: 'Built-in SEO, performance optimization, and mobile-first indexing' },
+                  { icon: 'ph-chart-bar', title: 'Analytics', desc: 'Track visitors, pageviews, bounce rate, and conversions' },
+                  { icon: 'ph-lightning', title: 'Lightning Fast', desc: '99.9% uptime with global CDN for fastest load times' },
+                  { icon: 'ph-lock', title: 'HTTPS & Security', desc: 'SSL certificates and automatic security updates included' },
+                  { icon: 'ph-code', title: 'E-commerce Ready', desc: 'Sell products, manage inventory, and accept payments' },
                 ].map((feature, i) => (
                   <div key={i} className="p-8 rounded-2xl bg-white border border-slate-200 hover:shadow-lg hover:border-slate-300 transition-all group">
                     <div className="w-12 h-12 rounded-xl bg-cyan-50 border border-cyan-100 flex items-center justify-center text-cyan-600 text-2xl mb-6 group-hover:scale-110 transition-transform">
@@ -68,6 +71,93 @@ export default function UniWebPage() {
                     <p className="text-slate-600 text-sm">{feature.desc}</p>
                   </div>
                 ))}
+              </div>
+            </div>
+          </section>
+
+          {/* Templates Section */}
+          <section className="py-24 bg-white">
+            <div className="max-w-7xl mx-auto px-6">
+              <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-4 tracking-tight">Pre-built Templates for Every Industry</h2>
+              <p className="text-lg text-slate-600 mb-16">Choose from 100+ professionally designed templates and customize in minutes</p>
+              
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {[
+                  { name: 'Portfolio', icon: 'ph-briefcase' },
+                  { name: 'E-commerce', icon: 'ph-shopping-bag' },
+                  { name: 'Services', icon: 'ph-wrench' },
+                  { name: 'Blog', icon: 'ph-books' },
+                  { name: 'Restaurant', icon: 'ph-utensils' },
+                  { name: 'Photography', icon: 'ph-camera' },
+                  { name: 'Agency', icon: 'ph-users-three' },
+                  { name: 'SaaS', icon: 'ph-cloud' },
+                ].map((template, i) => (
+                  <div key={i} className="p-6 bg-cyan-50 rounded-2xl border border-cyan-100 hover:border-cyan-300 hover:shadow-lg transition-all text-center group cursor-pointer">
+                    <div className="text-4xl text-cyan-600 mb-3 group-hover:scale-125 transition-transform">
+                      <i className={`ph-fill ${template.icon}`}></i>
+                    </div>
+                    <p className="font-bold text-slate-900">{template.name}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* Why Choose UniWeb */}
+          <section className="py-24 bg-slate-50">
+            <div className="max-w-7xl mx-auto px-6">
+              <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-16 tracking-tight">Why Choose UniWeb</h2>
+              
+              <div className="grid md:grid-cols-2 gap-12">
+                <div className="space-y-6">
+                  {[
+                    { title: 'No Coding Required', desc: 'Visual editor makes it easy for anyone to create websites' },
+                    { title: 'Lightning Fast Setup', desc: 'Go from idea to live website in under 30 minutes' },
+                    { title: 'AI Writing Assistant', desc: 'Get help writing copy that sells and converts visitors' },
+                    { title: 'One-Click Deployment', desc: 'Publish your website instantly with a single click' },
+                  ].map((item, i) => (
+                    <div key={i} className="flex gap-4">
+                      <div className="w-10 h-10 rounded-full bg-cyan-100 flex items-center justify-center text-cyan-600 shrink-0 mt-1">
+                        <i className="ph-fill ph-check"></i>
+                      </div>
+                      <div>
+                        <p className="font-bold text-slate-900 mb-1">{item.title}</p>
+                        <p className="text-slate-600 text-sm">{item.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                
+                <div className="relative">
+                  <div className="absolute inset-0 bg-gradient-to-tr from-cyan-100 to-blue-50 rounded-3xl transform -rotate-3"></div>
+                  <div className="relative bg-white rounded-3xl p-8 border border-slate-200 shadow-xl">
+                    <div className="mb-6">
+                      <p className="text-sm font-bold text-cyan-600 uppercase tracking-wider mb-2">Perfect For</p>
+                      <h3 className="text-2xl font-bold text-slate-900">Growing Businesses</h3>
+                    </div>
+                    <ul className="space-y-3 mb-8">
+                      <li className="flex items-start gap-3">
+                        <i className="ph-fill ph-check text-cyan-600 mt-0.5"></i>
+                        <span className="text-slate-600 font-medium">Small businesses and startups</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <i className="ph-fill ph-check text-cyan-600 mt-0.5"></i>
+                        <span className="text-slate-600 font-medium">Freelancers and consultants</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <i className="ph-fill ph-check text-cyan-600 mt-0.5"></i>
+                        <span className="text-slate-600 font-medium">E-commerce shops</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <i className="ph-fill ph-check text-cyan-600 mt-0.5"></i>
+                        <span className="text-slate-600 font-medium">Service providers</span>
+                      </li>
+                    </ul>
+                    <div className="p-4 bg-cyan-50 rounded-xl text-center border border-cyan-100">
+                      <p className="text-sm text-slate-600"><span className="font-bold text-cyan-600">50,000+</span> websites live</p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </section>
