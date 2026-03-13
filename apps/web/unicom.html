@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UniCOM - Business Intercom & Calling Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400&display=swap">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header class="fixed top-0 left-0 right-0 w-full z-50 bg-white">
+            <!-- Top Announcement Bar -->
+            <div class="announcement-bar">
+                <div class="container announcement-content">
+                    <div class="announcement-left">
+                        <i class="ph ph-envelope"></i>
+                        <a href="mailto:info@unidesk.in">info@unidesk.in</a>
+                    </div>
+                    <div class="announcement-center">
+                        <i class="ph ph-gift"></i>
+                        <span>Limited Offer: Get 20% OFF on Annual Plans!</span>
+                    </div>
+                    <div class="social-buttons">
+                        <a href="https://facebook.com/unidesk.crm" target="_blank" rel="noopener noreferrer" class="social-btn">
+                            <i class="ph-bold ph-facebook-logo"></i>
+                        </a>
+                        <a href="https://twitter.com/unidesk_crm" target="_blank" rel="noopener noreferrer" class="social-btn">
+                            <i class="ph-bold ph-twitter-logo"></i>
+                        </a>
+                        <a href="https://linkedin.com/company/unidesk_crm" target="_blank" rel="noopener noreferrer" class="social-btn">
+                            <i class="ph-bold ph-linkedin-logo"></i>
+                        </a>
+                        <a href="https://instagram.com/unidesk_crm" target="_blank" rel="noopener noreferrer" class="social-btn">
+                            <i class="ph-bold ph-instagram-logo"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Navigation -->
+            <div class="nav-border">
+                <div class="container nav-wrapper">
+                    <div class="logo" onclick="goToPage('index.html')">
+                        <img src="https://app-cdn.appgen.com/0e496fc5-3050-498f-ade1-610fc9ef6d40/assets/uploaded_1773130812759_gt5bks.png" alt="Unidesk Logo" />
+                        <span>Unidesk</span>
+                    </div>
+
+                    <nav class="desktop-nav">
+                        <a href="index.html" class="nav-link">Home</a>
+                        <a href="features.html" class="nav-link">Features</a>
+                        <div class="dropdown">
+                            <button class="nav-link">
+                                Products
+                                <i class="ph ph-caret-down"></i>
+                            </button>
+                            <div class="dropdown-menu">
+                                <a href="unicrm.html" class="dropdown-item">
+                                    <div class="dropdown-icon crm"><i class="ph ph-kanban"></i></div>
+                                    <div><p class="dropdown-title">UniCRM</p><p class="dropdown-desc">CRM Platform</p></div>
+                                </a>
+                                <a href="unichat.html" class="dropdown-item">
+                                    <div class="dropdown-icon chat"><i class="ph ph-whatsapp-logo"></i></div>
+                                    <div><p class="dropdown-title">UniChat</p><p class="dropdown-desc">WhatsApp API</p></div>
+                                </a>
+                                <a href="unicom.html" class="dropdown-item">
+                                    <div class="dropdown-icon unicom"><i class="ph ph-phone"></i></div>
+                                    <div><p class="dropdown-title">UniCOM</p><p class="dropdown-desc">Intercom & Calling</p></div>
+                                </a>
+                                <a href="uniads.html" class="dropdown-item">
+                                    <div class="dropdown-icon uniads"><i class="ph ph-megaphone"></i></div>
+                                    <div><p class="dropdown-title">UniAds</p><p class="dropdown-desc">Ad Management</p></div>
+                                </a>
+                                <a href="uniweb.html" class="dropdown-item">
+                                    <div class="dropdown-icon uniweb"><i class="ph ph-globe"></i></div>
+                                    <div><p class="dropdown-title">UniWeb</p><p class="dropdown-desc">AI Website Builder</p></div>
+                                </a>
+                                <a href="unipos.html" class="dropdown-item">
+                                    <div class="dropdown-icon unipos"><i class="ph ph-credit-card"></i></div>
+                                    <div><p class="dropdown-title">UniPOS</p><p class="dropdown-desc">AI POS System</p></div>
+                                </a>
+                            </div>
+                        </div>
+                        <a href="pricing.html" class="nav-link">Pricing</a>
+                        <a href="contact.html" class="nav-link">Contact</a>
+                    </nav>
+
+                    <div class="nav-actions">
+                        <a href="login.html" class="nav-login">Login</a>
+                        <a href="book-demo.html" class="nav-demo">Book Demo</a>
+                    </div>
+
+                    <button class="mobile-menu-btn">
+                        <i class="ph ph-list"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main style="padding-top: 180px;">
+            <!-- Product Hero -->
+            <section class="product-hero unicom-hero">
+                <div class="container">
+                    <div class="product-hero-content">
+                        <h1>UniCOM</h1>
+                        <p class="product-tagline">Business Intercom, Chatting & Calling Platform</p>
+                        <p class="product-description">All-in-one communication hub for your business. Manage team chat, internal communications, customer support, and voice calling from one unified interface.</p>
+                        <div class="hero-buttons">
+                            <a href="book-demo.html" class="btn btn-primary">Get Started</a>
+                            <a href="book-demo.html" class="btn btn-secondary">Schedule Demo</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features Grid -->
+            <section class="product-features-section">
+                <div class="container">
+                    <h2>Powerful Communication Features</h2>
+                    <div class="features-grid-3">
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="ph ph-chat-circle"></i></div>
+                            <h3>Team Chat</h3>
+                            <p>Real-time team messaging, channels, and direct conversations all in one place.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="ph ph-phone-call"></i></div>
+                            <h3>VoIP Calling</h3>
+                            <p>Crystal clear voice calling with call recording and transcription capabilities.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="ph ph-video-camera"></i></div>
+                            <h3>Video Conferencing</h3>
+                            <p>HD video calls and screen sharing for seamless remote collaboration.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="ph ph-customer-service"></i></div>
+                            <h3>Customer Support</h3>
+                            <p>Integrated customer intercom widget for in-app messaging and support.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="ph ph-files"></i></div>
+                            <h3>File Sharing</h3>
+                            <p>Secure file transfers and document collaboration within conversations.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="ph ph-clock-history"></i></div>
+                            <h3>Call History</h3>
+                            <p>Complete call logs, transcripts, and analytics for quality assurance.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Use Cases -->
+            <section class="use-cases-section">
+                <div class="container">
+                    <h2>Perfect For</h2>
+                    <div class="use-cases-grid">
+                        <div class="use-case-card">
+                            <div class="use-case-icon"><i class="ph ph-buildings"></i></div>
+                            <h3>Enterprise Teams</h3>
+                            <p>Large organizations needing unified communication across departments</p>
+                        </div>
+                        <div class="use-case-card">
+                            <div class="use-case-icon"><i class="ph ph-headset"></i></div>
+                            <h3>Customer Support</h3>
+                            <p>Support teams managing customer interactions and resolving issues</p>
+                        </div>
+                        <div class="use-case-card">
+                            <div class="use-case-icon"><i class="ph ph-handshake"></i></div>
+                            <h3>Sales Teams</h3>
+                            <p>Sales professionals managing client relationships and follow-ups</p>
+                        </div>
+                        <div class="use-case-card">
+                            <div class="use-case-icon"><i class="ph ph-users"></i></div>
+                            <h3>Remote Teams</h3>
+                            <p>Distributed teams working across locations and time zones</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA Section -->
+            <section class="cta-section">
+                <div class="container cta-container">
+                    <h2>Experience Better Business Communication</h2>
+                    <p>Join companies who have transformed their communication with UniCOM</p>
+                    <div class="cta-buttons">
+                        <a href="book-demo.html" class="btn btn-light">Start Free Trial</a>
+                        <a href="pricing.html" class="btn btn-secondary-light">View Pricing</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container footer-content">
+                <div class="footer-grid">
+                    <div class="footer-section company">
+                        <div class="footer-logo">
+                            <img src="https://app-cdn.appgen.com/0e496fc5-3050-498f-ade1-610fc9ef6d40/assets/uploaded_1773130812759_gt5bks.png" alt="Unidesk Logo" />
+                            <span>Unidesk</span>
+                        </div>
+                        <p>Empowering businesses with intelligent solutions for communication and management.</p>
+                        <div class="footer-socials">
+                            <a href="https://facebook.com/unidesk.crm" target="_blank" rel="noopener noreferrer" class="footer-social-btn">
+                                <i class="ph ph-facebook-logo"></i>
+                            </a>
+                            <a href="https://twitter.com/unidesk_crm" target="_blank" rel="noopener noreferrer" class="footer-social-btn">
+                                <i class="ph ph-twitter-logo"></i>
+                            </a>
+                            <a href="https://linkedin.com/company/unidesk_crm" target="_blank" rel="noopener noreferrer" class="footer-social-btn">
+                                <i class="ph ph-linkedin-logo"></i>
+                            </a>
+                            <a href="https://instagram.com/unidesk_crm" target="_blank" rel="noopener noreferrer" class="footer-social-btn">
+                                <i class="ph ph-instagram-logo"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Products</h3>
+                        <ul>
+                            <li><a href="unicrm.html"><i class="ph ph-kanban"></i> UniCRM</a></li>
+                            <li><a href="unichat.html"><i class="ph ph-whatsapp-logo"></i> UniChat</a></li>
+                            <li><a href="unicom.html"><i class="ph ph-phone"></i> UniCOM</a></li>
+                            <li><a href="uniads.html"><i class="ph ph-megaphone"></i> UniAds</a></li>
+                            <li><a href="uniweb.html"><i class="ph ph-globe"></i> UniWeb</a></li>
+                            <li><a href="unipos.html"><i class="ph ph-credit-card"></i> UniPOS</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Company</h3>
+                        <ul>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="book-demo.html">Book Demo</a></li>
+                            <li><a href="careers.html">Careers</a></li>
+                            <li><a href="blog.html">Blog</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Support</h3>
+                        <ul>
+                            <li><a href="help-center.html">Help Center</a></li>
+                            <li><a href="documentation.html">Documentation</a></li>
+                            <li><a href="api-reference.html">API Reference</a></li>
+                            <li><a href="status.html">Status</a></li>
+                            <li><a href="email-support.html">Email Support</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="container">
+                    <p>© 2024 Unidesk. All rights reserved.</p>
+                    <div class="footer-links">
+                        <a href="privacy-policy.html">Privacy Policy</a>
+                        <a href="terms.html">Terms of Service</a>
+                        <a href="cookie-policy.html">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

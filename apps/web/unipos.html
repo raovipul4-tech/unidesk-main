@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UniPOS - AI-Powered Point of Sale System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400&display=swap">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header class="fixed top-0 left-0 right-0 w-full z-50 bg-white">
+            <div class="announcement-bar">
+                <div class="container announcement-content">
+                    <div class="announcement-left">
+                        <i class="ph ph-envelope"></i>
+                        <a href="mailto:info@unidesk.in">info@unidesk.in</a>
+                    </div>
+                    <div class="announcement-center">
+                        <i class="ph ph-gift"></i>
+                        <span>Limited Offer: Get 20% OFF on Annual Plans!</span>
+                    </div>
+                    <div class="social-buttons">
+                        <a href="https://facebook.com/unidesk.crm" target="_blank" rel="noopener noreferrer" class="social-btn">
+                            <i class="ph-bold ph-facebook-logo"></i>
+                        </a>
+                        <a href="https://twitter.com/unidesk_crm" target="_blank" rel="noopener noreferrer" class="social-btn">
+                            <i class="ph-bold ph-twitter-logo"></i>
+                        </a>
+                        <a href="https://linkedin.com/company/unidesk_crm" target="_blank" rel="noopener noreferrer" class="social-btn">
+                            <i class="ph-bold ph-linkedin-logo"></i>
+                        </a>
+                        <a href="https://instagram.com/unidesk_crm" target="_blank" rel="noopener noreferrer" class="social-btn">
+                            <i class="ph-bold ph-instagram-logo"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nav-border">
+                <div class="container nav-wrapper">
+                    <div class="logo" onclick="goToPage('index.html')">
+                        <img src="https://app-cdn.appgen.com/0e496fc5-3050-498f-ade1-610fc9ef6d40/assets/uploaded_1773130812759_gt5bks.png" alt="Unidesk Logo" />
+                        <span>Unidesk</span>
+                    </div>
+
+                    <nav class="desktop-nav">
+                        <a href="index.html" class="nav-link">Home</a>
+                        <a href="features.html" class="nav-link">Features</a>
+                        <div class="dropdown">
+                            <button class="nav-link">
+                                Products
+                                <i class="ph ph-caret-down"></i>
+                            </button>
+                            <div class="dropdown-menu">
+                                <a href="unicrm.html" class="dropdown-item">
+                                    <div class="dropdown-icon crm"><i class="ph ph-kanban"></i></div>
+                                    <div><p class="dropdown-title">UniCRM</p><p class="dropdown-desc">CRM Platform</p></div>
+                                </a>
+                                <a href="unichat.html" class="dropdown-item">
+                                    <div class="dropdown-icon chat"><i class="ph ph-whatsapp-logo"></i></div>
+                                    <div><p class="dropdown-title">UniChat</p><p class="dropdown-desc">WhatsApp API</p></div>
+                                </a>
+                                <a href="unicom.html" class="dropdown-item">
+                                    <div class="dropdown-icon unicom"><i class="ph ph-phone"></i></div>
+                                    <div><p class="dropdown-title">UniCOM</p><p class="dropdown-desc">Intercom & Calling</p></div>
+                                </a>
+                                <a href="uniads.html" class="dropdown-item">
+                                    <div class="dropdown-icon uniads"><i class="ph ph-megaphone"></i></div>
+                                    <div><p class="dropdown-title">UniAds</p><p class="dropdown-desc">Ad Management</p></div>
+                                </a>
+                                <a href="uniweb.html" class="dropdown-item">
+                                    <div class="dropdown-icon uniweb"><i class="ph ph-globe"></i></div>
+                                    <div><p class="dropdown-title">UniWeb</p><p class="dropdown-desc">AI Website Builder</p></div>
+                                </a>
+                                <a href="unipos.html" class="dropdown-item">
+                                    <div class="dropdown-icon unipos"><i class="ph ph-credit-card"></i></div>
+                                    <div><p class="dropdown-title">UniPOS</p><p class="dropdown-desc">AI POS System</p></div>
+                                </a>
+                            </div>
+                        </div>
+                        <a href="pricing.html" class="nav-link">Pricing</a>
+                        <a href="contact.html" class="nav-link">Contact</a>
+                    </nav>
+
+                    <div class="nav-actions">
+                        <a href="login.html" class="nav-login">Login</a>
+                        <a href="book-demo.html" class="nav-demo">Book Demo</a>
+                    </div>
+
+                    <button class="mobile-menu-btn">
+                        <i class="ph ph-list"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main style="padding-top: 180px;">
+            <!-- Product Hero -->
+            <section class="product-hero unipos-hero">
+                <div class="container">
+                    <div class="product-hero-content">
+                        <h1>UniPOS</h1>
+                        <p class="product-tagline">AI-Powered Point of Sale System</p>
+                        <p class="product-description">Modern, cloud-based POS system for retail shops, restaurants, and service businesses. Manage inventory, payments, customers, and analytics in real-time with AI insights.</p>
+                        <div class="hero-buttons">
+                            <a href="book-demo.html" class="btn btn-primary">Get Started</a>
+                            <a href="book-demo.html" class="btn btn-secondary">Schedule Demo</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features Grid -->
+            <section class="product-features-section">
+                <div class="container">
+                    <h2>Complete POS Solution for Your Business</h2>
+                    <div class="features-grid-3">
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="ph ph-brain"></i></div>
+                            <h3>AI Inventory</h3>
+                            <p>Smart inventory management with AI-powered stock predictions and alerts.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="ph ph-credit-card"></i></div>
+                            <h3>Multi-Payment</h3>
+                            <p>Accept cash, cards, digital wallets, and UPI payments from customers.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="ph ph-users"></i></div>
+                            <h3>Customer Loyalty</h3>
+                            <p>Built-in loyalty programs to reward and retain your best customers.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="ph ph-chart-bar"></i></div>
+                            <h3>Real-time Analytics</h3>
+                            <p>Comprehensive sales reports, trends, and business insights on demand.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="ph ph-identification-card"></i></div>
+                            <h3>Staff Management</h3>
+                            <p>User permissions, access control, and performance tracking.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="ph ph-cloud-check"></i></div>
+                            <h3>Cloud Backup</h3>
+                            <p>Automatic cloud backups and data security with bank-level encryption.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Perfect For -->
+            <section class="use-cases-section">
+                <div class="container">
+                    <h2>Ideal For</h2>
+                    <div class="use-cases-grid">
+                        <div class="use-case-card">
+                            <div class="use-case-icon"><i class="ph ph-utensils"></i></div>
+                            <h3>Restaurants & Cafes</h3>
+                            <p>Table management, kitchen displays, and order tracking</p>
+                        </div>
+                        <div class="use-case-card">
+                            <div class="use-case-icon"><i class="ph ph-storefront"></i></div>
+                            <h3>Retail Shops</h3>
+                            <p>Product cataloging, inventory, and multi-store management</p>
+                        </div>
+                        <div class="use-case-card">
+                            <div class="use-case-icon"><i class="ph ph-scissors"></i></div>
+                            <h3>Service Businesses</h3>
+                            <p>Appointment booking, staff scheduling, and service management</p>
+                        </div>
+                        <div class="use-case-card">
+                            <div class="use-case-icon"><i class="ph ph-shopping-bags"></i></div>
+                            <h3>Boutiques & Malls</h3>
+                            <p>Multi-brand management and centralized reporting</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Why Choose UniPOS -->
+            <section class="benefits-section">
+                <div class="container">
+                    <h2>Why Choose UniPOS?</h2>
+                    <div class="benefits-grid">
+                        <div class="benefit-card">
+                            <div class="benefit-icon"><i class="ph ph-clock"></i></div>
+                            <h3>Easy Setup</h3>
+                            <p>Get up and running in minutes, no technical knowledge needed</p>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon"><i class="ph ph-mobile"></i></div>
+                            <h3>Mobile Ready</h3>
+                            <p>Works on tablets, phones, and desktop computers</p>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon"><i class="ph ph-lightning"></i></div>
+                            <h3>Fast Processing</h3>
+                            <p>Lightning-fast transactions even with high volume</p>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon"><i class="ph ph-handshake"></i></div>
+                            <h3>Expert Support</h3>
+                            <p>24/7 customer support to help you anytime</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA Section -->
+            <section class="cta-section">
+                <div class="container cta-container">
+                    <h2>Transform Your Point of Sale</h2>
+                    <p>Experience the power of AI-driven business management with UniPOS</p>
+                    <div class="cta-buttons">
+                        <a href="book-demo.html" class="btn btn-light">Start Free Trial</a>
+                        <a href="pricing.html" class="btn btn-secondary-light">View Pricing</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container footer-content">
+                <div class="footer-grid">
+                    <div class="footer-section company">
+                        <div class="footer-logo">
+                            <img src="https://app-cdn.appgen.com/0e496fc5-3050-498f-ade1-610fc9ef6d40/assets/uploaded_1773130812759_gt5bks.png" alt="Unidesk Logo" />
+                            <span>Unidesk</span>
+                        </div>
+                        <p>Empowering retail and service businesses with intelligent POS systems.</p>
+                        <div class="footer-socials">
+                            <a href="https://facebook.com/unidesk.crm" target="_blank" rel="noopener noreferrer" class="footer-social-btn">
+                                <i class="ph ph-facebook-logo"></i>
+                            </a>
+                            <a href="https://twitter.com/unidesk_crm" target="_blank" rel="noopener noreferrer" class="footer-social-btn">
+                                <i class="ph ph-twitter-logo"></i>
+                            </a>
+                            <a href="https://linkedin.com/company/unidesk_crm" target="_blank" rel="noopener noreferrer" class="footer-social-btn">
+                                <i class="ph ph-linkedin-logo"></i>
+                            </a>
+                            <a href="https://instagram.com/unidesk_crm" target="_blank" rel="noopener noreferrer" class="footer-social-btn">
+                                <i class="ph ph-instagram-logo"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Products</h3>
+                        <ul>
+                            <li><a href="unicrm.html"><i class="ph ph-kanban"></i> UniCRM</a></li>
+                            <li><a href="unichat.html"><i class="ph ph-whatsapp-logo"></i> UniChat</a></li>
+                            <li><a href="unicom.html"><i class="ph ph-phone"></i> UniCOM</a></li>
+                            <li><a href="uniads.html"><i class="ph ph-megaphone"></i> UniAds</a></li>
+                            <li><a href="uniweb.html"><i class="ph ph-globe"></i> UniWeb</a></li>
+                            <li><a href="unipos.html"><i class="ph ph-credit-card"></i> UniPOS</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Company</h3>
+                        <ul>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="book-demo.html">Book Demo</a></li>
+                            <li><a href="careers.html">Careers</a></li>
+                            <li><a href="blog.html">Blog</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Support</h3>
+                        <ul>
+                            <li><a href="help-center.html">Help Center</a></li>
+                            <li><a href="documentation.html">Documentation</a></li>
+                            <li><a href="api-reference.html">API Reference</a></li>
+                            <li><a href="status.html">Status</a></li>
+                            <li><a href="email-support.html">Email Support</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="container">
+                    <p>© 2024 Unidesk. All rights reserved.</p>
+                    <div class="footer-links">
+                        <a href="privacy-policy.html">Privacy Policy</a>
+                        <a href="terms.html">Terms of Service</a>
+                        <a href="cookie-policy.html">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
