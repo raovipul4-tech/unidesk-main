@@ -1076,17 +1076,58 @@ main {
 }
 
 .feature-icon {
-    width: 48px;
-    height: 48px;
+    width: 56px;
+    height: 56px;
     background-color: white;
-    border-radius: 8px;
+    border-radius: 12px;
     border: 1px solid #e2e8f0;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 24px;
+    font-size: 28px;
     color: #475569;
     margin-bottom: 24px;
+    transition: all 0.3s;
+}
+
+.feature-card:hover .feature-icon {
+    border-color: #cbd5e1;
+}
+
+.feature-icon.crm-icon {
+    background-color: #fef2f2;
+    color: #dc2626;
+    border-color: #fecaca;
+}
+
+.feature-icon.chat-icon {
+    background-color: #f0fdf4;
+    color: #22c55e;
+    border-color: #bbf7d0;
+}
+
+.feature-icon.unicom-icon {
+    background-color: #eff6ff;
+    color: #3b82f6;
+    border-color: #bfdbfe;
+}
+
+.feature-icon.uniads-icon {
+    background-color: #f5f3ff;
+    color: #a855f7;
+    border-color: #e9d5ff;
+}
+
+.feature-icon.uniweb-icon {
+    background-color: #f0fdf4;
+    color: #22c55e;
+    border-color: #bbf7d0;
+}
+
+.feature-icon.unipos-icon {
+    background-color: #fff7ed;
+    color: #f97316;
+    border-color: #fed7aa;
 }
 
 .feature-card h4 {
