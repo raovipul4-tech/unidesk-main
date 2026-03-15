@@ -110,6 +110,9 @@ export default function Footer({ children }: FooterProps) {
               <li>
                 <a href="mailto:support@unidesk.in" className="text-slate-400 hover:text-white transition-colors">Email Support</a>
               </li>
+              <li>
+                <button onClick={() => router.push('/response')} className="text-slate-400 hover:text-white transition-colors">View Responses</button>
+              </li>
             </ul>
           </div>
         </div>

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { format } from 'date-fns';
-import { Mail, Phone, Building2, FileText, Calendar, Lock, Trash2 } from 'lucide-react';
+import { Mail, Phone, Building2, FileText, Calendar, Lock, Trash2, RefreshCw, LogOut } from 'lucide-react';
 
 interface Submission {
   id: number;
@@ -38,6 +38,13 @@ export default function ResponsePage() {
       alert('Invalid password');
       setPassword('');
     }
+  };
+
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+    setPassword('');
+    setSubmissions([]);
+    setFilterStage('all');
   };
 
   const fetchSubmissions = async () => {
@@ -144,42 +151,71 @@ export default function ResponsePage() {
   // Login Page
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center px-4">
-        <div className="bg-white rounded-lg shadow-2xl p-8 w-full max-w-md">
-          <div className="flex justify-center mb-6">
-            <div className="bg-blue-100 rounded-full p-3">
-              <Lock className="w-8 h-8 text-blue-600" />
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 flex items-center justify-center px-4 py-8">
+        {/* Animated background elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse"></div>
+        </div>
+
+        <div className="relative w-full max-w-md">
+          {/* Main Card */}
+          <div className="bg-gradient-to-br from-white to-slate-50 rounded-3xl shadow-2xl p-8 border border-slate-200/50">
+            {/* Icon */}
+            <div className="flex justify-center mb-6">
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-full blur-lg opacity-75 animate-pulse"></div>
+                <div className="relative bg-gradient-to-br from-blue-600 to-blue-700 rounded-full p-4">
+                  <Lock className="w-8 h-8 text-white" />
+                </div>
+              </div>
+            </div>
+            
+            {/* Title */}
+            <h1 className="text-4xl font-bold bg-gradient-to-r from-slate-900 to-blue-600 bg-clip-text text-transparent text-center mb-2">
+              Responses
+            </h1>
+            <p className="text-slate-600 text-center mb-8 text-lg">
+              Access your form submissions securely
+            </p>
+
+            {/* Form */}
+            <form onSubmit={handleLogin} className="space-y-6">
+              <div>
+                <label className="block text-sm font-semibold text-slate-700 mb-3 uppercase tracking-wide">
+                  Password
+                </label>
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Enter your password"
+                  className="w-full px-4 py-4 border-2 border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-lg transition-all duration-300 hover:border-slate-300"
+                  autoFocus
+                />
+              </div>
+              <button
+                type="submit"
+                className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-4 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95 flex items-center justify-center space-x-2 text-lg"
+              >
+                <Lock className="w-5 h-5" />
+                <span>Unlock Dashboard</span>
+              </button>
+            </form>
+
+            {/* Security Note */}
+            <div className="mt-6 pt-6 border-t border-slate-200">
+              <p className="text-xs text-slate-500 text-center flex items-center justify-center space-x-2">
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M5.293 9.707a1 1 0 010-1.414L10 3.586l4.707 4.707a1 1 0 01-1.414 1.414L11 6.414V15a1 1 0 11-2 0V6.414L6.707 9.707a1 1 0 01-1.414 0z" clipRule="evenodd"></path></svg>
+                <span>Your data is secure and encrypted</span>
+              </p>
             </div>
           </div>
-          
-          <h1 className="text-3xl font-bold text-slate-900 text-center mb-2">
-            Responses
-          </h1>
-          <p className="text-slate-600 text-center mb-8">
-            Enter password to view form submissions
-          </p>
 
-          <form onSubmit={handleLogin} className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">
-                Password
-              </label>
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Enter password"
-                className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                autoFocus
-              />
-            </div>
-            <button
-              type="submit"
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition-colors"
-            >
-              Unlock
-            </button>
-          </form>
+          {/* Bottom Info */}
+          <div className="mt-6 text-center">
+            <p className="text-slate-400 text-sm">Questions? <a href="mailto:support@unidesk.in" className="text-blue-400 hover:text-blue-300 font-semibold">Contact Support</a></p>
+          </div>
         </div>
       </div>
     );
@@ -207,23 +243,67 @@ export default function ResponsePage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 py-12 px-4">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold text-slate-900 mb-2">Form Responses</h1>
-          <p className="text-slate-600">Manage and track all form submissions</p>
+        {/* Header with Logout Button */}
+        <div className="flex items-center justify-between mb-8">
+          <div>
+            <h1 className="text-4xl font-bold text-slate-900 mb-2">Form Responses</h1>
+            <p className="text-slate-600">Manage and track all form submissions</p>
+          </div>
+          <button
+            onClick={handleLogout}
+            className="flex items-center gap-2 px-4 py-2 bg-red-100 hover:bg-red-200 text-red-800 rounded-lg font-medium transition-colors"
+          >
+            <LogOut className="w-4 h-4" />
+            Logout
+          </button>
         </div>
 
-        {/* Sort Option */}
-        <div className="bg-white rounded-lg shadow p-4 mb-6">
-          <label className="text-sm font-medium text-slate-700">Sort by Date:</label>
-          <select
-            value={sortBy}
-            onChange={(e) => setSortBy(e.target.value as 'newest' | 'oldest')}
-            className="ml-3 px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+        {/* Controls - Sort and Refresh */}
+        <div className="bg-white rounded-lg shadow-md p-4 mb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <label className="text-sm font-medium text-slate-700">Sort by Date:</label>
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value as 'newest' | 'oldest')}
+              className="px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            >
+              <option value="newest">Newest First</option>
+              <option value="oldest">Oldest First</option>
+            </select>
+          </div>
+          <button
+            onClick={fetchSubmissions}
+            disabled={loading}
+            className="flex items-center gap-2 px-4 py-2 bg-blue-100 hover:bg-blue-200 text-blue-800 rounded-lg font-medium transition-colors disabled:opacity-50"
           >
-            <option value="newest">Newest First</option>
-            <option value="oldest">Oldest First</option>
-          </select>
+            <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
+            {loading ? 'Refreshing...' : 'Refresh'}
+          </button>
+        </div>
+
+        {/* Stage Filter Tabs */}
+        <div className="bg-white rounded-lg shadow-md p-4 mb-6 overflow-x-auto">
+          <div className="flex gap-2 min-w-max">
+            {[
+              { value: 'all', label: 'All Leads', count: stageCounts.all, color: 'bg-slate-100 text-slate-800 border-slate-300 hover:border-slate-400' },
+              { value: 'new', label: 'New', count: stageCounts.new, color: 'bg-yellow-50 text-yellow-800 border-yellow-200 hover:border-yellow-400' },
+              { value: 'interested', label: 'Interested', count: stageCounts.interested, color: 'bg-green-50 text-green-800 border-green-200 hover:border-green-400' },
+              { value: 'not-interested', label: 'Not Interested', count: stageCounts['not-interested'], color: 'bg-red-50 text-red-800 border-red-200 hover:border-red-400' },
+              { value: 'callback', label: 'Call Back', count: stageCounts.callback, color: 'bg-blue-50 text-blue-800 border-blue-200 hover:border-blue-400' },
+            ].map((tab) => (
+              <button
+                key={tab.value}
+                onClick={() => setFilterStage(tab.value)}
+                className={`px-4 py-2 rounded-lg font-medium text-sm transition-all whitespace-nowrap border-2 ${
+                  filterStage === tab.value 
+                    ? `${tab.color} ring-2 ring-offset-2 ring-offset-white` 
+                    : `${tab.color} border-transparent`
+                }`}
+              >
+                {tab.label} <span className="ml-2 font-bold">({tab.count})</span>
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Submissions List */}
