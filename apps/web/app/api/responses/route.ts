@@ -50,3 +50,19 @@ export async function PUT(request: Request) {
     );
   }
 }
+
+export async function DELETE(request: Request) {
+  try {
+    const { id } = await request.json();
+    
+    await sql`DELETE FROM form_submissions WHERE id = ${id}`;
+    
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error('Error deleting submission:', error);
+    return NextResponse.json(
+      { error: 'Failed to delete submission' },
+      { status: 500 }
+    );
+  }
+}

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { format } from 'date-fns';
-import { Mail, Phone, Building2, FileText, Calendar, Lock } from 'lucide-react';
+import { Mail, Phone, Building2, FileText, Calendar, Lock, Trash2 } from 'lucide-react';
 
 interface Submission {
   id: number;
@@ -81,6 +81,26 @@ export default function ResponsePage() {
       console.error('Error updating submission:', error);
     } finally {
       setUpdatingId(null);
+    }
+  };
+
+  const deleteSubmission = async (id: number) => {
+    if (!confirm('Are you sure you want to delete this submission?')) {
+      return;
+    }
+
+    try {
+      const response = await fetch('/api/responses', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id }),
+      });
+      
+      if (response.ok) {
+        setSubmissions(submissions.filter(sub => sub.id !== id));
+      }
+    } catch (error) {
+      console.error('Error deleting submission:', error);
     }
   };
 
@@ -191,31 +211,6 @@ export default function ResponsePage() {
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-slate-900 mb-2">Form Responses</h1>
           <p className="text-slate-600">Manage and track all form submissions</p>
-        </div>
-
-        {/* Stage Filters */}
-        <div className="bg-white rounded-lg shadow p-6 mb-8">
-          <div className="flex flex-wrap gap-3">
-            {[
-              { value: 'all', label: 'All', count: stageCounts.all },
-              { value: 'new', label: 'New', count: stageCounts.new },
-              { value: 'interested', label: 'Interested', count: stageCounts.interested },
-              { value: 'not-interested', label: 'Not Interested', count: stageCounts['not-interested'] },
-              { value: 'callback', label: 'Call Back', count: stageCounts['callback'] },
-            ].map((item) => (
-              <button
-                key={item.value}
-                onClick={() => setFilterStage(item.value)}
-                className={`px-6 py-2 rounded-lg font-semibold transition-all ${
-                  filterStage === item.value
-                    ? 'bg-blue-600 text-white shadow-lg'
-                    : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
-                }`}
-              >
-                {item.label} ({item.count})
-              </button>
-            ))}
-          </div>
         </div>
 
         {/* Sort Option */}
@@ -358,25 +353,35 @@ export default function ResponsePage() {
 
                   {/* Action Buttons */}
                   <div className="border-t border-slate-200 pt-4">
-                    <p className="text-xs font-semibold text-slate-600 uppercase tracking-wide mb-3">Set Stage</p>
-                    <div className="flex flex-wrap gap-2">
-                      {[
-                        { value: 'new', label: '◐ New', color: 'bg-yellow-100 hover:bg-yellow-200 text-yellow-800' },
-                        { value: 'interested', label: '✓ Interested', color: 'bg-green-100 hover:bg-green-200 text-green-800' },
-                        { value: 'not-interested', label: '✕ Not Interested', color: 'bg-red-100 hover:bg-red-200 text-red-800' },
-                        { value: 'callback', label: '☎ Call Back', color: 'bg-blue-100 hover:bg-blue-200 text-blue-800' },
-                      ].map((btn) => (
-                        <button
-                          key={btn.value}
-                          onClick={() => updateStage(submission.id, btn.value)}
-                          disabled={updatingId === submission.id || submission.stage === btn.value}
-                          className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${btn.color} ${
-                            submission.stage === btn.value ? 'ring-2 ring-offset-2 ring-current' : ''
-                          } ${updatingId === submission.id ? 'opacity-50 cursor-not-allowed' : ''}`}
-                        >
-                          {updatingId === submission.id ? 'Updating...' : btn.label}
-                        </button>
-                      ))}
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                      <div className="flex-1">
+                        <p className="text-xs font-semibold text-slate-600 uppercase tracking-wide mb-3">Set Stage</p>
+                        <div className="flex flex-wrap gap-2">
+                          {[
+                            { value: 'new', label: '◐ New', color: 'bg-yellow-100 hover:bg-yellow-200 text-yellow-800' },
+                            { value: 'interested', label: '✓ Interested', color: 'bg-green-100 hover:bg-green-200 text-green-800' },
+                            { value: 'not-interested', label: '✕ Not Interested', color: 'bg-red-100 hover:bg-red-200 text-red-800' },
+                            { value: 'callback', label: '☎ Call Back', color: 'bg-blue-100 hover:bg-blue-200 text-blue-800' },
+                          ].map((btn) => (
+                            <button
+                              key={btn.value}
+                              onClick={() => updateStage(submission.id, btn.value)}
+                              disabled={updatingId === submission.id || submission.stage === btn.value}
+                              className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${btn.color} ${
+                                submission.stage === btn.value ? 'ring-2 ring-offset-2 ring-current' : ''
+                              } ${updatingId === submission.id ? 'opacity-50 cursor-not-allowed' : ''}`}
+                            >
+                              {updatingId === submission.id ? 'Updating...' : btn.label}
+                            </button>
+                          ))}
+                        </div>
+                      </div>\n                      <button
+                        onClick={() => deleteSubmission(submission.id)}
+                        className=\"flex items-center gap-2 px-4 py-2 bg-red-100 hover:bg-red-200 text-red-800 rounded-lg font-medium text-sm transition-colors whitespace-nowrap\"
+                      >
+                        <Trash2 className=\"w-4 h-4\" />
+                        Delete
+                      </button>
                     </div>
                   </div>
                 </div>
