@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { format } from 'date-fns';
-import { Mail, Phone, Building2, FileText, Calendar, ArrowUpDown } from 'lucide-react';
+import { Mail, Phone, Building2, FileText, Calendar, Lock } from 'lucide-react';
 
 interface Submission {
   id: number;
@@ -16,39 +16,73 @@ interface Submission {
   form_type: string;
   product: string | null;
   created_at: string;
+  stage: string;
 }
 
 export default function ResponsePage() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [password, setPassword] = useState('');
   const [submissions, setSubmissions] = useState<Submission[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [filterStage, setFilterStage] = useState<string>('all');
   const [sortBy, setSortBy] = useState<'newest' | 'oldest'>('newest');
-  const [filterType, setFilterType] = useState<'all' | 'contact' | 'demo'>('all');
+  const [updatingId, setUpdatingId] = useState<number | null>(null);
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (password === 'Unidesk@1') {
+      setIsAuthenticated(true);
+      setPassword('');
+      fetchSubmissions();
+    } else {
+      alert('Invalid password');
+      setPassword('');
+    }
+  };
+
+  const fetchSubmissions = async () => {
+    setLoading(true);
+    try {
+      const url = filterStage === 'all' 
+        ? '/api/responses' 
+        : `/api/responses?stage=${filterStage}`;
+      
+      const response = await fetch(url);
+      const data = await response.json();
+      setSubmissions(data);
+    } catch (error) {
+      console.error('Error fetching submissions:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchSubmissions = async () => {
-      try {
-        const response = await fetch('/api/responses');
-        const data = await response.json();
-        setSubmissions(data);
-      } catch (error) {
-        console.error('Error fetching submissions:', error);
-      } finally {
-        setLoading(false);
+    if (isAuthenticated) {
+      fetchSubmissions();
+    }
+  }, [filterStage]);
+
+  const updateStage = async (id: number, newStage: string) => {
+    setUpdatingId(id);
+    try {
+      const response = await fetch('/api/responses', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id, stage: newStage }),
+      });
+      
+      if (response.ok) {
+        setSubmissions(submissions.map(sub => 
+          sub.id === id ? { ...sub, stage: newStage } : sub
+        ));
       }
-    };
-
-    fetchSubmissions();
-  }, []);
-
-  const filtered = submissions.filter(sub => 
-    filterType === 'all' ? true : sub.form_type === filterType
-  );
-
-  const sorted = [...filtered].sort((a, b) => {
-    const dateA = new Date(a.created_at).getTime();
-    const dateB = new Date(b.created_at).getTime();
-    return sortBy === 'newest' ? dateB - dateA : dateA - dateB;
-  });
+    } catch (error) {
+      console.error('Error updating submission:', error);
+    } finally {
+      setUpdatingId(null);
+    }
+  };
 
   const getProductName = (product: string | null) => {
     const productMap: { [key: string]: string } = {
@@ -67,16 +101,88 @@ export default function ResponsePage() {
     return type === 'contact' ? 'bg-blue-100 text-blue-800' : 'bg-green-100 text-green-800';
   };
 
-  if (loading) {
+  const getStageColor = (stage: string) => {
+    const colors: { [key: string]: string } = {
+      new: 'bg-yellow-100 text-yellow-800',
+      interested: 'bg-green-100 text-green-800',
+      'not-interested': 'bg-red-100 text-red-800',
+      'callback': 'bg-blue-100 text-blue-800',
+    };
+    return colors[stage] || 'bg-gray-100 text-gray-800';
+  };
+
+  const getStageLabel = (stage: string) => {
+    const labels: { [key: string]: string } = {
+      new: 'New',
+      interested: 'Interested',
+      'not-interested': 'Not Interested',
+      'callback': 'Call Back',
+    };
+    return labels[stage] || stage;
+  };
+
+  // Login Page
+  if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-slate-600">Loading submissions...</p>
+      <div className="min-h-screen bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center px-4">
+        <div className="bg-white rounded-lg shadow-2xl p-8 w-full max-w-md">
+          <div className="flex justify-center mb-6">
+            <div className="bg-blue-100 rounded-full p-3">
+              <Lock className="w-8 h-8 text-blue-600" />
+            </div>
+          </div>
+          
+          <h1 className="text-3xl font-bold text-slate-900 text-center mb-2">
+            Responses
+          </h1>
+          <p className="text-slate-600 text-center mb-8">
+            Enter password to view form submissions
+          </p>
+
+          <form onSubmit={handleLogin} className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-slate-700 mb-2">
+                Password
+              </label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter password"
+                className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                autoFocus
+              />
+            </div>
+            <button
+              type="submit"
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition-colors"
+            >
+              Unlock
+            </button>
+          </form>
         </div>
       </div>
     );
   }
+
+  // Main Page
+  const filtered = submissions.filter(sub => 
+    filterStage === 'all' ? true : sub.stage === filterStage
+  );
+
+  const sorted = [...filtered].sort((a, b) => {
+    const dateA = new Date(a.created_at).getTime();
+    const dateB = new Date(b.created_at).getTime();
+    return sortBy === 'newest' ? dateB - dateA : dateA - dateB;
+  });
+
+  const stageCounts = {
+    all: submissions.length,
+    new: submissions.filter(s => s.stage === 'new').length,
+    interested: submissions.filter(s => s.stage === 'interested').length,
+    'not-interested': submissions.filter(s => s.stage === 'not-interested').length,
+    'callback': submissions.filter(s => s.stage === 'callback').length,
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 py-12 px-4">
@@ -84,56 +190,54 @@ export default function ResponsePage() {
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-slate-900 mb-2">Form Responses</h1>
-          <p className="text-slate-600">View all contact form and demo request submissions</p>
+          <p className="text-slate-600">Manage and track all form submissions</p>
         </div>
 
-        {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-          <div className="bg-white rounded-lg shadow p-6">
-            <p className="text-slate-600 text-sm font-medium mb-2">Total Submissions</p>
-            <p className="text-3xl font-bold text-slate-900">{submissions.length}</p>
-          </div>
-          <div className="bg-white rounded-lg shadow p-6">
-            <p className="text-slate-600 text-sm font-medium mb-2">Contact Forms</p>
-            <p className="text-3xl font-bold text-blue-600">{submissions.filter(s => s.form_type === 'contact').length}</p>
-          </div>
-          <div className="bg-white rounded-lg shadow p-6">
-            <p className="text-slate-600 text-sm font-medium mb-2">Demo Requests</p>
-            <p className="text-3xl font-bold text-green-600">{submissions.filter(s => s.form_type === 'demo').length}</p>
+        {/* Stage Filters */}
+        <div className="bg-white rounded-lg shadow p-6 mb-8">
+          <div className="flex flex-wrap gap-3">
+            {[
+              { value: 'all', label: 'All', count: stageCounts.all },
+              { value: 'new', label: 'New', count: stageCounts.new },
+              { value: 'interested', label: 'Interested', count: stageCounts.interested },
+              { value: 'not-interested', label: 'Not Interested', count: stageCounts['not-interested'] },
+              { value: 'callback', label: 'Call Back', count: stageCounts['callback'] },
+            ].map((item) => (
+              <button
+                key={item.value}
+                onClick={() => setFilterStage(item.value)}
+                className={`px-6 py-2 rounded-lg font-semibold transition-all ${
+                  filterStage === item.value
+                    ? 'bg-blue-600 text-white shadow-lg'
+                    : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                }`}
+              >
+                {item.label} ({item.count})
+              </button>
+            ))}
           </div>
         </div>
 
-        {/* Filters & Sort */}
-        <div className="bg-white rounded-lg shadow p-6 mb-6">
-          <div className="flex flex-col sm:flex-row gap-4">
-            <div className="flex-1">
-              <label className="block text-sm font-medium text-slate-700 mb-2">Filter by Type</label>
-              <select
-                value={filterType}
-                onChange={(e) => setFilterType(e.target.value as 'all' | 'contact' | 'demo')}
-                className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              >
-                <option value="all">All Submissions</option>
-                <option value="contact">Contact Forms</option>
-                <option value="demo">Demo Requests</option>
-              </select>
-            </div>
-            <div className="flex-1">
-              <label className="block text-sm font-medium text-slate-700 mb-2">Sort by Date</label>
-              <select
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value as 'newest' | 'oldest')}
-                className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              >
-                <option value="newest">Newest First</option>
-                <option value="oldest">Oldest First</option>
-              </select>
-            </div>
-          </div>
+        {/* Sort Option */}
+        <div className="bg-white rounded-lg shadow p-4 mb-6">
+          <label className="text-sm font-medium text-slate-700">Sort by Date:</label>
+          <select
+            value={sortBy}
+            onChange={(e) => setSortBy(e.target.value as 'newest' | 'oldest')}
+            className="ml-3 px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          >
+            <option value="newest">Newest First</option>
+            <option value="oldest">Oldest First</option>
+          </select>
         </div>
 
         {/* Submissions List */}
-        {sorted.length === 0 ? (
+        {loading ? (
+          <div className="text-center py-12">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+            <p className="text-slate-600">Loading submissions...</p>
+          </div>
+        ) : sorted.length === 0 ? (
           <div className="bg-white rounded-lg shadow p-12 text-center">
             <p className="text-slate-600 text-lg">No submissions found</p>
           </div>
@@ -151,9 +255,14 @@ export default function ResponsePage() {
                       Submitted on {format(new Date(submission.created_at), 'MMM dd, yyyy • h:mm a')}
                     </p>
                   </div>
-                  <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium whitespace-nowrap ${getFormTypeColor(submission.form_type)}`}>
-                    {getFormTypeLabel(submission.form_type)}
-                  </span>
+                  <div className="flex gap-2">
+                    <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium whitespace-nowrap ${getFormTypeColor(submission.form_type)}`}>
+                      {getFormTypeLabel(submission.form_type)}
+                    </span>
+                    <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium whitespace-nowrap ${getStageColor(submission.stage)}`}>
+                      {getStageLabel(submission.stage)}
+                    </span>
+                  </div>
                 </div>
 
                 {/* Card Body */}
@@ -196,7 +305,7 @@ export default function ResponsePage() {
                         </div>
                       )}
 
-                      {/* Product (for demo requests) */}
+                      {/* Product */}
                       {submission.form_type === 'demo' && (
                         <div className="flex items-start gap-3">
                           <FileText className="w-5 h-5 text-orange-600 flex-shrink-0 mt-1" />
@@ -238,12 +347,36 @@ export default function ResponsePage() {
                   </div>
 
                   {/* Message */}
-                  <div className="border-t border-slate-200 pt-4">
+                  <div className="border-t border-slate-200 pt-4 mb-4">
                     <p className="text-xs font-semibold text-slate-600 uppercase tracking-wide mb-3">Message / Requirements</p>
                     <div className="bg-slate-50 rounded-lg p-4 border border-slate-200">
                       <p className="text-slate-800 whitespace-pre-wrap font-medium leading-relaxed">
                         {submission.message}
                       </p>
+                    </div>
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="border-t border-slate-200 pt-4">
+                    <p className="text-xs font-semibold text-slate-600 uppercase tracking-wide mb-3">Set Stage</p>
+                    <div className="flex flex-wrap gap-2">
+                      {[
+                        { value: 'new', label: '◐ New', color: 'bg-yellow-100 hover:bg-yellow-200 text-yellow-800' },
+                        { value: 'interested', label: '✓ Interested', color: 'bg-green-100 hover:bg-green-200 text-green-800' },
+                        { value: 'not-interested', label: '✕ Not Interested', color: 'bg-red-100 hover:bg-red-200 text-red-800' },
+                        { value: 'callback', label: '☎ Call Back', color: 'bg-blue-100 hover:bg-blue-200 text-blue-800' },
+                      ].map((btn) => (
+                        <button
+                          key={btn.value}
+                          onClick={() => updateStage(submission.id, btn.value)}
+                          disabled={updatingId === submission.id || submission.stage === btn.value}
+                          className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${btn.color} ${
+                            submission.stage === btn.value ? 'ring-2 ring-offset-2 ring-current' : ''
+                          } ${updatingId === submission.id ? 'opacity-50 cursor-not-allowed' : ''}`}
+                        >
+                          {updatingId === submission.id ? 'Updating...' : btn.label}
+                        </button>
+                      ))}
                     </div>
                   </div>
                 </div>
