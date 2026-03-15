@@ -9,8 +9,9 @@ type AppType = 'unicrm' | 'unichat' | 'unicom' | 'uniads' | 'uniweb' | 'unipos';
 
 export default function PricingPage() {
   const router = useRouter();
-  const [selectedApp, setSelectedApp] = useState<AppType>('unicrm');
+  const [selectedApp, setSelectedApp] = useState<AppType | 'all'>('all');
   const [billingCycle, setBillingCycle] = useState<'monthly' | 'annual'>('monthly');
+  const [carouselPosition, setCarouselPosition] = useState(0);
 
   // App configurations
   const apps = {
@@ -22,7 +23,65 @@ export default function PricingPage() {
     unipos: { name: 'UniPOS', color: 'from-emerald-500 to-teal-600', bgColor: 'bg-emerald-50', borderColor: 'border-emerald-200', textColor: 'text-emerald-700', icon: 'ph-credit-card', description: 'AI-Powered POS System' }
   };
 
-  const currentApp = apps[selectedApp];
+  // Pricing data for all apps
+  const pricingData: Record<AppType, { name: string; description: string; plans: Array<{ title: string; monthly: number; annual: number; features: string[]; isPopular?: boolean; buttonText: string; bgGradient?: string; textColor?: string; buttonColor?: string }> }> = {
+    unicrm: {
+      name: 'UniCRM',
+      description: 'CRM & Lead Management',
+      plans: [
+        { title: 'Starter', monthly: 499, annual: 4790, features: ['Full CRM access', '3 team members', '1,000 contacts', 'Lead management', 'Basic reporting', 'API access', 'Email support'], buttonText: 'Start Free Trial' },
+        { title: 'Growth', monthly: 1499, annual: 14390, features: ['10 team members', '10,000 contacts', 'Advanced workflows', 'Analytics & insights', 'API access', 'Priority support'], isPopular: true, buttonText: 'Start Free Trial', bgGradient: 'bg-slate-900', textColor: 'text-white' },
+        { title: 'Enterprise', monthly: 4999, annual: 47990, features: ['Unlimited team members', 'Unlimited contacts', 'Custom integrations', 'API access', 'Dedicated account manager', '24/7 phone support'], buttonText: 'Contact Sales' }
+      ]
+    },
+    unichat: {
+      name: 'UniChat',
+      description: 'WhatsApp Business API',
+      plans: [
+        { title: 'Starter', monthly: 999, annual: 9590, features: ['5 Users', '20,000 Contacts', 'Basic Automation', 'Basic Analytics', 'API Access', 'Email Support'], buttonText: 'Get Started' },
+        { title: 'Growth', monthly: 2499, annual: 23990, features: ['10 Users', '50,000 Contacts', 'Full Automation', 'Advanced Analytics', 'API Access', 'Priority Support'], isPopular: true, buttonText: 'Get Started', bgGradient: 'border-2 border-emerald-400' },
+        { title: 'Pro', monthly: 4999, annual: 47990, features: ['15 Users', '100,000 Contacts', 'Advanced Automation', 'Advanced Analytics', 'API Access', 'Priority Support'], buttonText: 'Contact Sales' }
+      ]
+    },
+    unicom: {
+      name: 'UniCOM',
+      description: 'Business Intercom & Calling',
+      plans: [
+        { title: 'Basic', monthly: 799, annual: 7690, features: ['Intercom & Voice Calls', '5 Team Members', '1,000 Conversations', 'Call Recording', 'Basic Analytics', 'Email Support'], buttonText: 'Get Started' },
+        { title: 'Professional', monthly: 1999, annual: 19190, features: ['15 Team Members', '10,000 Conversations', 'Video Calling', 'Advanced Analytics', 'API access', 'Priority Support'], isPopular: true, buttonText: 'Get Started', bgGradient: 'bg-gradient-to-br from-purple-600 to-pink-600', textColor: 'text-white' },
+        { title: 'Enterprise', monthly: 5999, annual: 57590, features: ['Unlimited Team Members', 'Unlimited Conversations', 'AI Call Assistant', 'Custom Integrations', 'API access', '24/7 Phone Support'], buttonText: 'Contact Sales' }
+      ]
+    },
+    uniads: {
+      name: 'UniAds',
+      description: 'Unified Ad Management',
+      plans: [
+        { title: 'Starter', monthly: 599, annual: 5790, features: ['Facebook & Instagram Ads', '2 Ad Accounts', 'Basic Scheduling', 'Basic Analytics', 'Email Support'], buttonText: 'Get Started' },
+        { title: 'Professional', monthly: 1499, annual: 14390, features: ['All Platforms + Google Ads', '10 Ad Accounts', 'Advanced Scheduling', 'AI Optimization', 'Priority Support'], isPopular: true, buttonText: 'Get Started', bgGradient: 'bg-gradient-to-br from-red-500 to-orange-600', textColor: 'text-white' },
+        { title: 'Enterprise', monthly: 3999, annual: 38390, features: ['TikTok, Snapchat Ads', 'Unlimited Accounts', 'AI Campaign Builder', 'Custom Integrations', 'Dedicated Account Manager'], buttonText: 'Contact Sales' }
+      ]
+    },
+    uniweb: {
+      name: 'UniWeb',
+      description: 'AI Website Builder',
+      plans: [
+        { title: 'Starter', monthly: 499, annual: 4790, features: ['AI Website Builder', '1 Website', 'Basic Templates', 'Mobile Responsive', 'Free Domain (.unidesk.in)', 'Email Support'], buttonText: 'Get Started' },
+        { title: 'Professional', monthly: 1299, annual: 12490, features: ['5 Websites', 'Premium Templates', 'E-commerce Ready', 'Custom Domain', 'API Integration', 'Priority Support'], isPopular: true, buttonText: 'Get Started', bgGradient: 'bg-gradient-to-br from-cyan-500 to-blue-600', textColor: 'text-white' },
+        { title: 'Enterprise', monthly: 4999, annual: 47990, features: ['Unlimited Websites', 'Advanced AI Features', 'Custom Code Access', 'API Integration', 'Custom Integrations', 'Dedicated Support'], buttonText: 'Contact Sales' }
+      ]
+    },
+    unipos: {
+      name: 'UniPOS',
+      description: 'AI-Powered POS System',
+      plans: [
+        { title: 'Starter', monthly: 699, annual: 6690, features: ['AI POS System', '1 Terminal', 'Basic Inventory', 'Sales Reports', 'Offline Mode', 'Email Support'], buttonText: 'Get Started' },
+        { title: 'Professional', monthly: 1699, annual: 16290, features: ['5 Terminals', 'Advanced Inventory', 'Customer Loyalty', 'AI Recommendations', 'Advanced Analytics', 'Priority Support'], isPopular: true, buttonText: 'Get Started', bgGradient: 'bg-gradient-to-br from-emerald-500 to-teal-600', textColor: 'text-white' },
+        { title: 'Enterprise', monthly: 4999, annual: 47990, features: ['Unlimited Terminals', 'Multi-Store Management', 'Advanced AI Analytics', 'Custom Integrations', 'Advanced Analytics', 'Dedicated Account Manager'], buttonText: 'Contact Sales' }
+      ]
+    }
+  };
+
+  const currentApp = selectedApp === 'all' ? null : apps[selectedApp as AppType];
 
     return (
       <>
@@ -47,13 +106,30 @@ export default function PricingPage() {
                     </p>
                 </div>
 
-                {/* App Selector Carousel */}
-                <div className="mb-16 flex justify-center overflow-x-auto pb-4">
-                  <div className="flex gap-3 min-w-max">
+                {/* App Selector - Horizontal Scroll */}
+                <div className="mb-16 flex justify-center">
+                  <div className="flex gap-3 overflow-x-auto pb-4 px-4">
+                    <button
+                      onClick={() => {
+                        setSelectedApp('all');
+                        setCarouselPosition(0);
+                      }}
+                      className={`px-6 py-3 rounded-xl font-bold text-sm transition-all transform hover:scale-105 active:scale-95 flex items-center gap-2 whitespace-nowrap ${ 
+                        selectedApp === 'all'
+                          ? 'bg-gradient-to-r from-brand-500 to-blue-600 text-white shadow-lg'
+                          : 'bg-white border border-slate-200 text-slate-700 hover:border-slate-300'
+                      }`}
+                    >
+                      <i className="ph-fill ph-squares-four"></i>
+                      All Apps
+                    </button>
                     {(Object.keys(apps) as AppType[]).map((appKey) => (
                       <button
                         key={appKey}
-                        onClick={() => setSelectedApp(appKey)}
+                        onClick={() => {
+                          setSelectedApp(appKey);
+                          setCarouselPosition(0);
+                        }}
                         className={`px-6 py-3 rounded-xl font-bold text-sm transition-all transform hover:scale-105 active:scale-95 flex items-center gap-2 whitespace-nowrap ${ 
                           selectedApp === appKey
                             ? `bg-gradient-to-r ${apps[appKey].color} text-white shadow-lg`
@@ -67,13 +143,20 @@ export default function PricingPage() {
                   </div>
                 </div>
 
-                {/* Dynamic Pricing Section Based on Selected App */}
+                {/* Pricing Carousel Section */}
                 <div className="mb-20">
                     <div className="text-center mb-10">
-                        <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full ${currentApp.bgColor} border ${currentApp.borderColor} ${currentApp.textColor} text-sm font-bold mb-4`}>
-                            <i className={`ph-fill ${currentApp.icon}`}></i> {currentApp.name}
-                        </div>
-                        <h2 className="text-3xl font-black text-slate-900 mb-6">{currentApp.description}</h2>
+                        {selectedApp !== 'all' && currentApp && (
+                            <>
+                                <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full ${currentApp.bgColor} border ${currentApp.borderColor} ${currentApp.textColor} text-sm font-bold mb-4`}>
+                                    <i className={`ph-fill ${currentApp.icon}`}></i> {currentApp.name}
+                                </div>
+                                <h2 className="text-3xl font-black text-slate-900 mb-6">{currentApp.description}</h2>
+                            </>
+                        )}
+                        {selectedApp === 'all' && (
+                            <h2 className="text-3xl font-black text-slate-900 mb-6">All Plans at a Glance</h2>
+                        )}
                         
                         {/* Monthly/Annual Toggle */}
                         <div className="inline-flex items-center p-1 bg-white border border-slate-200 rounded-xl shadow-sm">
@@ -100,620 +183,150 @@ export default function PricingPage() {
                         </div>
                     </div>
 
-                    {/* Conditional Pricing Cards Based on Selected App */}
-                    {selectedApp === 'unicrm' && (
-                        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto items-stretch">
-                            {/* Starter */}
-                            <div className="bg-white rounded-3xl p-8 border border-slate-200 shadow-lg shadow-slate-200/50 flex flex-col hover:border-brand-300 transition-colors">
-                                <div>
-                                    <h3 className="text-2xl font-bold text-slate-900 mb-2">Starter</h3>
-                                    <p className="text-slate-500 text-sm mb-6 h-10">Essential CRM tools for small teams.</p>
-                                    <div className="mb-8">
-                                        {billingCycle === 'monthly' ? (
-                                            <>
-                                                <span className="text-5xl font-black text-slate-900">₹499</span>
-                                                <span className="text-slate-500 font-medium">/mo</span>
-                                            </>
-                                        ) : (
-                                            <>
-                                                <span className="text-5xl font-black text-slate-900">₹4,790</span>
-                                                <span className="text-slate-500 font-medium">/year</span>
-                                                <div className="mt-2 text-sm text-emerald-600 font-semibold">Save ₹1,198/year</div>
-                                            </>
-                                        )}
-                                    </div>
-                                    <button className="w-full py-4 px-4 bg-slate-100 text-slate-900 rounded-xl font-bold hover:bg-slate-200 active:scale-[0.98] transition-all mb-8">Start Free Trial</button>
-                                </div>
-                                <div className="flex-1">
-                                    <p className="text-sm font-bold text-slate-900 mb-4 uppercase tracking-wider">Plan includes:</p>
-                                    <ul className="space-y-4 text-sm font-medium text-slate-700">
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-brand-500 text-lg shrink-0"></i> Full CRM access</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-brand-500 text-lg shrink-0"></i> 3 team members</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-brand-500 text-lg shrink-0"></i> 1,000 contacts</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-brand-500 text-lg shrink-0"></i> Lead management</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-brand-500 text-lg shrink-0"></i> Basic reporting</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-brand-500 text-lg shrink-0"></i> API access</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-brand-500 text-lg shrink-0"></i> Email support</li>
-                                    </ul>
+                    {/* Carousel for All Apps */}
+                    {selectedApp === 'all' && (
+                        <div className="relative">
+                            {/* Carousel Container */}
+                            <div className="overflow-hidden">
+                                <div className="flex gap-8 transition-transform duration-500" style={{ transform: `translateX(-${carouselPosition * 100}%)` }}>
+                                    {(Object.keys(pricingData) as AppType[]).map((appKey) => (
+                                        <div key={appKey} className="w-full flex-shrink-0">
+                                            <div className="bg-white rounded-2xl border border-slate-200 p-8 shadow-lg max-w-2xl mx-auto">
+                                                <div className="flex items-center gap-3 mb-6">
+                                                    <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${apps[appKey].color} flex items-center justify-center text-white text-xl`}>
+                                                        <i className={`ph-fill ${apps[appKey].icon}`}></i>
+                                                    </div>
+                                                    <div>
+                                                        <h3 className="text-2xl font-black text-slate-900">{apps[appKey].name}</h3>
+                                                        <p className="text-sm text-slate-500">{apps[appKey].description}</p>
+                                                    </div>
+                                                </div>
+
+                                                {/* 3 Plan Cards */}
+                                                <div className="grid grid-cols-3 gap-4">
+                                                    {pricingData[appKey].plans.map((plan, idx) => (
+                                                        <div key={idx} className={`rounded-xl p-6 relative border-2 transition-all ${
+                                                            plan.isPopular 
+                                                                ? 'border-brand-400 bg-brand-50' 
+                                                                : 'border-slate-200 bg-white'
+                                                        }`}>
+                                                            {plan.isPopular && (
+                                                                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-brand-500 to-blue-600 text-white px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap">Most Popular</div>
+                                                            )}
+                                                            <h4 className="text-lg font-bold text-slate-900 mb-2">{plan.title}</h4>
+                                                            <div className="mb-4">
+                                                                <span className="text-3xl font-black text-slate-900">₹{billingCycle === 'monthly' ? plan.monthly : Math.floor(plan.annual / 12)}</span>
+                                                                <span className="text-slate-500 text-sm">/mo</span>
+                                                            </div>
+                                                            <button className={`w-full py-2 px-3 rounded-lg font-bold text-sm transition-all active:scale-[0.98] mb-4 ${
+                                                                plan.isPopular
+                                                                    ? 'bg-brand-600 text-white hover:bg-brand-500'
+                                                                    : 'bg-slate-100 text-slate-900 hover:bg-slate-200'
+                                                            }`}>
+                                                                {plan.buttonText}
+                                                            </button>
+                                                            <ul className="space-y-2 text-xs text-slate-600">
+                                                                {plan.features.slice(0, 4).map((feature, i) => (
+                                                                    <li key={i} className="flex items-start gap-2">
+                                                                        <i className="ph-fill ph-check-circle text-green-500 shrink-0 mt-0.5"></i>
+                                                                        <span>{feature}</span>
+                                                                    </li>
+                                                                ))}
+                                                                {plan.features.length > 4 && (
+                                                                    <li className="text-slate-400 font-semibold text-xs">+ {plan.features.length - 4} more</li>
+                                                                )}
+                                                            </ul>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
 
-                            {/* Growth */}
-                            <div className="bg-slate-900 rounded-3xl p-8 border border-slate-800 shadow-2xl shadow-brand-500/20 flex flex-col relative transform md:-translate-y-4 text-white hover:border-brand-500/50 transition-colors">
-                                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-brand-500 to-blue-600 text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest shadow-lg">Most Popular</div>
-                                <div>
-                                    <h3 className="text-2xl font-bold mb-2">Growth</h3>
-                                    <p className="text-slate-400 text-sm mb-6 h-10">Advanced CRM for scaling businesses.</p>
-                                    <div className="mb-8 flex items-baseline gap-1 flex-wrap">
-                                        {billingCycle === 'monthly' ? (
-                                            <>
-                                                <span className="text-6xl font-black tracking-tight">₹1,499</span>
-                                                <span className="text-slate-400 font-medium">/mo</span>
-                                            </>
-                                        ) : (
-                                            <>
-                                                <span className="text-6xl font-black tracking-tight">₹14,390</span>
-                                                <span className="text-slate-400 font-medium">/year</span>
-                                                <div className="w-full mt-2 text-sm text-emerald-400 font-semibold">Save ₹3,598/year</div>
-                                            </>
-                                        )}
-                                    </div>
-                                    <button className="w-full py-4 px-4 bg-brand-600 text-white rounded-xl font-bold hover:bg-brand-500 active:scale-[0.98] transition-all mb-8 shadow-lg">Start Free Trial</button>
+                            {/* Carousel Controls */}
+                            <div className="flex justify-center gap-2 mt-8">
+                                <button
+                                    onClick={() => setCarouselPosition(Math.max(0, carouselPosition - 1))}
+                                    className="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-600 hover:bg-slate-50 transition-all"
+                                    disabled={carouselPosition === 0}
+                                >
+                                    <i className="ph ph-caret-left"></i>
+                                </button>
+                                <div className="flex gap-1">
+                                    {(Object.keys(pricingData) as AppType[]).map((_, idx) => (
+                                        <button
+                                            key={idx}
+                                            onClick={() => setCarouselPosition(idx)}
+                                            className={`w-2 h-2 rounded-full transition-all ${
+                                                carouselPosition === idx ? 'bg-brand-600 w-8' : 'bg-slate-300'
+                                            }`}
+                                        />
+                                    ))}
                                 </div>
-                                <div className="flex-1">
-                                    <p className="text-sm font-bold text-white mb-4 uppercase tracking-wider">Everything in Starter, plus:</p>
-                                    <ul className="space-y-4 text-sm font-medium text-slate-200">
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-brand-400 text-lg shrink-0"></i> <span className="font-bold text-white">10 team members</span></li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-brand-400 text-lg shrink-0"></i> 10,000 contacts</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-brand-400 text-lg shrink-0"></i> Advanced workflows</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-brand-400 text-lg shrink-0"></i> Analytics & insights</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-brand-400 text-lg shrink-0"></i> API access</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-brand-400 text-lg shrink-0"></i> Priority support</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            {/* Enterprise */}
-                            <div className="bg-white rounded-3xl p-8 border border-slate-200 shadow-lg shadow-slate-200/50 flex flex-col hover:border-brand-300 transition-colors">
-                                <div>
-                                    <h3 className="text-2xl font-bold text-slate-900 mb-2">Enterprise</h3>
-                                    <p className="text-slate-500 text-sm mb-6 h-10">Unlimited CRM for large organizations.</p>
-                                    <div className="mb-8">
-                                        {billingCycle === 'monthly' ? (
-                                            <>
-                                                <span className="text-5xl font-black text-slate-900">₹4,999</span>
-                                                <span className="text-slate-500 font-medium">/mo</span>
-                                            </>
-                                        ) : (
-                                            <>
-                                                <span className="text-5xl font-black text-slate-900">₹47,990</span>
-                                                <span className="text-slate-500 font-medium">/year</span>
-                                                <div className="mt-2 text-sm text-emerald-600 font-semibold">Save ₹11,998/year</div>
-                                            </>
-                                        )}
-                                    </div>
-                                    <button className="w-full py-4 px-4 bg-white border border-slate-200 text-slate-900 rounded-xl font-bold hover:bg-slate-50 active:scale-[0.98] transition-all mb-8 shadow-sm">Contact Sales</button>
-                                </div>
-                                <div className="flex-1">
-                                    <p className="text-sm font-bold text-slate-900 mb-4 uppercase tracking-wider">Everything in Growth, plus:</p>
-                                    <ul className="space-y-4 text-sm font-medium text-slate-700">
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-slate-400 text-lg shrink-0"></i> Unlimited team members</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-slate-400 text-lg shrink-0"></i> Unlimited contacts</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-slate-400 text-lg shrink-0"></i> Custom integrations</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-slate-400 text-lg shrink-0"></i> API access</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-slate-400 text-lg shrink-0"></i> Dedicated account manager</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-slate-400 text-lg shrink-0"></i> 24/7 phone support</li>
-                                    </ul>
-                                </div>
+                                <button
+                                    onClick={() => setCarouselPosition(Math.min((Object.keys(pricingData) as AppType[]).length - 1, carouselPosition + 1))}
+                                    className="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-600 hover:bg-slate-50 transition-all"
+                                    disabled={carouselPosition === (Object.keys(pricingData) as AppType[]).length - 1}
+                                >
+                                    <i className="ph ph-caret-right"></i>
+                                </button>
                             </div>
                         </div>
                     )}
 
-                    {selectedApp === 'unichat' && (
+                    {/* Single App Pricing Cards */}
+                    {selectedApp !== 'all' && currentApp && (
                         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto items-stretch">
-                            {/* Starter */}
-                            <div className="bg-white rounded-3xl p-8 border border-slate-200 shadow-lg shadow-slate-200/50 flex flex-col hover:border-green-300 transition-colors">
-                                <div>
-                                    <h3 className="text-2xl font-bold text-slate-900 mb-2">Starter</h3>
-                                    <p className="text-slate-500 text-sm mb-6 h-10">Perfect for small businesses</p>
-                                    <div className="mb-8">
-                                        {billingCycle === 'monthly' ? (
-                                            <>
-                                                <span className="text-5xl font-black text-slate-900">₹999</span>
-                                                <span className="text-slate-500 font-medium">/mo</span>
-                                            </>
-                                        ) : (
-                                            <>
-                                                <span className="text-5xl font-black text-slate-900">₹9,590</span>
-                                                <span className="text-slate-500 font-medium">/year</span>
-                                                <div className="mt-2 text-sm text-emerald-600 font-semibold">Save ₹2,398/year</div>
-                                            </>
-                                        )}
+                            {pricingData[selectedApp as AppType].plans.map((plan, idx) => (
+                                <div key={idx} className={`rounded-3xl p-8 flex flex-col relative transition-colors ${
+                                    plan.isPopular
+                                        ? plan.bgGradient || 'bg-slate-900 border-2 border-slate-800 shadow-2xl shadow-brand-500/20 text-white'
+                                        : 'bg-white border border-slate-200 shadow-lg shadow-slate-200/50 hover:border-brand-300'
+                                }`}>
+                                    {plan.isPopular && !plan.bgGradient && (
+                                        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-brand-500 to-blue-600 text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest shadow-lg">Most Popular</div>
+                                    )}
+                                    {plan.isPopular && plan.bgGradient && (
+                                        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white text-slate-600 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest shadow-lg">Most Popular</div>
+                                    )}
+                                    <div>
+                                        <h3 className={`text-2xl font-bold mb-2 ${plan.textColor || 'text-slate-900'}`}>{plan.title}</h3>
+                                        <p className={`text-sm mb-6 h-10 ${plan.textColor ? 'text-white/70' : 'text-slate-500'}`}></p>
+                                        <div className="mb-8 flex items-baseline gap-1 flex-wrap">
+                                            <span className={`text-5xl font-black ${plan.textColor || 'text-slate-900'}`}>₹{billingCycle === 'monthly' ? plan.monthly.toLocaleString('en-IN') : Math.floor(plan.annual / 12).toLocaleString('en-IN')}</span>
+                                            <span className={`${plan.textColor ? 'text-white/60' : 'text-slate-500'} font-medium`}>/mo</span>
+                                            {billingCycle === 'annual' && (
+                                                <div className={`w-full mt-2 text-sm font-semibold ${plan.textColor ? 'text-white/80' : 'text-emerald-600'}`}>Save ₹{(plan.monthly * 12 - plan.annual).toLocaleString('en-IN')}/year</div>
+                                            )}
+                                        </div>
+                                        <button className={`w-full py-4 px-4 rounded-xl font-bold hover:opacity-90 active:scale-[0.98] transition-all mb-8 ${
+                                            plan.isPopular && !plan.bgGradient
+                                                ? 'bg-brand-600 text-white hover:bg-brand-500'
+                                                : plan.isPopular && plan.bgGradient
+                                                ? 'bg-white text-slate-900 hover:bg-slate-50'
+                                                : 'bg-slate-100 text-slate-900 hover:bg-slate-200'
+                                        }`}>
+                                            {plan.buttonText}
+                                        </button>
                                     </div>
-                                    <button className="w-full py-4 px-4 bg-emerald-500 text-white rounded-xl font-bold hover:bg-emerald-600 active:scale-[0.98] transition-all mb-8">Get Started</button>
-                                </div>
-                                <div className="flex-1">
-                                    <ul className="space-y-4 text-sm font-medium text-slate-700">
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-green-500 text-lg shrink-0"></i> 5 Users</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-green-500 text-lg shrink-0"></i> 20,000 Contacts</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-green-500 text-lg shrink-0"></i> Basic Automation</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-green-500 text-lg shrink-0"></i> Basic Analytics</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-green-500 text-lg shrink-0"></i> API Access</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-green-500 text-lg shrink-0"></i> Email Support</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            {/* Growth */}
-                            <div className="bg-white rounded-3xl p-8 border-2 border-emerald-400 shadow-2xl shadow-green-500/20 flex flex-col relative transform md:-translate-y-4 hover:border-emerald-500 transition-colors">
-                                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-green-500 to-emerald-600 text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest shadow-lg">Most Popular</div>
-                                <div>
-                                    <h3 className="text-2xl font-bold text-slate-900 mb-2">Growth</h3>
-                                    <p className="text-slate-500 text-sm mb-6 h-10">Perfect for growing businesses</p>
-                                    <div className="mb-8 flex items-baseline gap-1 flex-wrap">
-                                        {billingCycle === 'monthly' ? (
-                                            <>
-                                                <span className="text-6xl font-black tracking-tight text-slate-900">₹2,499</span>
-                                                <span className="text-slate-500 font-medium">/mo</span>
-                                            </>
-                                        ) : (
-                                            <>
-                                                <span className="text-6xl font-black tracking-tight text-slate-900">₹23,990</span>
-                                                <span className="text-slate-500 font-medium">/year</span>
-                                                <div className="w-full mt-2 text-sm text-emerald-600 font-semibold">Save ₹5,998/year</div>
-                                            </>
-                                        )}
+                                    <div className="flex-1">
+                                        <p className={`text-sm font-bold mb-4 uppercase tracking-wider ${plan.textColor ? 'text-white/90' : 'text-slate-900'}`}>Plan includes:</p>
+                                        <ul className={`space-y-4 text-sm font-medium ${plan.textColor ? 'text-white/70' : 'text-slate-700'}`}>
+                                            {plan.features.map((feature, i) => (
+                                                <li key={i} className="flex items-start gap-3">
+                                                    <i className={`ph-fill ph-check-circle text-lg shrink-0 ${plan.textColor ? 'text-white/50' : 'text-brand-500'}`}></i>
+                                                    {feature}
+                                                </li>
+                                            ))}
+                                        </ul>
                                     </div>
-                                    <button className="w-full py-4 px-4 bg-emerald-500 text-white rounded-xl font-bold hover:bg-emerald-600 active:scale-[0.98] transition-all mb-8 shadow-lg">Get Started</button>
                                 </div>
-                                <div className="flex-1">
-                                    <ul className="space-y-4 text-sm font-medium text-slate-700">
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-green-500 text-lg shrink-0"></i> 10 Users</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-green-500 text-lg shrink-0"></i> 50,000 Contacts</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-green-500 text-lg shrink-0"></i> Full Automation</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-green-500 text-lg shrink-0"></i> Advanced Analytics</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-green-500 text-lg shrink-0"></i> API Access</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-green-500 text-lg shrink-0"></i> Priority Support</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            {/* Pro */}
-                            <div className="bg-white rounded-3xl p-8 border border-slate-200 shadow-lg shadow-slate-200/50 flex flex-col hover:border-green-300 transition-colors">
-                                <div>
-                                    <h3 className="text-2xl font-bold text-slate-900 mb-2">Pro</h3>
-                                    <p className="text-slate-500 text-sm mb-6 h-10">For scaling teams</p>
-                                    <div className="mb-8">
-                                        {billingCycle === 'monthly' ? (
-                                            <>
-                                                <span className="text-5xl font-black text-slate-900">₹4,999</span>
-                                                <span className="text-slate-500 font-medium">/mo</span>
-                                            </>
-                                        ) : (
-                                            <>
-                                                <span className="text-5xl font-black text-slate-900">₹47,990</span>
-                                                <span className="text-slate-500 font-medium">/year</span>
-                                                <div className="mt-2 text-sm text-emerald-600 font-semibold">Save ₹11,998/year</div>
-                                            </>
-                                        )}
-                                    </div>
-                                    <button className="w-full py-4 px-4 bg-white border border-slate-200 text-slate-900 rounded-xl font-bold hover:bg-slate-50 active:scale-[0.98] transition-all mb-8 shadow-sm">Contact Sales</button>
-                                </div>
-                                <div className="flex-1">
-                                    <ul className="space-y-4 text-sm font-medium text-slate-700">
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-green-500 text-lg shrink-0"></i> 15 Users</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-green-500 text-lg shrink-0"></i> 100,000 Contacts</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-green-500 text-lg shrink-0"></i> Advanced Automation</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-green-500 text-lg shrink-0"></i> Advanced Analytics</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-green-500 text-lg shrink-0"></i> API Access</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-green-500 text-lg shrink-0"></i> Priority Support</li>
-                                    </ul>
-                                </div>
-                            </div>
+                            ))}
                         </div>
                     )}
 
-                    {selectedApp === 'unicom' && (
-                        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto items-stretch">
-                            <div className="bg-white rounded-3xl p-8 border border-slate-200 shadow-lg shadow-slate-200/50 flex flex-col hover:border-purple-300 transition-colors">
-                                <div>
-                                    <h3 className="text-2xl font-bold text-slate-900 mb-2">Basic</h3>
-                                    <p className="text-slate-500 text-sm mb-6 h-10">For startups and small teams</p>
-                                    <div className="mb-8">
-                                        {billingCycle === 'monthly' ? (
-                                            <>
-                                                <span className="text-5xl font-black text-slate-900">₹799</span>
-                                                <span className="text-slate-500 font-medium">/mo</span>
-                                            </>
-                                        ) : (
-                                            <>
-                                                <span className="text-5xl font-black text-slate-900">₹7,690</span>
-                                                <span className="text-slate-500 font-medium">/year</span>
-                                                <div className="mt-2 text-sm text-emerald-600 font-semibold">Save ₹1,910/year</div>
-                                            </>
-                                        )}
-                                    </div>
-                                    <button className="w-full py-4 px-4 bg-slate-100 text-slate-900 rounded-xl font-bold hover:bg-slate-200 active:scale-[0.98] transition-all mb-8">Get Started</button>
-                                </div>
-                                <div className="flex-1">
-                                    <ul className="space-y-4 text-sm font-medium text-slate-700">
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-purple-500 text-lg shrink-0"></i> Intercom & Voice Calls</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-purple-500 text-lg shrink-0"></i> 5 Team Members</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-purple-500 text-lg shrink-0"></i> 1,000 Conversations</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-purple-500 text-lg shrink-0"></i> Call Recording</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-purple-500 text-lg shrink-0"></i> Basic Analytics</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-purple-500 text-lg shrink-0"></i> Email Support</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div className="bg-gradient-to-br from-purple-600 to-pink-600 rounded-3xl p-8 border border-purple-500 shadow-2xl shadow-purple-500/20 flex flex-col relative transform md:-translate-y-4 text-white hover:border-pink-400 transition-colors">
-                                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white text-purple-600 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest shadow-lg">Most Popular</div>
-                                <div>
-                                    <h3 className="text-2xl font-bold mb-2">Professional</h3>
-                                    <p className="text-purple-100 text-sm mb-6 h-10">For growing communication needs</p>
-                                    <div className="mb-8 flex items-baseline gap-1 flex-wrap">
-                                        {billingCycle === 'monthly' ? (
-                                            <>
-                                                <span className="text-6xl font-black tracking-tight">₹1,999</span>
-                                                <span className="text-purple-200 font-medium">/mo</span>
-                                            </>
-                                        ) : (
-                                            <>
-                                                <span className="text-6xl font-black tracking-tight">₹19,190</span>
-                                                <span className="text-purple-200 font-medium">/year</span>
-                                                <div className="w-full mt-2 text-sm text-purple-100 font-semibold">Save ₹4,790/year</div>
-                                            </>
-                                        )}
-                                    </div>
-                                    <button className="w-full py-4 px-4 bg-white text-purple-600 rounded-xl font-bold hover:bg-purple-50 active:scale-[0.98] transition-all mb-8 shadow-lg">Get Started</button>
-                                </div>
-                                <div className="flex-1">
-                                    <ul className="space-y-4 text-sm font-medium text-purple-100">
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-purple-200 text-lg shrink-0"></i> Everything in Basic, plus:</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-purple-200 text-lg shrink-0"></i> 15 Team Members</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-purple-200 text-lg shrink-0"></i> 10,000 Conversations</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-purple-200 text-lg shrink-0"></i> Video Calling</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-purple-200 text-lg shrink-0"></i> Advanced Analytics</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-purple-200 text-lg shrink-0"></i> Priority Support</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div className="bg-white rounded-3xl p-8 border border-slate-200 shadow-lg shadow-slate-200/50 flex flex-col hover:border-purple-300 transition-colors">
-                                <div>
-                                    <h3 className="text-2xl font-bold text-slate-900 mb-2">Enterprise</h3>
-                                    <p className="text-slate-500 text-sm mb-6 h-10">For large organizations</p>
-                                    <div className="mb-8">
-                                        {billingCycle === 'monthly' ? (
-                                            <>
-                                                <span className="text-5xl font-black text-slate-900">₹5,999</span>
-                                                <span className="text-slate-500 font-medium">/mo</span>
-                                            </>
-                                        ) : (
-                                            <>
-                                                <span className="text-5xl font-black text-slate-900">₹57,590</span>
-                                                <span className="text-slate-500 font-medium">/year</span>
-                                                <div className="mt-2 text-sm text-emerald-600 font-semibold">Save ₹14,398/year</div>
-                                            </>
-                                        )}
-                                    </div>
-                                    <button className="w-full py-4 px-4 bg-white border border-slate-200 text-slate-900 rounded-xl font-bold hover:bg-slate-50 active:scale-[0.98] transition-all mb-8 shadow-sm">Contact Sales</button>
-                                </div>
-                                <div className="flex-1">
-                                    <ul className="space-y-4 text-sm font-medium text-slate-700">
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-slate-400 text-lg shrink-0"></i> Everything in Professional, plus:</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-slate-400 text-lg shrink-0"></i> Unlimited Team Members</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-slate-400 text-lg shrink-0"></i> Unlimited Conversations</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-slate-400 text-lg shrink-0"></i> AI Call Assistant</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-slate-400 text-lg shrink-0"></i> Custom Integrations</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-slate-400 text-lg shrink-0"></i> 24/7 Phone Support</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    )}
-
-                    {selectedApp === 'uniads' && (
-                        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto items-stretch">
-                            <div className="bg-white rounded-3xl p-8 border border-slate-200 shadow-lg shadow-slate-200/50 flex flex-col hover:border-red-300 transition-colors">
-                                <div>
-                                    <h3 className="text-2xl font-bold text-slate-900 mb-2">Starter</h3>
-                                    <p className="text-slate-500 text-sm mb-6 h-10">For new ad managers</p>
-                                    <div className="mb-8">
-                                        {billingCycle === 'monthly' ? (
-                                            <>
-                                                <span className="text-5xl font-black text-slate-900">₹599</span>
-                                                <span className="text-slate-500 font-medium">/mo</span>
-                                            </>
-                                        ) : (
-                                            <>
-                                                <span className="text-5xl font-black text-slate-900">₹5,790</span>
-                                                <span className="text-slate-500 font-medium">/year</span>
-                                                <div className="mt-2 text-sm text-emerald-600 font-semibold">Save ₹1,398/year</div>
-                                            </>
-                                        )}
-                                    </div>
-                                    <button className="w-full py-4 px-4 bg-slate-100 text-slate-900 rounded-xl font-bold hover:bg-slate-200 active:scale-[0.98] transition-all mb-8">Get Started</button>
-                                </div>
-                                <div className="flex-1">
-                                    <ul className="space-y-4 text-sm font-medium text-slate-700">
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-red-500 text-lg shrink-0"></i> Facebook & Instagram Ads</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-red-500 text-lg shrink-0"></i> 2 Ad Accounts</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-red-500 text-lg shrink-0"></i> Basic Scheduling</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-red-500 text-lg shrink-0"></i> Basic Analytics</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-red-500 text-lg shrink-0"></i> Email Support</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div className="bg-gradient-to-br from-red-500 to-orange-600 rounded-3xl p-8 border border-red-500 shadow-2xl shadow-red-500/20 flex flex-col relative transform md:-translate-y-4 text-white hover:border-orange-400 transition-colors">
-                                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white text-red-600 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest shadow-lg">Most Popular</div>
-                                <div>
-                                    <h3 className="text-2xl font-bold mb-2">Professional</h3>
-                                    <p className="text-red-100 text-sm mb-6 h-10">For active ad campaigns</p>
-                                    <div className="mb-8 flex items-baseline gap-1 flex-wrap">
-                                        {billingCycle === 'monthly' ? (
-                                            <>
-                                                <span className="text-6xl font-black tracking-tight">₹1,499</span>
-                                                <span className="text-red-200 font-medium">/mo</span>
-                                            </>
-                                        ) : (
-                                            <>
-                                                <span className="text-6xl font-black tracking-tight">₹14,390</span>
-                                                <span className="text-red-200 font-medium">/year</span>
-                                                <div className="w-full mt-2 text-sm text-red-100 font-semibold">Save ₹3,598/year</div>
-                                            </>
-                                        )}
-                                    </div>
-                                    <button className="w-full py-4 px-4 bg-white text-red-600 rounded-xl font-bold hover:bg-red-50 active:scale-[0.98] transition-all mb-8 shadow-lg">Get Started</button>
-                                </div>
-                                <div className="flex-1">
-                                    <ul className="space-y-4 text-sm font-medium text-red-100">
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-red-200 text-lg shrink-0"></i> All Platforms + Google Ads</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-red-200 text-lg shrink-0"></i> 10 Ad Accounts</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-red-200 text-lg shrink-0"></i> Advanced Scheduling</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-red-200 text-lg shrink-0"></i> AI Optimization</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-red-200 text-lg shrink-0"></i> Priority Support</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div className="bg-white rounded-3xl p-8 border border-slate-200 shadow-lg shadow-slate-200/50 flex flex-col hover:border-red-300 transition-colors">
-                                <div>
-                                    <h3 className="text-2xl font-bold text-slate-900 mb-2">Enterprise</h3>
-                                    <p className="text-slate-500 text-sm mb-6 h-10">Multi-platform management</p>
-                                    <div className="mb-8">
-                                        {billingCycle === 'monthly' ? (
-                                            <>
-                                                <span className="text-5xl font-black text-slate-900">₹3,999</span>
-                                                <span className="text-slate-500 font-medium">/mo</span>
-                                            </>
-                                        ) : (
-                                            <>
-                                                <span className="text-5xl font-black text-slate-900">₹38,390</span>
-                                                <span className="text-slate-500 font-medium">/year</span>
-                                                <div className="mt-2 text-sm text-emerald-600 font-semibold">Save ₹9,598/year</div>
-                                            </>
-                                        )}
-                                    </div>
-                                    <button className="w-full py-4 px-4 bg-white border border-slate-200 text-slate-900 rounded-xl font-bold hover:bg-slate-50 active:scale-[0.98] transition-all mb-8 shadow-sm">Contact Sales</button>
-                                </div>
-                                <div className="flex-1">
-                                    <ul className="space-y-4 text-sm font-medium text-slate-700">
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-slate-400 text-lg shrink-0"></i> Everything in Professional, plus:</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-slate-400 text-lg shrink-0"></i> TikTok, Snapchat Ads</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-slate-400 text-lg shrink-0"></i> Unlimited Accounts</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-slate-400 text-lg shrink-0"></i> AI Campaign Builder</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-slate-400 text-lg shrink-0"></i> Custom Integrations</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-slate-400 text-lg shrink-0"></i> Dedicated Account Manager</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    )}
-
-                    {selectedApp === 'uniweb' && (
-                        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto items-stretch">
-                            <div className="bg-white rounded-3xl p-8 border border-slate-200 shadow-lg shadow-slate-200/50 flex flex-col hover:border-cyan-300 transition-colors">
-                                <div>
-                                    <h3 className="text-2xl font-bold text-slate-900 mb-2">Starter</h3>
-                                    <p className="text-slate-500 text-sm mb-6 h-10">For first-time builders</p>
-                                    <div className="mb-8">
-                                        {billingCycle === 'monthly' ? (
-                                            <>
-                                                <span className="text-5xl font-black text-slate-900">₹499</span>
-                                                <span className="text-slate-500 font-medium">/mo</span>
-                                            </>
-                                        ) : (
-                                            <>
-                                                <span className="text-5xl font-black text-slate-900">₹4,790</span>
-                                                <span className="text-slate-500 font-medium">/year</span>
-                                                <div className="mt-2 text-sm text-emerald-600 font-semibold">Save ₹1,198/year</div>
-                                            </>
-                                        )}
-                                    </div>
-                                    <button className="w-full py-4 px-4 bg-slate-100 text-slate-900 rounded-xl font-bold hover:bg-slate-200 active:scale-[0.98] transition-all mb-8">Get Started</button>
-                                </div>
-                                <div className="flex-1">
-                                    <ul className="space-y-4 text-sm font-medium text-slate-700">
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-cyan-500 text-lg shrink-0"></i> AI Website Builder</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-cyan-500 text-lg shrink-0"></i> 1 Website</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-cyan-500 text-lg shrink-0"></i> Basic Templates</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-cyan-500 text-lg shrink-0"></i> Mobile Responsive</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-cyan-500 text-lg shrink-0"></i> Free Domain (.unidesk.in)</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-cyan-500 text-lg shrink-0"></i> Email Support</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div className="bg-gradient-to-br from-cyan-500 to-blue-600 rounded-3xl p-8 border border-cyan-500 shadow-2xl shadow-cyan-500/20 flex flex-col relative transform md:-translate-y-4 text-white hover:border-blue-400 transition-colors">
-                                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white text-cyan-600 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest shadow-lg">Most Popular</div>
-                                <div>
-                                    <h3 className="text-2xl font-bold mb-2">Professional</h3>
-                                    <p className="text-cyan-100 text-sm mb-6 h-10">For growing businesses</p>
-                                    <div className="mb-8 flex items-baseline gap-1 flex-wrap">
-                                        {billingCycle === 'monthly' ? (
-                                            <>
-                                                <span className="text-6xl font-black tracking-tight">₹1,299</span>
-                                                <span className="text-cyan-200 font-medium">/mo</span>
-                                            </>
-                                        ) : (
-                                            <>
-                                                <span className="text-6xl font-black tracking-tight">₹12,490</span>
-                                                <span className="text-cyan-200 font-medium">/year</span>
-                                                <div className="w-full mt-2 text-sm text-cyan-100 font-semibold">Save ₹3,118/year</div>
-                                            </>
-                                        )}
-                                    </div>
-                                    <button className="w-full py-4 px-4 bg-white text-cyan-600 rounded-xl font-bold hover:bg-cyan-50 active:scale-[0.98] transition-all mb-8 shadow-lg">Get Started</button>
-                                </div>
-                                <div className="flex-1">
-                                    <ul className="space-y-4 text-sm font-medium text-cyan-100">
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-cyan-200 text-lg shrink-0"></i> Everything in Starter, plus:</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-cyan-200 text-lg shrink-0"></i> 5 Websites</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-cyan-200 text-lg shrink-0"></i> Premium Templates</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-cyan-200 text-lg shrink-0"></i> E-commerce Ready</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-cyan-200 text-lg shrink-0"></i> Custom Domain</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-cyan-200 text-lg shrink-0"></i> Priority Support</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div className="bg-white rounded-3xl p-8 border border-slate-200 shadow-lg shadow-slate-200/50 flex flex-col hover:border-cyan-300 transition-colors">
-                                <div>
-                                    <h3 className="text-2xl font-bold text-slate-900 mb-2">Enterprise</h3>
-                                    <p className="text-slate-500 text-sm mb-6 h-10">Unlimited web presence</p>
-                                    <div className="mb-8">
-                                        {billingCycle === 'monthly' ? (
-                                            <>
-                                                <span className="text-5xl font-black text-slate-900">₹4,999</span>
-                                                <span className="text-slate-500 font-medium">/mo</span>
-                                            </>
-                                        ) : (
-                                            <>
-                                                <span className="text-5xl font-black text-slate-900">₹47,990</span>
-                                                <span className="text-slate-500 font-medium">/year</span>
-                                                <div className="mt-2 text-sm text-emerald-600 font-semibold">Save ₹11,998/year</div>
-                                            </>
-                                        )}
-                                    </div>
-                                    <button className="w-full py-4 px-4 bg-white border border-slate-200 text-slate-900 rounded-xl font-bold hover:bg-slate-50 active:scale-[0.98] transition-all mb-8 shadow-sm">Contact Sales</button>
-                                </div>
-                                <div className="flex-1">
-                                    <ul className="space-y-4 text-sm font-medium text-slate-700">
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-slate-400 text-lg shrink-0"></i> Everything in Professional, plus:</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-slate-400 text-lg shrink-0"></i> Unlimited Websites</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-slate-400 text-lg shrink-0"></i> Advanced AI Features</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-slate-400 text-lg shrink-0"></i> Custom Code Access</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-slate-400 text-lg shrink-0"></i> API Integration</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-slate-400 text-lg shrink-0"></i> Dedicated Support</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    )}
-
-                    {selectedApp === 'unipos' && (
-                        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto items-stretch">
-                            <div className="bg-white rounded-3xl p-8 border border-slate-200 shadow-lg shadow-slate-200/50 flex flex-col hover:border-emerald-300 transition-colors">
-                                <div>
-                                    <h3 className="text-2xl font-bold text-slate-900 mb-2">Starter</h3>
-                                    <p className="text-slate-500 text-sm mb-6 h-10">For small retailers</p>
-                                    <div className="mb-8">
-                                        {billingCycle === 'monthly' ? (
-                                            <>
-                                                <span className="text-5xl font-black text-slate-900">₹699</span>
-                                                <span className="text-slate-500 font-medium">/mo</span>
-                                            </>
-                                        ) : (
-                                            <>
-                                                <span className="text-5xl font-black text-slate-900">₹6,690</span>
-                                                <span className="text-slate-500 font-medium">/year</span>
-                                                <div className="mt-2 text-sm text-emerald-600 font-semibold">Save ₹1,670/year</div>
-                                            </>
-                                        )}
-                                    </div>
-                                    <button className="w-full py-4 px-4 bg-slate-100 text-slate-900 rounded-xl font-bold hover:bg-slate-200 active:scale-[0.98] transition-all mb-8">Get Started</button>
-                                </div>
-                                <div className="flex-1">
-                                    <ul className="space-y-4 text-sm font-medium text-slate-700">
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-emerald-500 text-lg shrink-0"></i> AI POS System</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-emerald-500 text-lg shrink-0"></i> 1 Terminal</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-emerald-500 text-lg shrink-0"></i> Basic Inventory</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-emerald-500 text-lg shrink-0"></i> Sales Reports</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-emerald-500 text-lg shrink-0"></i> Offline Mode</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-emerald-500 text-lg shrink-0"></i> Email Support</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div className="bg-gradient-to-br from-emerald-500 to-teal-600 rounded-3xl p-8 border border-emerald-500 shadow-2xl shadow-emerald-500/20 flex flex-col relative transform md:-translate-y-4 text-white hover:border-teal-400 transition-colors">
-                                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white text-emerald-600 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest shadow-lg">Most Popular</div>
-                                <div>
-                                    <h3 className="text-2xl font-bold mb-2">Professional</h3>
-                                    <p className="text-emerald-100 text-sm mb-6 h-10">For growing stores</p>
-                                    <div className="mb-8 flex items-baseline gap-1 flex-wrap">
-                                        {billingCycle === 'monthly' ? (
-                                            <>
-                                                <span className="text-6xl font-black tracking-tight">₹1,699</span>
-                                                <span className="text-emerald-200 font-medium">/mo</span>
-                                            </>
-                                        ) : (
-                                            <>
-                                                <span className="text-6xl font-black tracking-tight">₹16,290</span>
-                                                <span className="text-emerald-200 font-medium">/year</span>
-                                                <div className="w-full mt-2 text-sm text-emerald-100 font-semibold">Save ₹4,078/year</div>
-                                            </>
-                                        )}
-                                    </div>
-                                    <button className="w-full py-4 px-4 bg-white text-emerald-600 rounded-xl font-bold hover:bg-emerald-50 active:scale-[0.98] transition-all mb-8 shadow-lg">Get Started</button>
-                                </div>
-                                <div className="flex-1">
-                                    <ul className="space-y-4 text-sm font-medium text-emerald-100">
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-emerald-200 text-lg shrink-0"></i> Everything in Starter, plus:</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-emerald-200 text-lg shrink-0"></i> 5 Terminals</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-emerald-200 text-lg shrink-0"></i> Advanced Inventory</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-emerald-200 text-lg shrink-0"></i> Customer Loyalty</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-emerald-200 text-lg shrink-0"></i> AI Recommendations</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-emerald-200 text-lg shrink-0"></i> Priority Support</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div className="bg-white rounded-3xl p-8 border border-slate-200 shadow-lg shadow-slate-200/50 flex flex-col hover:border-emerald-300 transition-colors">
-                                <div>
-                                    <h3 className="text-2xl font-bold text-slate-900 mb-2">Enterprise</h3>
-                                    <p className="text-slate-500 text-sm mb-6 h-10">Multi-store network</p>
-                                    <div className="mb-8">
-                                        {billingCycle === 'monthly' ? (
-                                            <>
-                                                <span className="text-5xl font-black text-slate-900">₹4,999</span>
-                                                <span className="text-slate-500 font-medium">/mo</span>
-                                            </>
-                                        ) : (
-                                            <>
-                                                <span className="text-5xl font-black text-slate-900">₹47,990</span>
-                                                <span className="text-slate-500 font-medium">/year</span>
-                                                <div className="mt-2 text-sm text-emerald-600 font-semibold">Save ₹11,998/year</div>
-                                            </>
-                                        )}
-                                    </div>
-                                    <button className="w-full py-4 px-4 bg-white border border-slate-200 text-slate-900 rounded-xl font-bold hover:bg-slate-50 active:scale-[0.98] transition-all mb-8 shadow-sm">Contact Sales</button>
-                                </div>
-                                <div className="flex-1">
-                                    <ul className="space-y-4 text-sm font-medium text-slate-700">
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-slate-400 text-lg shrink-0"></i> Everything in Professional, plus:</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-slate-400 text-lg shrink-0"></i> Unlimited Terminals</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-slate-400 text-lg shrink-0"></i> Multi-Store Management</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-slate-400 text-lg shrink-0"></i> Advanced AI Analytics</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-slate-400 text-lg shrink-0"></i> Custom Integrations</li>
-                                        <li className="flex items-start gap-3"><i className="ph-fill ph-check-circle text-slate-400 text-lg shrink-0"></i> Dedicated Account Manager</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    )}
                 </div>
 
             </div>
