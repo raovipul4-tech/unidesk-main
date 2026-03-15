@@ -1,5 +1,6 @@
 import nodemailer from 'nodemailer';
 import { NextResponse } from 'next/server';
+import sql from '@/app/api/utils/sql';
 
 // Create a transporter using Gmail SMTP
 const transporter = nodemailer.createTransport({
@@ -59,6 +60,12 @@ export async function POST(request: Request) {
         <p>${message.replace(/\n/g, '<br>')}</p>
       `;
     }
+
+    // Save submission to database
+    await sql`
+      INSERT INTO form_submissions (first_name, last_name, email, phone, company, subject, message, form_type, product)
+      VALUES (${firstName}, ${lastName || null}, ${email}, ${phone || null}, ${company || null}, ${subject || null}, ${message}, ${type}, ${body.product || null})
+    `;
 
     // Send email to info@unidesk.in
     await transporter.sendMail({
