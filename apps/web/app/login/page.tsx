@@ -8,12 +8,8 @@ export default function LoginPage() {
 
   return (
     <>
-      <div className="bg-gradient-to-br from-slate-50 via-white to-blue-50 min-h-screen flex flex-col">
-        {/* Header */}
-        <div className="relative z-10">
-          <Header />
-        </div>
-
+      <Header />
+      <div className="bg-gradient-to-br from-slate-50 via-white to-blue-50 min-h-screen flex flex-col pt-40 sm:pt-44 md:pt-48">
         {/* Main Login Section - Fixed in content box */}
         <div className="flex-1 w-full px-3 sm:px-4 md:px-6 py-6 sm:py-8 relative z-10 flex items-center justify-center">
           <div className="w-full max-w-5xl">

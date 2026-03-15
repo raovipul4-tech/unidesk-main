@@ -6,7 +6,7 @@ export default function Header() {
   const router = useRouter();
 
   return (
-    <header className="fixed top-0 left-0 right-0 w-full z-50 bg-white">
+    <header className="fixed top-0 left-0 right-0 w-full z-[100] bg-white">
       {/* Top Announcement Bar */}
       <div className="bg-gradient-to-r from-brand-600 to-brand-700 text-white">
         <div className="max-w-7xl mx-auto px-6 py-3">
