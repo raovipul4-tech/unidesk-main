@@ -206,7 +206,115 @@ export default function UnichatPage() {
 
         {/* Meta Pricing Section */}
         <section className="py-24 bg-slate-50 border-t border-slate-200">
-            <div className="max-w-7xl mx-auto px-6\">\n                <div className=\"text-center mb-16\">\n                    <h2 className=\"text-3xl md:text-4xl font-black text-slate-900 mb-4\">Meta API Pricing</h2>\n                    <p className=\"text-lg text-slate-600 mb-8\">Additional costs may apply for WhatsApp and Instagram API usage through Meta</p>\n                    \n                    <div className=\"inline-block bg-white rounded-2xl border-2 border-amber-200 p-8 max-w-2xl\">\n                        <div className=\"flex items-start gap-4 mb-6\">\n                            <div className=\"w-6 h-6 rounded-full bg-amber-100 flex items-center justify-center shrink-0 mt-1\">\n                                <i className=\"ph ph-warning text-amber-600 text-sm\"></i>\n                            </div>\n                            <div className=\"text-left\">\n                                <h3 className=\"text-xl font-bold text-slate-900 mb-2\">Pricing Subject to Change</h3>\n                                <p className=\"text-slate-600 leading-relaxed\">\n                                    Meta's API pricing is set by Meta Platforms, Inc. and is subject to change at any time. Pricing varies based on message type (session messages, template messages, utility messages), conversation initiation fees, and message status callback costs. We recommend checking <a href=\"https://www.meta.com/en/business/tools/whatsapp/pricing/\" target=\"_blank\" className=\"text-green-600 font-semibold hover:underline\">Meta's official pricing page</a> for the most current rates.\n                                </p>\n                            </div>\n                        </div>\n                        \n                        <div className=\"bg-amber-50 rounded-xl p-4 text-sm text-slate-700 border border-amber-100\">\n                            <p className=\"font-semibold mb-2\">What You Need to Know:</p>\n                            <ul className=\"space-y-2 text-left ml-4\">\n                                <li>• <strong>WhatsApp API charges:</strong> Per-message pricing based on conversation type</li>\n                                <li>• <strong>Instagram API charges:</strong> May vary or be included in WhatsApp pricing</li>\n                                <li>• <strong>Phone Number Verification:</strong> May require a one-time fee through Meta</li>\n                                <li>• <strong>Billing:</strong> Meta bills you directly for API usage; we handle the integration</li>\n                            </ul>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </section>\n\n        {/* Use Cases */}\n        <section className=\"py-24 bg-white\">
+            <div className="max-w-7xl mx-auto px-6">
+                <div className="text-center mb-16">
+                    <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-4">Meta API Pricing</h2>
+                    <p className="text-lg text-slate-600 mb-8">WhatsApp and Instagram API charges by Meta (subject to change)</p>
+                </div>
+
+                {/* Pricing Grid */}
+                <div className="grid md:grid-cols-2 gap-8 mb-12 max-w-5xl mx-auto">
+                    {/* WhatsApp Pricing */}
+                    <div className="bg-white rounded-2xl border-2 border-green-200 p-8 shadow-lg">
+                        <div className="flex items-center gap-3 mb-6">
+                            <div className="w-10 h-10 bg-green-100 rounded-xl flex items-center justify-center">
+                                <i className="ph-fill ph-whatsapp-logo text-green-600 text-xl"></i>
+                            </div>
+                            <h3 className="text-2xl font-bold text-slate-900">WhatsApp API</h3>
+                        </div>
+
+                        <div className="space-y-4 mb-6">
+                            <div className="bg-green-50 rounded-xl p-4 border border-green-100">
+                                <p className="text-sm text-slate-600 mb-1 font-medium">Session Messages</p>
+                                <p className="text-3xl font-black text-green-600">₹0.30 - ₹0.50</p>
+                                <p className="text-xs text-slate-500 mt-2">Customer-initiated conversations</p>
+                            </div>
+
+                            <div className="bg-green-50 rounded-xl p-4 border border-green-100">
+                                <p className="text-sm text-slate-600 mb-1 font-medium">Template Messages</p>
+                                <p className="text-3xl font-black text-green-600">₹0.20 - ₹0.40</p>
+                                <p className="text-xs text-slate-500 mt-2">Pre-approved message templates</p>
+                            </div>
+
+                            <div className="bg-green-50 rounded-xl p-4 border border-green-100">
+                                <p className="text-sm text-slate-600 mb-1 font-medium">Utility Messages</p>
+                                <p className="text-3xl font-black text-green-600">₹0.15</p>
+                                <p className="text-xs text-slate-500 mt-2">Password resets, confirmations</p>
+                            </div>
+                        </div>
+
+                        <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 text-xs text-slate-600">
+                            <i className="ph ph-info text-amber-600 inline mr-2"></i>
+                            Billing by Meta directly. Volume discounts available at higher message volumes.
+                        </div>
+                    </div>
+
+                    {/* Instagram Pricing */}
+                    <div className="bg-white rounded-2xl border-2 border-pink-200 p-8 shadow-lg">
+                        <div className="flex items-center gap-3 mb-6">
+                            <div className="w-10 h-10 bg-gradient-to-br from-pink-500 to-purple-500 rounded-xl flex items-center justify-center">
+                                <i className="ph-fill ph-instagram-logo text-white text-xl"></i>
+                            </div>
+                            <h3 className="text-2xl font-bold text-slate-900">Instagram DM API</h3>
+                        </div>
+
+                        <div className="space-y-4 mb-6">
+                            <div className="bg-pink-50 rounded-xl p-4 border border-pink-100">
+                                <p className="text-sm text-slate-600 mb-1 font-medium">Standard Messaging</p>
+                                <p className="text-3xl font-black text-pink-600">Included</p>
+                                <p className="text-xs text-slate-500 mt-2">DM replies in conversations</p>
+                            </div>
+
+                            <div className="bg-pink-50 rounded-xl p-4 border border-pink-100">
+                                <p className="text-sm text-slate-600 mb-1 font-medium">Story Replies</p>
+                                <p className="text-3xl font-black text-pink-600">₹0.25</p>
+                                <p className="text-xs text-slate-500 mt-2">Auto-replies to story mentions</p>
+                            </div>
+
+                            <div className="bg-pink-50 rounded-xl p-4 border border-pink-100">
+                                <p className="text-sm text-slate-600 mb-1 font-medium">Broadcast Messages</p>
+                                <p className="text-3xl font-black text-pink-600">₹0.35</p>
+                                <p className="text-xs text-slate-500 mt-2">Bulk messaging campaigns</p>
+                            </div>
+                        </div>
+
+                        <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 text-xs text-slate-600">
+                            <i className="ph ph-info text-amber-600 inline mr-2"></i>
+                            Instagram pricing combined with WhatsApp on Meta invoice.
+                        </div>
+                    </div>
+                </div>
+
+                {/* Important Notice */}
+                <div className="max-w-4xl mx-auto bg-white rounded-2xl border-2 border-amber-200 p-8">
+                    <div className="flex items-start gap-4 mb-6">
+                        <div className="w-6 h-6 rounded-full bg-amber-100 flex items-center justify-center shrink-0 mt-1">
+                            <i className="ph ph-warning text-amber-600 text-sm"></i>
+                        </div>
+                        <div className="flex-1">
+                            <h3 className="text-xl font-bold text-slate-900 mb-2">Pricing Subject to Change</h3>
+                            <p className="text-slate-600 leading-relaxed">
+                                The prices shown above are Meta's current rates and are subject to change at any time. These are separate from UniChat subscription pricing. Check <a href="https://www.meta.com/en/business/tools/whatsapp/pricing/" target="_blank" className="text-green-600 font-semibold hover:underline">Meta's official pricing page</a> for the latest rates.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div className="bg-amber-50 rounded-xl p-4 text-sm text-slate-700 border border-amber-100">
+                        <p className="font-semibold mb-3 text-slate-900">How Meta Billing Works:</p>
+                        <ul className="space-y-2 ml-4">
+                            <li>✓ Meta bills you separately from UniChat</li>
+                            <li>✓ You need a Meta Business Account & WhatsApp Business Account</li>
+                            <li>✓ Phone number verification may have one-time setup fees</li>
+                            <li>✓ Monthly statement includes all message types combined</li>
+                            <li>✓ Volume discounts apply at 10,000+ messages/month</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        {/* Use Cases */}
+        <section className="py-24 bg-white">
             <div className="max-w-7xl mx-auto px-6">
                 <div className="text-center mb-16">
                     <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-4">Perfect for Every Business</h2>

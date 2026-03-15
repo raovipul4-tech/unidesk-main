@@ -217,32 +217,106 @@ export default function PricingPage() {
                         </div>
                     )}
 
-                    {/* Meta Pricing Notice for UniChat */}
+                    {/* Meta Pricing Details for UniChat */}
                     {selectedApp === 'unichat' && (
                         <div className="mt-20 col-span-full">
-                            <div className="max-w-4xl mx-auto">
-                                <div className="bg-white rounded-2xl border-2 border-amber-200 p-8">
-                                    <div className="flex items-start gap-4 mb-6">
-                                        <div className="w-6 h-6 rounded-full bg-amber-100 flex items-center justify-center shrink-0 mt-1">
-                                            <i className="ph ph-warning text-amber-600 text-sm"></i>
+                            <div className="max-w-6xl mx-auto">
+                                <div className="text-center mb-12">
+                                    <h3 className="text-3xl font-black text-slate-900 mb-3">Meta API Pricing (INR)</h3>
+                                    <p className="text-slate-600 text-lg">In addition to UniChat subscription, Meta charges separate fees per message</p>
+                                </div>
+
+                                {/* WhatsApp & Instagram Pricing Grid */}
+                                <div className="grid md:grid-cols-2 gap-8 mb-12">
+                                    {/* WhatsApp Pricing */}
+                                    <div className="bg-white rounded-2xl border-2 border-green-200 p-8 shadow-lg">
+                                        <div className="flex items-center gap-3 mb-8">
+                                            <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center">
+                                                <i className="ph-fill ph-whatsapp-logo text-green-600 text-2xl"></i>
+                                            </div>
+                                            <h4 className="text-2xl font-bold text-slate-900">WhatsApp Pricing</h4>
                                         </div>
-                                        <div className="flex-1">
-                                            <h3 className="text-2xl font-bold text-slate-900 mb-2">Meta API Pricing - Subject to Change</h3>
-                                            <p className="text-slate-600 leading-relaxed">
-                                                In addition to UniChat subscription, Meta charges separate fees for WhatsApp and Instagram API usage. These charges are controlled by Meta Platforms, Inc. and subject to change at any time. Pricing varies based on message type (session messages, template messages, utility messages), conversation initiation fees, and message status callbacks.
-                                            </p>
+
+                                        <div className="space-y-4">
+                                            <div className="bg-green-50 rounded-xl p-5 border border-green-100">
+                                                <p className="text-sm text-slate-600 font-semibold mb-2">Marketing Messages</p>
+                                                <p className="text-3xl font-black text-green-600">₹0.80 - ₹1.00</p>
+                                                <p className="text-xs text-slate-500 mt-2">Promotional & bulk messages</p>
+                                            </div>
+
+                                            <div className="bg-green-50 rounded-xl p-5 border border-green-100">
+                                                <p className="text-sm text-slate-600 font-semibold mb-2">Authentication Messages</p>
+                                                <p className="text-3xl font-black text-green-600">₹0.35 - ₹0.45</p>
+                                                <p className="text-xs text-slate-500 mt-2">OTP & security codes</p>
+                                            </div>
+
+                                            <div className="bg-green-50 rounded-xl p-5 border border-green-100">
+                                                <p className="text-sm text-slate-600 font-semibold mb-2">Utility Messages</p>
+                                                <p className="text-3xl font-black text-green-600">₹0.30 - ₹0.40</p>
+                                                <p className="text-xs text-slate-500 mt-2">Confirmations & updates</p>
+                                            </div>
+
+                                            <div className="bg-slate-50 rounded-xl p-4 border border-slate-200 text-sm text-slate-600">
+                                                <p className="font-semibold text-slate-900 mb-2">✓ No markup fees included</p>
+                                                <p className="text-xs">Meta bills directly. Volume discounts apply at higher message volumes.</p>
+                                            </div>
                                         </div>
                                     </div>
-                                    
-                                    <div className="bg-amber-50 rounded-xl p-4 text-sm text-slate-700 border border-amber-100">
-                                        <p className="font-semibold mb-3 text-slate-900">Key Details:</p>
-                                        <ul className="space-y-2 ml-4">
-                                            <li>• <strong>WhatsApp API:</strong> Per-message pricing based on conversation type and message category</li>
-                                            <li>• <strong>Instagram API:</strong> May be included in WhatsApp pricing or charged separately by Meta</li>
-                                            <li>• <strong>Phone Number Verification:</strong> May require a one-time setup fee through Meta</li>
-                                            <li>• <strong>Billing:</strong> Meta bills you directly for API usage in addition to our UniChat subscription</li>
-                                            <li>• <strong>Current Rates:</strong> Check <a href="https://www.meta.com/en/business/tools/whatsapp/pricing/" target="_blank" className="text-green-600 font-semibold hover:underline">Meta's official pricing page</a> for latest rates</li>
-                                        </ul>
+
+                                    {/* Instagram Pricing */}
+                                    <div className="bg-white rounded-2xl border-2 border-pink-200 p-8 shadow-lg">
+                                        <div className="flex items-center gap-3 mb-8">
+                                            <div className="w-12 h-12 bg-gradient-to-br from-pink-500 to-purple-500 rounded-xl flex items-center justify-center">
+                                                <i className="ph-fill ph-instagram-logo text-white text-2xl"></i>
+                                            </div>
+                                            <h4 className="text-2xl font-bold text-slate-900">Instagram Pricing</h4>
+                                        </div>
+
+                                        <div className="space-y-4">
+                                            <div className="bg-pink-50 rounded-xl p-5 border border-pink-100">
+                                                <p className="text-sm text-slate-600 font-semibold mb-2">Standard Messaging</p>
+                                                <p className="text-3xl font-black text-pink-600">Included</p>
+                                                <p className="text-xs text-slate-500 mt-2">DM replies in conversations</p>
+                                            </div>
+
+                                            <div className="bg-pink-50 rounded-xl p-5 border border-pink-100">
+                                                <p className="text-sm text-slate-600 font-semibold mb-2">Story Replies</p>
+                                                <p className="text-3xl font-black text-pink-600">₹0.25</p>
+                                                <p className="text-xs text-slate-500 mt-2">Auto-replies to story mentions</p>
+                                            </div>
+
+                                            <div className="bg-pink-50 rounded-xl p-5 border border-pink-100">
+                                                <p className="text-sm text-slate-600 font-semibold mb-2">Broadcast Messages</p>
+                                                <p className="text-3xl font-black text-pink-600">₹0.35</p>
+                                                <p className="text-xs text-slate-500 mt-2">Bulk messaging campaigns</p>
+                                            </div>
+
+                                            <div className="bg-slate-50 rounded-xl p-4 border border-slate-200 text-sm text-slate-600">
+                                                <p className="font-semibold text-slate-900 mb-2">✓ Combined with WhatsApp</p>
+                                                <p className="text-xs">Instagram charges combined with WhatsApp on Meta invoice.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Important Notice */}
+                                <div className="bg-white rounded-2xl border-2 border-amber-200 p-8">
+                                    <div className="flex items-start gap-4">
+                                        <div className="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center shrink-0 flex-shrink-0 mt-1">
+                                            <i className="ph ph-warning text-amber-600 text-lg"></i>
+                                        </div>
+                                        <div className="flex-1">
+                                            <h4 className="text-xl font-bold text-slate-900 mb-3">⚠️ Pricing Subject to Change</h4>
+                                            <p className="text-slate-600 leading-relaxed mb-4">
+                                                The prices shown above are current Meta rates and are <strong>subject to change at any time</strong>. These charges are separate from UniChat subscription pricing. For latest rates, check <a href="https://www.meta.com/en/business/tools/whatsapp/pricing/" target="_blank" className="text-green-600 font-semibold hover:underline">Meta's official pricing page</a>.
+                                            </p>
+                                            <ul className="space-y-2 text-sm text-slate-600 ml-4">
+                                                <li>✓ You need a Meta Business Account & WhatsApp Business Account</li>
+                                                <li>✓ Meta bills you separately from UniChat</li>
+                                                <li>✓ Phone number setup may have one-time verification fees</li>
+                                                <li>✓ Volume discounts available at 10,000+ messages/month</li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
