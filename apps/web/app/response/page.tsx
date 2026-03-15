@@ -375,11 +375,12 @@ export default function ResponsePage() {
                             </button>
                           ))}
                         </div>
-                      </div>\n                      <button
+                      </div>
+                      <button
                         onClick={() => deleteSubmission(submission.id)}
-                        className=\"flex items-center gap-2 px-4 py-2 bg-red-100 hover:bg-red-200 text-red-800 rounded-lg font-medium text-sm transition-colors whitespace-nowrap\"
+                        className="flex items-center gap-2 px-4 py-2 bg-red-100 hover:bg-red-200 text-red-800 rounded-lg font-medium text-sm transition-colors whitespace-nowrap"
                       >
-                        <Trash2 className=\"w-4 h-4\" />
+                        <Trash2 className="w-4 h-4" />
                         Delete
                       </button>
                     </div>
