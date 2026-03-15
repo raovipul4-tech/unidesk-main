@@ -9,7 +9,7 @@ type AppType = 'unicrm' | 'unichat' | 'unicom' | 'uniads' | 'uniweb' | 'unipos';
 
 export default function PricingPage() {
   const router = useRouter();
-  const [selectedApp, setSelectedApp] = useState<AppType | 'all'>('all');
+  const [selectedApp, setSelectedApp] = useState<AppType>('unicrm');
   const [billingCycle, setBillingCycle] = useState<'monthly' | 'annual'>('monthly');
   const [carouselPosition, setCarouselPosition] = useState(0);
 
@@ -81,7 +81,7 @@ export default function PricingPage() {
     }
   };
 
-  const currentApp = selectedApp === 'all' ? null : apps[selectedApp as AppType];
+  const currentApp = apps[selectedApp as AppType];
 
     return (
       <>
@@ -109,20 +109,6 @@ export default function PricingPage() {
                 {/* App Selector - Horizontal Scroll */}
                 <div className="mb-16 flex justify-center">
                   <div className="flex gap-3 overflow-x-auto pb-4 px-4">
-                    <button
-                      onClick={() => {
-                        setSelectedApp('all');
-                        setCarouselPosition(0);
-                      }}
-                      className={`px-6 py-3 rounded-xl font-bold text-sm transition-all transform hover:scale-105 active:scale-95 flex items-center gap-2 whitespace-nowrap ${ 
-                        selectedApp === 'all'
-                          ? 'bg-gradient-to-r from-brand-500 to-blue-600 text-white shadow-lg'
-                          : 'bg-white border border-slate-200 text-slate-700 hover:border-slate-300'
-                      }`}
-                    >
-                      <i className="ph-fill ph-squares-four"></i>
-                      All Apps
-                    </button>
                     {(Object.keys(apps) as AppType[]).map((appKey) => (
                       <button
                         key={appKey}
@@ -146,16 +132,13 @@ export default function PricingPage() {
                 {/* Pricing Carousel Section */}
                 <div className="mb-20">
                     <div className="text-center mb-10">
-                        {selectedApp !== 'all' && currentApp && (
+                        {currentApp && (
                             <>
                                 <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full ${currentApp.bgColor} border ${currentApp.borderColor} ${currentApp.textColor} text-sm font-bold mb-4`}>
                                     <i className={`ph-fill ${currentApp.icon}`}></i> {currentApp.name}
                                 </div>
                                 <h2 className="text-3xl font-black text-slate-900 mb-6">{currentApp.description}</h2>
                             </>
-                        )}
-                        {selectedApp === 'all' && (
-                            <h2 className="text-3xl font-black text-slate-900 mb-6">All Plans at a Glance</h2>
                         )}
                         
                         {/* Monthly/Annual Toggle */}
@@ -183,101 +166,8 @@ export default function PricingPage() {
                         </div>
                     </div>
 
-                    {/* Carousel for All Apps */}
-                    {selectedApp === 'all' && (
-                        <div className="relative">
-                            {/* Carousel Container */}
-                            <div className="overflow-hidden">
-                                <div className="flex gap-8 transition-transform duration-500" style={{ transform: `translateX(-${carouselPosition * 100}%)` }}>
-                                    {(Object.keys(pricingData) as AppType[]).map((appKey) => (
-                                        <div key={appKey} className="w-full flex-shrink-0">
-                                            <div className="bg-white rounded-2xl border border-slate-200 p-8 shadow-lg max-w-2xl mx-auto">
-                                                <div className="flex items-center gap-3 mb-6">
-                                                    <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${apps[appKey].color} flex items-center justify-center text-white text-xl`}>
-                                                        <i className={`ph-fill ${apps[appKey].icon}`}></i>
-                                                    </div>
-                                                    <div>
-                                                        <h3 className="text-2xl font-black text-slate-900">{apps[appKey].name}</h3>
-                                                        <p className="text-sm text-slate-500">{apps[appKey].description}</p>
-                                                    </div>
-                                                </div>
-
-                                                {/* 3 Plan Cards */}
-                                                <div className="grid grid-cols-3 gap-4">
-                                                    {pricingData[appKey].plans.map((plan, idx) => (
-                                                        <div key={idx} className={`rounded-xl p-6 relative border-2 transition-all ${
-                                                            plan.isPopular 
-                                                                ? 'border-brand-400 bg-brand-50' 
-                                                                : 'border-slate-200 bg-white'
-                                                        }`}>
-                                                            {plan.isPopular && (
-                                                                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-brand-500 to-blue-600 text-white px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap">Most Popular</div>
-                                                            )}
-                                                            <h4 className="text-lg font-bold text-slate-900 mb-2">{plan.title}</h4>
-                                                            <div className="mb-4">
-                                                                <span className="text-3xl font-black text-slate-900">₹{billingCycle === 'monthly' ? plan.monthly : Math.floor(plan.annual / 12)}</span>
-                                                                <span className="text-slate-500 text-sm">/mo</span>
-                                                            </div>
-                                                            <button className={`w-full py-2 px-3 rounded-lg font-bold text-sm transition-all active:scale-[0.98] mb-4 ${
-                                                                plan.isPopular
-                                                                    ? 'bg-brand-600 text-white hover:bg-brand-500'
-                                                                    : 'bg-slate-100 text-slate-900 hover:bg-slate-200'
-                                                            }`}>
-                                                                {plan.buttonText}
-                                                            </button>
-                                                            <ul className="space-y-2 text-xs text-slate-600">
-                                                                {plan.features.slice(0, 4).map((feature, i) => (
-                                                                    <li key={i} className="flex items-start gap-2">
-                                                                        <i className="ph-fill ph-check-circle text-green-500 shrink-0 mt-0.5"></i>
-                                                                        <span>{feature}</span>
-                                                                    </li>
-                                                                ))}
-                                                                {plan.features.length > 4 && (
-                                                                    <li className="text-slate-400 font-semibold text-xs">+ {plan.features.length - 4} more</li>
-                                                                )}
-                                                            </ul>
-                                                        </div>
-                                                    ))}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-
-                            {/* Carousel Controls */}
-                            <div className="flex justify-center gap-2 mt-8">
-                                <button
-                                    onClick={() => setCarouselPosition(Math.max(0, carouselPosition - 1))}
-                                    className="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-600 hover:bg-slate-50 transition-all"
-                                    disabled={carouselPosition === 0}
-                                >
-                                    <i className="ph ph-caret-left"></i>
-                                </button>
-                                <div className="flex gap-1">
-                                    {(Object.keys(pricingData) as AppType[]).map((_, idx) => (
-                                        <button
-                                            key={idx}
-                                            onClick={() => setCarouselPosition(idx)}
-                                            className={`w-2 h-2 rounded-full transition-all ${
-                                                carouselPosition === idx ? 'bg-brand-600 w-8' : 'bg-slate-300'
-                                            }`}
-                                        />
-                                    ))}
-                                </div>
-                                <button
-                                    onClick={() => setCarouselPosition(Math.min((Object.keys(pricingData) as AppType[]).length - 1, carouselPosition + 1))}
-                                    className="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-600 hover:bg-slate-50 transition-all"
-                                    disabled={carouselPosition === (Object.keys(pricingData) as AppType[]).length - 1}
-                                >
-                                    <i className="ph ph-caret-right"></i>
-                                </button>
-                            </div>
-                        </div>
-                    )}
-
                     {/* Single App Pricing Cards */}
-                    {selectedApp !== 'all' && currentApp && (
+                    {currentApp && (
                         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto items-stretch">
                             {pricingData[selectedApp as AppType].plans.map((plan, idx) => (
                                 <div key={idx} className={`rounded-3xl p-8 flex flex-col relative transition-colors ${
