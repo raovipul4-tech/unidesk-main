@@ -16,10 +16,47 @@ export default function BookDemoPage() {
     product: 'both', // unicrm, unichat, or both
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [statusMessage, setStatusMessage] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    alert('Demo request submitted! Our team will contact you within 24 hours.');
+    setIsLoading(true);
+    setStatusMessage('');
+
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          type: 'demo',
+        }),
+      });
+
+      if (response.ok) {
+        setStatusMessage('Demo request submitted! Our team will contact you within 24 hours.');
+        setFormData({
+          firstName: '',
+          lastName: '',
+          email: '',
+          phone: '',
+          company: '',
+          message: '',
+          product: 'both',
+        });
+        setTimeout(() => setStatusMessage(''), 5000);
+      } else {
+        setStatusMessage('Failed to submit demo request. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setStatusMessage('An error occurred. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -201,12 +238,23 @@ export default function BookDemoPage() {
                   ></textarea>
                 </div>
 
+                {statusMessage && (
+                  <div className={`p-4 rounded-xl text-sm font-medium ${
+                    statusMessage.includes('submitted') 
+                      ? 'bg-green-50 text-green-700 border border-green-200' 
+                      : 'bg-red-50 text-red-700 border border-red-200'
+                  }`}>
+                    {statusMessage}
+                  </div>
+                )}
+
                 {/* Submit Button */}
                 <button
                   type="submit"
-                  className="w-full py-4 bg-slate-900 text-white rounded-xl font-bold text-lg hover:bg-slate-800 active:scale-[0.98] transition-all shadow-lg shadow-slate-900/20"
+                  disabled={isLoading}
+                  className="w-full py-4 bg-slate-900 text-white rounded-xl font-bold text-lg hover:bg-slate-800 active:scale-[0.98] transition-all shadow-lg shadow-slate-900/20 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Book My Demo
+                  {isLoading ? 'Submitting...' : 'Book My Demo'}
                 </button>
 
                 <p className="text-sm text-slate-500 text-center">

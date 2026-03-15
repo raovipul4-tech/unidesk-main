@@ -12,15 +12,43 @@ export default function ContactPage() {
     lastName: '',
     email: '',
     phone: '',
+    company: '',
     subject: '',
     message: '',
   });
+  const [isLoading, setIsLoading] = useState(false);
+  const [statusMessage, setStatusMessage] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    alert('Message sent! Our team will contact you soon.');
-    setFormData({ firstName: '', lastName: '', email: '', phone: '', subject: '', message: '' });
+    setIsLoading(true);
+    setStatusMessage('');
+
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          type: 'contact',
+        }),
+      });
+
+      if (response.ok) {
+        setStatusMessage('Message sent successfully! Our team will contact you soon.');
+        setFormData({ firstName: '', lastName: '', email: '', phone: '', company: '', subject: '', message: '' });
+        setTimeout(() => setStatusMessage(''), 5000);
+      } else {
+        setStatusMessage('Failed to send message. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setStatusMessage('An error occurred. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
     return (
@@ -101,46 +129,110 @@ export default function ContactPage() {
                         {/* Decorative element */}
                         <div className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-brand-100 to-blue-100 rounded-full blur-xl z-0"></div>
                         
-                        <form className="space-y-6 relative z-10">
+                        <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
                             <div className="grid md:grid-cols-2 gap-6">
                                 <div>
                                     <label className="block text-sm font-bold text-slate-700 mb-2">First Name</label>
-                                    <input type="text" className="w-full px-5 py-3.5 rounded-xl border border-slate-200 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 outline-none transition-all bg-slate-50 focus:bg-white text-slate-900" placeholder="John" />
+                                    <input 
+                                        type="text" 
+                                        required
+                                        value={formData.firstName}
+                                        onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                                        className="w-full px-5 py-3.5 rounded-xl border border-slate-200 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 outline-none transition-all bg-slate-50 focus:bg-white text-slate-900" 
+                                        placeholder="John" 
+                                    />
                                 </div>
                                 <div>
                                     <label className="block text-sm font-bold text-slate-700 mb-2">Last Name</label>
-                                    <input type="text" className="w-full px-5 py-3.5 rounded-xl border border-slate-200 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 outline-none transition-all bg-slate-50 focus:bg-white text-slate-900" placeholder="Doe" />
+                                    <input 
+                                        type="text" 
+                                        value={formData.lastName}
+                                        onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                                        className="w-full px-5 py-3.5 rounded-xl border border-slate-200 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 outline-none transition-all bg-slate-50 focus:bg-white text-slate-900" 
+                                        placeholder="Doe" 
+                                    />
                                 </div>
                             </div>
 
                             <div className="grid md:grid-cols-2 gap-6">
                                 <div>
                                     <label className="block text-sm font-bold text-slate-700 mb-2">Work Email</label>
-                                    <input type="email" className="w-full px-5 py-3.5 rounded-xl border border-slate-200 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 outline-none transition-all bg-slate-50 focus:bg-white text-slate-900" placeholder="john@company.com" />
+                                    <input 
+                                        type="email" 
+                                        required
+                                        value={formData.email}
+                                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                        className="w-full px-5 py-3.5 rounded-xl border border-slate-200 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 outline-none transition-all bg-slate-50 focus:bg-white text-slate-900" 
+                                        placeholder="john@company.com" 
+                                    />
                                 </div>
                                 <div>
                                     <label className="block text-sm font-bold text-slate-700 mb-2">Phone Number</label>
-                                    <input type="tel" className="w-full px-5 py-3.5 rounded-xl border border-slate-200 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 outline-none transition-all bg-slate-50 focus:bg-white text-slate-900" placeholder="+91 90000 00000" />
+                                    <input 
+                                        type="tel" 
+                                        value={formData.phone}
+                                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                                        className="w-full px-5 py-3.5 rounded-xl border border-slate-200 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 outline-none transition-all bg-slate-50 focus:bg-white text-slate-900" 
+                                        placeholder="+91 90000 00000" 
+                                    />
                                 </div>
                             </div>
 
                             <div>
                                 <label className="block text-sm font-bold text-slate-700 mb-2">Company Name</label>
-                                <input type="text" className="w-full px-5 py-3.5 rounded-xl border border-slate-200 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 outline-none transition-all bg-slate-50 focus:bg-white text-slate-900" placeholder="Acme Corp" />
+                                <input 
+                                    type="text" 
+                                    value={formData.company}
+                                    onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                                    className="w-full px-5 py-3.5 rounded-xl border border-slate-200 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 outline-none transition-all bg-slate-50 focus:bg-white text-slate-900" 
+                                    placeholder="Acme Corp" 
+                                />
                             </div>
 
                             <div>
-                                <label className="block text-sm font-bold text-slate-700 mb-2">How can we help?</label>
-                                <textarea rows={4} className="w-full px-5 py-3.5 rounded-xl border border-slate-200 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 outline-none transition-all bg-slate-50 focus:bg-white text-slate-900 resize-none" placeholder="I'm interested in automating my sales process using the WhatsApp API..."></textarea>
+                                <label className="block text-sm font-bold text-slate-700 mb-2">Subject</label>
+                                <input 
+                                    type="text" 
+                                    value={formData.subject}
+                                    onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                                    className="w-full px-5 py-3.5 rounded-xl border border-slate-200 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 outline-none transition-all bg-slate-50 focus:bg-white text-slate-900" 
+                                    placeholder="What is your inquiry about?" 
+                                />
                             </div>
 
-                            <button type="button" className="w-full py-4 px-6 bg-slate-900 text-white rounded-xl font-bold text-lg hover:bg-slate-800 active:scale-[0.98] transition-all shadow-xl shadow-slate-900/20 flex items-center justify-center gap-2">
-                                Send Message
+                            <div>
+                                <label className="block text-sm font-bold text-slate-700 mb-2">Message</label>
+                                <textarea 
+                                    rows={4} 
+                                    required
+                                    value={formData.message}
+                                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                                    className="w-full px-5 py-3.5 rounded-xl border border-slate-200 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 outline-none transition-all bg-slate-50 focus:bg-white text-slate-900 resize-none" 
+                                    placeholder="I'm interested in automating my sales process using the WhatsApp API..."
+                                ></textarea>
+                            </div>
+
+                            {statusMessage && (
+                                <div className={`p-4 rounded-xl text-sm font-medium ${
+                                    statusMessage.includes('successfully') 
+                                        ? 'bg-green-50 text-green-700 border border-green-200' 
+                                        : 'bg-red-50 text-red-700 border border-red-200'
+                                }`}>
+                                    {statusMessage}
+                                </div>
+                            )}
+
+                            <button 
+                                type="submit" 
+                                disabled={isLoading}
+                                className="w-full py-4 px-6 bg-slate-900 text-white rounded-xl font-bold text-lg hover:bg-slate-800 active:scale-[0.98] transition-all shadow-xl shadow-slate-900/20 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                            >
+                                {isLoading ? 'Sending...' : 'Send Message'}
                                 <i className="ph ph-paper-plane-right"></i>
                             </button>
                             
                             <p className="text-center text-xs text-slate-500">
-                                By submitting this form, you agree to our <a href="#" className="underline hover:text-brand-600 transition-colors">Privacy Policy</a>.
+                                By submitting this form, you agree to our <a href="/privacy-policy" className="underline hover:text-brand-600 transition-colors">Privacy Policy</a>.
                             </p>
                         </form>
                     </div>
