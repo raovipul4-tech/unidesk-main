@@ -14,8 +14,8 @@ export default function Header() {
             {/* Left: Email */}
             <div className="flex items-center gap-2 text-sm">
               <i className="ph ph-envelope text-lg"></i>
-              <a href="mailto:info@unidesk.in" className="hover:text-white/90 transition-colors font-medium">
-                info@unidesk.in
+              <a href="mailto:support@unidesk.in" className="hover:text-white/90 transition-colors font-medium">
+                support@unidesk.in
               </a>
             </div>
             
@@ -54,7 +54,7 @@ export default function Header() {
             alt="Unidesk Logo" 
             className="w-10 h-10 group-hover:scale-105 transition-transform"
           />
-          <span className="font-bold text-2xl tracking-tight text-slate-900">Unidesk</span>
+          <span className="font-bold text-2xl tracking-tight text-slate-900">UniDesk</span>
         </div>
 
         {/* Desktop Nav */}

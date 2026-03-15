@@ -1,0 +1,32 @@
+# UniDesk SEO Robots Configuration
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /_next/
+Allow: /_next/static/
+
+# Sitemap
+Sitemap: https://unidesk.in/sitemap.xml
+
+# Crawl Delay (in seconds) - Allow aggressive crawling
+Crawl-delay: 0
+
+# User agents specific rules
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Prevent bad bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /

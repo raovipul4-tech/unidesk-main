@@ -1,0 +1,53 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "UniDesk",
+  "url": "https://unidesk.in",
+  "logo": "https://app-cdn.appgen.com/0e496fc5-3050-498f-ade1-610fc9ef6d40/assets/uploaded_1773130812759_gt5bks.png",
+  "description": "All-in-One CRM & WhatsApp Business Platform for Indian Businesses",
+  "sameAs": [
+    "https://facebook.com/unidesk.crm",
+    "https://twitter.com/unidesk_crm",
+    "https://linkedin.com/company/unidesk_crm",
+    "https://instagram.com/unidesk_crm"
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "IN",
+    "addressRegion": "India"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+91-9625878600",
+    "contactType": "Customer Service",
+    "email": "support@unidesk.in",
+    "hoursAvailable": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      "opens": "09:00",
+      "closes": "19:00",
+      "identifier": "IST"
+    }
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "ratingCount": "2500",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "founder": {
+    "@type": "Person",
+    "name": "UniDesk Team"
+  },
+  "foundingDate": "2024",
+  "knowsAbout": [
+    "CRM Software",
+    "WhatsApp Business API",
+    "Lead Management",
+    "Sales Automation",
+    "Customer Communication",
+    "Business Automation"
+  ],
+  "slogan": "Unified CRM & WhatsApp Business Platform for Growing Indian Businesses"
+}

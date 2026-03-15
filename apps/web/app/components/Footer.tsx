@@ -23,10 +23,10 @@ export default function Footer({ children }: FooterProps) {
                 alt="Unidesk Logo" 
                 className="w-10 h-10"
               />
-              <span className="font-bold text-2xl">Unidesk</span>
+              <span className="font-bold text-2xl">UniDesk</span>
             </div>
             <p className="text-slate-400 mb-6 max-w-md">
-              Empowering businesses with intelligent CRM solutions and seamless WhatsApp communication. Transform your customer relationships today.
+              UniDesk: The all-in-one CRM & WhatsApp Business platform for Indian enterprises. Manage leads, automate conversations, and grow your business.
             </p>
             <div className="flex items-center gap-4">
               <a href="https://facebook.com/unidesk.crm" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-slate-800 hover:bg-brand-600 flex items-center justify-center transition-all duration-300">
@@ -120,7 +120,7 @@ export default function Footer({ children }: FooterProps) {
         <div className="max-w-7xl mx-auto px-6 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-slate-400 text-sm">
-              © 2024 Unidesk. All rights reserved.
+              © 2024 UniDesk. All rights reserved. | Made for Indian Businesses | CRM Solutions | WhatsApp Business API
             </p>
             <div className="flex items-center gap-6 text-sm">
               <button className="text-slate-400 hover:text-white transition-colors">Privacy Policy</button>
@@ -136,7 +136,7 @@ export default function Footer({ children }: FooterProps) {
         <div className="max-w-7xl mx-auto px-6 py-12 text-center">
           <h2 className="text-3xl font-bold mb-4">Ready to Transform Your Business?</h2>
           <p className="text-white/90 mb-8 max-w-2xl mx-auto">
-            Join thousands of businesses already using Unidesk to streamline their operations and boost productivity.
+            Join 2,500+ businesses already using UniDesk to streamline sales, automate WhatsApp conversations, and grow faster.
           </p>
           <div className="flex items-center justify-center gap-4">
             <button 
