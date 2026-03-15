@@ -217,6 +217,38 @@ export default function PricingPage() {
                         </div>
                     )}
 
+                    {/* Meta Pricing Notice for UniChat */}
+                    {selectedApp === 'unichat' && (
+                        <div className="mt-20 col-span-full">
+                            <div className="max-w-4xl mx-auto">
+                                <div className="bg-white rounded-2xl border-2 border-amber-200 p-8">
+                                    <div className="flex items-start gap-4 mb-6">
+                                        <div className="w-6 h-6 rounded-full bg-amber-100 flex items-center justify-center shrink-0 mt-1">
+                                            <i className="ph ph-warning text-amber-600 text-sm"></i>
+                                        </div>
+                                        <div className="flex-1">
+                                            <h3 className="text-2xl font-bold text-slate-900 mb-2">Meta API Pricing - Subject to Change</h3>
+                                            <p className="text-slate-600 leading-relaxed">
+                                                In addition to UniChat subscription, Meta charges separate fees for WhatsApp and Instagram API usage. These charges are controlled by Meta Platforms, Inc. and subject to change at any time. Pricing varies based on message type (session messages, template messages, utility messages), conversation initiation fees, and message status callbacks.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div className="bg-amber-50 rounded-xl p-4 text-sm text-slate-700 border border-amber-100">
+                                        <p className="font-semibold mb-3 text-slate-900">Key Details:</p>
+                                        <ul className="space-y-2 ml-4">
+                                            <li>• <strong>WhatsApp API:</strong> Per-message pricing based on conversation type and message category</li>
+                                            <li>• <strong>Instagram API:</strong> May be included in WhatsApp pricing or charged separately by Meta</li>
+                                            <li>• <strong>Phone Number Verification:</strong> May require a one-time setup fee through Meta</li>
+                                            <li>• <strong>Billing:</strong> Meta bills you directly for API usage in addition to our UniChat subscription</li>
+                                            <li>• <strong>Current Rates:</strong> Check <a href="https://www.meta.com/en/business/tools/whatsapp/pricing/" target="_blank" className="text-green-600 font-semibold hover:underline">Meta's official pricing page</a> for latest rates</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
                 </div>
 
             </div>
