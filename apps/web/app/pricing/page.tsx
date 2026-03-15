@@ -226,9 +226,8 @@ export default function PricingPage() {
                                     <p className="text-slate-600 text-lg">In addition to UniChat subscription, Meta charges separate fees per message</p>
                                 </div>
 
-                                {/* WhatsApp & Instagram Pricing Grid */}
-                                <div className="grid md:grid-cols-2 gap-8 mb-12">
-                                    {/* WhatsApp Pricing */}
+                                {/* WhatsApp Pricing */}
+                                <div className="max-w-2xl mx-auto mb-12">
                                     <div className="bg-white rounded-2xl border-2 border-green-200 p-8 shadow-lg">
                                         <div className="flex items-center gap-3 mb-8">
                                             <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center">
@@ -259,41 +258,6 @@ export default function PricingPage() {
                                             <div className="bg-slate-50 rounded-xl p-4 border border-slate-200 text-sm text-slate-600">
                                                 <p className="font-semibold text-slate-900 mb-2">✓ No markup fees included</p>
                                                 <p className="text-xs">Meta bills directly. Volume discounts apply at higher message volumes.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    {/* Instagram Pricing */}
-                                    <div className="bg-white rounded-2xl border-2 border-pink-200 p-8 shadow-lg">
-                                        <div className="flex items-center gap-3 mb-8">
-                                            <div className="w-12 h-12 bg-gradient-to-br from-pink-500 to-purple-500 rounded-xl flex items-center justify-center">
-                                                <i className="ph-fill ph-instagram-logo text-white text-2xl"></i>
-                                            </div>
-                                            <h4 className="text-2xl font-bold text-slate-900">Instagram Pricing</h4>
-                                        </div>
-
-                                        <div className="space-y-4">
-                                            <div className="bg-pink-50 rounded-xl p-5 border border-pink-100">
-                                                <p className="text-sm text-slate-600 font-semibold mb-2">Standard Messaging</p>
-                                                <p className="text-3xl font-black text-pink-600">Included</p>
-                                                <p className="text-xs text-slate-500 mt-2">DM replies in conversations</p>
-                                            </div>
-
-                                            <div className="bg-pink-50 rounded-xl p-5 border border-pink-100">
-                                                <p className="text-sm text-slate-600 font-semibold mb-2">Story Replies</p>
-                                                <p className="text-3xl font-black text-pink-600">₹0.25</p>
-                                                <p className="text-xs text-slate-500 mt-2">Auto-replies to story mentions</p>
-                                            </div>
-
-                                            <div className="bg-pink-50 rounded-xl p-5 border border-pink-100">
-                                                <p className="text-sm text-slate-600 font-semibold mb-2">Broadcast Messages</p>
-                                                <p className="text-3xl font-black text-pink-600">₹0.35</p>
-                                                <p className="text-xs text-slate-500 mt-2">Bulk messaging campaigns</p>
-                                            </div>
-
-                                            <div className="bg-slate-50 rounded-xl p-4 border border-slate-200 text-sm text-slate-600">
-                                                <p className="font-semibold text-slate-900 mb-2">✓ Combined with WhatsApp</p>
-                                                <p className="text-xs">Instagram charges combined with WhatsApp on Meta invoice.</p>
                                             </div>
                                         </div>
                                     </div>
