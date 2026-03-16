@@ -11,7 +11,9 @@ export default function LoginPage() {
   return (
     <>
       <Header />
-      <div className="bg-gradient-to-br from-emerald-50 via-cyan-50 to-teal-100 min-h-screen flex flex-col pt-40 sm:pt-44 md:pt-48">
+      <div className="min-h-screen flex flex-col pt-40 sm:pt-44 md:pt-48" style={{
+        background: 'linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 25%, #f0fdfa 50%, #e0f7fa 75%, #f5f3ff 100%)'
+      }}>
         {/* Main Login Section - Fixed in content box */}
         <div className="flex-1 w-full px-3 sm:px-4 md:px-6 py-6 sm:py-8 relative z-10 flex items-center justify-center">
           <div className="w-full max-w-5xl">
