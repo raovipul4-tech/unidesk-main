@@ -133,30 +133,6 @@ export default function Footer({ children }: FooterProps) {
           </div>
         </div>
       </div>
-
-      {/* CTA Banner Above Footer */}
-      <div className="bg-gradient-to-r from-brand-600 to-brand-700">
-        <div className="max-w-7xl mx-auto px-6 py-12 text-center">
-          <h2 className="text-3xl font-bold mb-4">Ready to Transform Your Business?</h2>
-          <p className="text-white/90 mb-8 max-w-2xl mx-auto">
-            Join 2,500+ businesses already using UniDesk to streamline sales, automate WhatsApp conversations, and grow faster.
-          </p>
-          <div className="flex items-center justify-center gap-4">
-            <button 
-              onClick={() => router.push('/book-demo')}
-              className="px-8 py-3 bg-white text-brand-600 rounded-lg font-semibold hover:bg-slate-100 transition-all shadow-lg hover:shadow-xl active:scale-95"
-            >
-              Book a Demo
-            </button>
-            <button 
-              onClick={() => router.push('/pricing')}
-              className="px-8 py-3 bg-white/10 backdrop-blur-sm border border-white/20 text-white rounded-lg font-semibold hover:bg-white/20 transition-all active:scale-95"
-            >
-              View Pricing
-            </button>
-          </div>
-        </div>
-      </div>
     </footer>
   );
 }
