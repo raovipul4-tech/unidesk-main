@@ -1,43 +1,45 @@
 'use client';
 
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 export default function Header() {
   const router = useRouter();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <header className="fixed top-0 left-0 right-0 w-full z-[100] bg-white">
       {/* Top Announcement Bar */}
       <div className="bg-gradient-to-r from-brand-600 to-brand-700 text-white">
-        <div className="max-w-7xl mx-auto px-6 py-3">
-          <div className="grid grid-cols-3 items-center gap-4">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 py-2 md:py-3">
+          <div className="grid grid-cols-1 md:grid-cols-3 items-center gap-2 md:gap-4">
             {/* Left: Email */}
-            <div className="flex items-center gap-2 text-sm">
-              <i className="ph ph-envelope text-lg"></i>
-              <a href="mailto:support@unidesk.in" className="hover:text-white/90 transition-colors font-medium">
+            <div className="flex items-center justify-center md:justify-start gap-1 md:gap-2 text-xs md:text-sm">
+              <i className="ph ph-envelope text-base md:text-lg shrink-0"></i>
+              <a href="mailto:support@unidesk.in" className="hover:text-white/90 transition-colors font-medium truncate">
                 support@unidesk.in
               </a>
             </div>
             
             {/* Center: Offer */}
-            <div className="flex items-center justify-center gap-2 text-center">
+            <div className="hidden md:flex items-center justify-center gap-2 text-center">
               <i className="ph ph-gift text-xl"></i>
               <span className="font-semibold text-base">Limited Offer: Get 20% OFF on Annual Plans!</span>
             </div>
             
             {/* Right: Social Buttons */}
-            <div className="flex items-center justify-end gap-3">
-              <a href="https://facebook.com/unidesk.crm" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-white hover:bg-white/90 flex items-center justify-center transition-all hover:scale-110 shadow-sm">
-                <i className="ph-bold ph-facebook-logo text-lg text-blue-600"></i>
+            <div className="flex items-center justify-center md:justify-end gap-2">
+              <a href="https://facebook.com/unidesk.crm" target="_blank" rel="noopener noreferrer" className="w-7 h-7 md:w-9 md:h-9 rounded-full bg-white hover:bg-white/90 flex items-center justify-center transition-all hover:scale-110 shadow-sm">
+                <i className="ph-bold ph-facebook-logo text-sm md:text-lg text-blue-600"></i>
               </a>
-              <a href="https://twitter.com/unidesk_crm" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-white hover:bg-white/90 flex items-center justify-center transition-all hover:scale-110 shadow-sm">
-                <i className="ph-bold ph-twitter-logo text-lg text-sky-500"></i>
+              <a href="https://twitter.com/unidesk_crm" target="_blank" rel="noopener noreferrer" className="w-7 h-7 md:w-9 md:h-9 rounded-full bg-white hover:bg-white/90 flex items-center justify-center transition-all hover:scale-110 shadow-sm">
+                <i className="ph-bold ph-twitter-logo text-sm md:text-lg text-sky-500"></i>
               </a>
-              <a href="https://linkedin.com/company/unidesk_crm" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-white hover:bg-white/90 flex items-center justify-center transition-all hover:scale-110 shadow-sm">
-                <i className="ph-bold ph-linkedin-logo text-lg text-blue-700"></i>
+              <a href="https://linkedin.com/company/unidesk_crm" target="_blank" rel="noopener noreferrer" className="w-7 h-7 md:w-9 md:h-9 rounded-full bg-white hover:bg-white/90 flex items-center justify-center transition-all hover:scale-110 shadow-sm">
+                <i className="ph-bold ph-linkedin-logo text-sm md:text-lg text-blue-700"></i>
               </a>
-              <a href="https://instagram.com/unidesk_crm" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-white hover:bg-white/90 flex items-center justify-center transition-all hover:scale-110 shadow-sm">
-                <i className="ph-bold ph-instagram-logo text-lg text-pink-600"></i>
+              <a href="https://instagram.com/unidesk_crm" target="_blank" rel="noopener noreferrer" className="w-7 h-7 md:w-9 md:h-9 rounded-full bg-white hover:bg-white/90 flex items-center justify-center transition-all hover:scale-110 shadow-sm">
+                <i className="ph-bold ph-instagram-logo text-sm md:text-lg text-pink-600"></i>
               </a>
             </div>
           </div>
@@ -46,15 +48,15 @@ export default function Header() {
 
       {/* Main Navigation */}
       <div className="border-b border-slate-200/50 shadow-sm">
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 h-16 md:h-20 flex items-center justify-between">
         {/* Logo */}
-        <div onClick={() => router.push('/')} className="flex items-center gap-2 group cursor-pointer">
+        <div onClick={() => router.push('/')} className="flex items-center gap-2 group cursor-pointer shrink-0">
           <img 
             src="https://app-cdn.appgen.com/0e496fc5-3050-498f-ade1-610fc9ef6d40/assets/uploaded_1773130812759_gt5bks.png" 
             alt="Unidesk Logo" 
-            className="w-10 h-10 group-hover:scale-105 transition-transform"
+            className="w-8 md:w-10 h-8 md:h-10 group-hover:scale-105 transition-transform"
           />
-          <span className="font-bold text-2xl tracking-tight text-slate-900">UniDesk</span>
+          <span className="font-bold text-lg md:text-2xl tracking-tight text-slate-900">UniDesk</span>
         </div>
 
         {/* Desktop Nav */}
@@ -138,10 +140,49 @@ export default function Header() {
         </div>
 
         {/* Mobile Menu Button */}
-        <button className="md:hidden text-slate-600">
-          <i className="ph ph-list text-3xl"></i>
+        <button 
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          className="md:hidden text-slate-600 p-2"
+        >
+          <i className={`ph text-2xl transition-transform ${
+            mobileMenuOpen ? 'ph-x' : 'ph-list'
+          }`}></i>
         </button>
         </div>
+
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <div className="md:hidden border-t border-slate-200 bg-white">
+            <nav className="px-4 py-4 space-y-3 font-medium text-slate-700">
+              <button onClick={() => { router.push('/'); setMobileMenuOpen(false); }} className="block w-full text-left p-3 hover:bg-slate-50 rounded-lg transition-colors">Home</button>
+              <button onClick={() => { router.push('/features'); setMobileMenuOpen(false); }} className="block w-full text-left p-3 hover:bg-slate-50 rounded-lg transition-colors">Features</button>
+              <button onClick={() => { router.push('/unicrm'); setMobileMenuOpen(false); }} className="block w-full text-left p-3 hover:bg-slate-50 rounded-lg transition-colors flex items-center gap-2">
+                <i className="ph ph-kanban text-brand-600"></i> UniCRM
+              </button>
+              <button onClick={() => { router.push('/unichat'); setMobileMenuOpen(false); }} className="block w-full text-left p-3 hover:bg-slate-50 rounded-lg transition-colors flex items-center gap-2">
+                <i className="ph ph-whatsapp-logo text-green-600"></i> UniChat
+              </button>
+              <button onClick={() => { router.push('/unicom'); setMobileMenuOpen(false); }} className="block w-full text-left p-3 hover:bg-slate-50 rounded-lg transition-colors flex items-center gap-2">
+                <i className="ph ph-phone text-purple-600"></i> UniCOM
+              </button>
+              <button onClick={() => { router.push('/uniads'); setMobileMenuOpen(false); }} className="block w-full text-left p-3 hover:bg-slate-50 rounded-lg transition-colors flex items-center gap-2">
+                <i className="ph ph-megaphone text-red-600"></i> UniAds
+              </button>
+              <button onClick={() => { router.push('/uniweb'); setMobileMenuOpen(false); }} className="block w-full text-left p-3 hover:bg-slate-50 rounded-lg transition-colors flex items-center gap-2">
+                <i className="ph ph-globe text-cyan-600"></i> UniWeb
+              </button>
+              <button onClick={() => { router.push('/unipos'); setMobileMenuOpen(false); }} className="block w-full text-left p-3 hover:bg-slate-50 rounded-lg transition-colors flex items-center gap-2">
+                <i className="ph ph-shopping-cart text-indigo-600"></i> UniPOS
+              </button>
+              <button onClick={() => { router.push('/pricing'); setMobileMenuOpen(false); }} className="block w-full text-left p-3 hover:bg-slate-50 rounded-lg transition-colors">Pricing</button>
+              <button onClick={() => { router.push('/contact'); setMobileMenuOpen(false); }} className="block w-full text-left p-3 hover:bg-slate-50 rounded-lg transition-colors">Contact</button>
+              <div className="border-t border-slate-200 pt-3 mt-3 space-y-2">
+                <button onClick={() => { router.push('/login'); setMobileMenuOpen(false); }} className="block w-full text-left p-3 hover:bg-slate-50 rounded-lg transition-colors">Login</button>
+                <button onClick={() => { router.push('/book-demo'); setMobileMenuOpen(false); }} className="w-full py-3 bg-slate-900 text-white rounded-lg font-medium transition-colors">Book Demo</button>
+              </div>
+            </nav>
+          </div>
+        )}
       </div>
     </header>
   );
