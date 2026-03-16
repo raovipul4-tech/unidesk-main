@@ -56,7 +56,7 @@
 ### 2.3 Regional SEO Optimization ✅
 - India-specific keywords throughout content
 - INR (₹) pricing display
-- Phone number: +91 9625878600
+- Phone number: +91 7428251864
 - Timezone: IST (Indian Standard Time)
 - Local business schema configuration
 - Geo-targeting metadata

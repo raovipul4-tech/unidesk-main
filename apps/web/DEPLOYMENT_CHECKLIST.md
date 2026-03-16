@@ -24,7 +24,7 @@
 - [x] All branding updated to "UniDesk"
 - [x] All product names verified (UniCRM, UniChat, etc.)
 - [x] All contact info updated (support@unidesk.in)
-- [x] Phone number verified (+91 9625878600)
+- [x] Phone number verified (+91 7428251864)
 - [x] Pricing in INR (₹)
 - [x] No placeholder content remaining
 - [x] All links functional
@@ -403,8 +403,8 @@ After deployment, verify everything works:
 
 ### Need Help?
 - Email: support@unidesk.in
-- Phone: +91 9625878600
-- WhatsApp: +91 9625878600
+- Phone: +91 7428251864
+- WhatsApp: +91 7428251864
 
 ---
 

@@ -262,7 +262,7 @@ gtag('event', 'view_pricing', {
 2. Verify business: "UniDesk"
 3. Add business info:
    - Address: India
-   - Phone: +91 9625878600
+   - Phone: +91 7428251864
    - Website: https://unidesk.in/
    - Hours: Mon-Sat, 9 AM - 7 PM IST
 

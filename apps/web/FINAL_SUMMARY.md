@@ -56,7 +56,7 @@ Your UniDesk app has been **fully rebranded and optimized for professional SEO**
 #### E. Regional SEO (India-Focused) ✅
 - India-specific keywords throughout
 - INR (₹) currency display
-- Phone: +91 9625878600
+- Phone: +91 7428251864
 - Timezone: IST (Indian Standard Time)
 - Local business schema
 - Geographic targeting metadata

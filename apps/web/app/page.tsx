@@ -659,7 +659,7 @@ export default function HomePage() {
                             </div>
                             <div>
                                 <p className="font-bold text-slate-900 mb-1">WhatsApp / Call Us</p>
-                                <a href="tel:+919625878600" className="text-lg text-brand-600 hover:text-brand-700 font-semibold">+91 9625878600</a>
+                                <a href="tel:+917428251864" className="text-lg text-brand-600 hover:text-brand-700 font-semibold">+91 7428251864</a>
                                 <p className="text-sm text-slate-500 mt-1">Available Mon-Sat, 9 AM - 7 PM IST</p>
                             </div>
                         </div>
@@ -733,7 +733,7 @@ export default function HomePage() {
                             <div className="w-10 h-10 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center"><i className="ph-fill ph-phone text-xl"></i></div>
                             <div>
                                 <p className="text-xs text-slate-500 font-medium uppercase tracking-wider">Call or WhatsApp</p>
-                                <a href="tel:+919625878600" className="text-sm font-bold text-slate-900 hover:text-brand-600">+91 9625878600</a>
+                                <a href="tel:+917428251864" className="text-sm font-bold text-slate-900 hover:text-brand-600">+91 7428251864</a>
                             </div>
                         </div>
                     </div>

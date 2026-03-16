@@ -439,7 +439,7 @@ export default function PricingPage() {
                 <p className="text-slate-500 text-sm">© 2024 Unidesk. All rights reserved.</p>
                 <div className="flex items-center gap-6 text-sm text-slate-500">
                     <span className="flex items-center gap-2"><i className="ph-fill ph-envelope-simple text-slate-400"></i> support@unidesk.in</span>
-                    <span className="flex items-center gap-2"><i className="ph-fill ph-whatsapp-logo text-green-500"></i> +91 9625878600</span>
+                    <span className="flex items-center gap-2"><i className="ph-fill ph-whatsapp-logo text-green-500"></i> +91 7428251864</span>
                 </div>
             </div>
         </div>

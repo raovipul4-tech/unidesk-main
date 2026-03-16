@@ -43,7 +43,7 @@ export const seoConfig: Record<string, SEOConfig> = {
   },
   '/contact': {
     title: 'Contact UniDesk - Support, Demo, & Business Inquiries',
-    description: 'Get in touch with UniDesk. Support: support@unidesk.in, WhatsApp: +91 9625878600. Available Mon-Sat, 9 AM - 7 PM IST. Book a free demo today.',
+    description: 'Get in touch with UniDesk. Support: support@unidesk.in, WhatsApp: +91 7428251864. Available Mon-Sat, 9 AM - 7 PM IST. Book a free demo today.',
     keywords: 'contact us, customer support, sales inquiry, demo request, business inquiry, contact information',
   },
   '/book-demo': {
