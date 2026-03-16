@@ -11,10 +11,12 @@ export default function LoginPage() {
   return (
     <>
       <Header />
-      <div className="min-h-screen flex flex-col pt-40 sm:pt-44 md:pt-48 relative overflow-hidden bg-slate-50">
+      <div className="fixed inset-0 bg-slate-50 overflow-auto">
         {/* Background Orbs - Same as Pricing Page */}
-        <div className="absolute top-10 right-20 w-96 h-96 bg-brand-300 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-blob"></div>
-        <div className="absolute -bottom-20 left-20 w-96 h-96 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-blob animation-delay-2000"></div>
+        <div className="fixed top-0 right-0 w-96 h-96 bg-brand-300 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-blob pointer-events-none"></div>
+        <div className="fixed bottom-0 left-0 w-96 h-96 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-blob animation-delay-2000 pointer-events-none"></div>
+        
+        <div className="relative min-h-screen flex flex-col pt-40 sm:pt-44 md:pt-48">
         {/* Main Login Section - Fixed in content box */}
         <div className="flex-1 w-full px-3 sm:px-4 md:px-6 py-6 sm:py-8 relative z-20 flex items-center justify-center">
           <div className="w-full max-w-5xl">
@@ -253,6 +255,7 @@ export default function LoginPage() {
               </div>
           </div>
         </div>
+        </div>
 
         {/* Coming Soon Modal */}
         {comingSoonModal && (
@@ -310,6 +313,7 @@ export default function LoginPage() {
             </div>
           </div>
         )}
+      </div>
       </div>
     </>
   );
