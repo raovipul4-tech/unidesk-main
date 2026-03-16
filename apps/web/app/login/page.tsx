@@ -11,11 +11,12 @@ export default function LoginPage() {
   return (
     <>
       <Header />
-      <div className="min-h-screen flex flex-col pt-40 sm:pt-44 md:pt-48" style={{
-        background: 'linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 25%, #f0fdfa 50%, #e0f7fa 75%, #f5f3ff 100%)'
-      }}>
+      <div className="min-h-screen flex flex-col pt-40 sm:pt-44 md:pt-48 relative overflow-hidden bg-slate-50">
+        {/* Background Orbs - Same as Pricing Page */}
+        <div className="absolute top-10 right-20 w-96 h-96 bg-brand-300 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-blob"></div>
+        <div className="absolute -bottom-20 left-20 w-96 h-96 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-blob animation-delay-2000"></div>
         {/* Main Login Section - Fixed in content box */}
-        <div className="flex-1 w-full px-3 sm:px-4 md:px-6 py-6 sm:py-8 relative z-10 flex items-center justify-center">
+        <div className="flex-1 w-full px-3 sm:px-4 md:px-6 py-6 sm:py-8 relative z-20 flex items-center justify-center">
           <div className="w-full max-w-5xl">
               
               {/* Header Text */}
