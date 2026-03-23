@@ -16,7 +16,6 @@ export default function RootLayout({
         <link rel="icon" type="image/png" href="https://app-cdn.appgen.com/0e496fc5-3050-498f-ade1-610fc9ef6d40/assets/uploaded_1774277826530_hfkews.png" />
         <link rel="shortcut icon" href="https://app-cdn.appgen.com/0e496fc5-3050-498f-ade1-610fc9ef6d40/assets/uploaded_1774277826530_hfkews.png" />
         <link rel="apple-touch-icon" href="https://app-cdn.appgen.com/0e496fc5-3050-498f-ade1-610fc9ef6d40/assets/uploaded_1774277826530_hfkews.png" />
-        <link rel="manifest" href="/manifest.json" />
         
         {/* Google Tag Manager */}
         <Script
@@ -70,10 +69,10 @@ export default function RootLayout({
         <meta name="msvalidate.01" content="" />
         
         {/* Business Info Structured Data */}
-        <script type="application/ld+json">{JSON.stringify({"@context":"https://schema.org","@type":"Organization","name":"UniDesk","description":"All-in-One CRM & WhatsApp Business Platform","url":"https://unidesk.in","logo":"https://app-cdn.appgen.com/0e496fc5-3050-498f-ade1-610fc9ef6d40/assets/uploaded_1773130812759_gt5bks.png","sameAs":["https://facebook.com/unidesk.crm","https://twitter.com/unidesk_crm","https://linkedin.com/company/unidesk_crm","https://instagram.com/unidesk_crm"],"address":{"@type":"PostalAddress","addressCountry":"IN","addressRegion":"India"},"contactPoint":{"@type":"ContactPoint","telephone":"7428251864","contactType":"Customer Service","email":"support@unidesk.in"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","ratingCount":"2500"}})}</script>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({"@context":"https://schema.org","@type":"Organization","name":"UniDesk","description":"All-in-One CRM & WhatsApp Business Platform","url":"https://unidesk.in","logo":"https://app-cdn.appgen.com/0e496fc5-3050-498f-ade1-610fc9ef6d40/assets/uploaded_1773130812759_gt5bks.png","sameAs":["https://facebook.com/unidesk.crm","https://twitter.com/unidesk_crm","https://linkedin.com/company/unidesk_crm","https://instagram.com/unidesk_crm"],"address":{"@type":"PostalAddress","addressCountry":"IN","addressRegion":"India"},"contactPoint":{"@type":"ContactPoint","telephone":"7428251864","contactType":"Customer Service","email":"support@unidesk.in"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","ratingCount":"2500"}})}} />
         
         {/* Product Schema */}
-        <script type="application/ld+json">{JSON.stringify({"@context":"https://schema.org","@type":"SoftwareApplication","name":"UniDesk","description":"Unified CRM & WhatsApp Business API platform","applicationCategory":"BusinessApplication","aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","ratingCount":"2500"},"offers":{"@type":"Offer","price":"0","priceCurrency":"INR","category":"Free Trial"},"operatingSystem":"Web","url":"https://unidesk.in"})}</script>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({"@context":"https://schema.org","@type":"SoftwareApplication","name":"UniDesk","description":"Unified CRM & WhatsApp Business API platform","applicationCategory":"BusinessApplication","aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","ratingCount":"2500"},"offers":{"@type":"Offer","price":"0","priceCurrency":"INR","category":"Free Trial"},"operatingSystem":"Web","url":"https://unidesk.in"})}} />
         
         {/* Fonts & Styles */}
         <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400&display=swap" />
@@ -88,16 +87,6 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
         <meta httpEquiv="x-ua-compatible" content="IE=edge" />
         <meta name="format-detection" content="telephone=no" />
-        
-        {/* Google Search Console & Rich Results */}
-        <meta name="title" content="UniDesk - All-in-One CRM & WhatsApp Business Platform | 2,500+ Businesses Trust Us" />
-        <meta name="description" content="UniDesk: The leading all-in-one CRM & WhatsApp Business API platform for Indian businesses. Manage leads, automate customer conversations, close more deals. Free 14-day trial. 2,500+ active businesses." />
-        
-        {/* Additional Business & Schema Markup */}
-        <script type=\"application/ld+json\">{JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":"UniDesk","description":"All-in-One CRM & WhatsApp Business Platform","url":"https://unidesk.in","logo":"https://app-cdn.appgen.com/0e496fc5-3050-498f-ade1-610fc9ef6d40/assets/uploaded_1774277826530_hfkews.png","image":"https://app-cdn.appgen.com/0e496fc5-3050-498f-ade1-610fc9ef6d40/assets/uploaded_1773130812759_gt5bks.png","telephone":"+917428251864","email":"support@unidesk.in","areaServed":"IN","priceRange":"₹₹","address":{"@type":"PostalAddress","addressCountry":"IN","addressRegion":"India"},"openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"09:00","closes":"19:00"}})}</script>
-        
-        {/* FAQ Schema for Rich Snippets */}
-        <script type=\"application/ld+json\">{JSON.stringify({"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is UniDesk?","acceptedAnswer":{"@type":"Answer","text":"UniDesk is an all-in-one CRM & WhatsApp Business API platform designed for Indian businesses to manage leads, automate customer conversations, and grow revenue."}},{"@type":"Question","name":"Does UniDesk offer a free trial?","acceptedAnswer":{"@type":"Answer","text":"Yes, UniDesk offers a completely free 14-day trial with full access to all features."}},{"@type":"Question","name":"What integrations does UniDesk support?","acceptedAnswer":{"@type":"Answer","text":"UniDesk integrates with WhatsApp Business API, Instagram DM, email, Google Forms, and 100+ other platforms."}}]})}</script>
       </head>
       <body className="antialiased">
         {/* Google Tag Manager (noscript) */}
