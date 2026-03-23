@@ -10,8 +10,8 @@ type AppType = 'unicrm' | 'unichat' | 'unicom' | 'uniads' | 'uniweb' | 'unipos';
 export default function PricingPage() {
   const router = useRouter();
   const [selectedApp, setSelectedApp] = useState<AppType>('unicrm');
-  const [billingCycle, setBillingCycle] = useState<'monthly' | 'annual'>('monthly');
   const [carouselPosition, setCarouselPosition] = useState(0);
+  const [billingCycle, setBillingCycle] = useState<'monthly' | 'annual'>('monthly');
 
   // App configurations
   const apps = {
@@ -23,60 +23,66 @@ export default function PricingPage() {
     unipos: { name: 'UniPOS', color: 'from-emerald-500 to-teal-600', bgColor: 'bg-emerald-50', borderColor: 'border-emerald-200', textColor: 'text-emerald-700', icon: 'ph-credit-card', description: 'AI-Powered POS System' }
   };
 
+  // Function to calculate annual price with 20% discount
+  const getAnnualPrice = (monthlyPrice: number) => {
+    const monthlyTotal = monthlyPrice * 12;
+    return Math.round(monthlyTotal * 0.8);
+  };
+
   // Pricing data for all apps
-  const pricingData: Record<AppType, { name: string; description: string; plans: Array<{ title: string; monthly: number; annual: number; features: string[]; isPopular?: boolean; buttonText: string; bgGradient?: string; textColor?: string; buttonColor?: string }> }> = {
+  const pricingData: Record<AppType, { name: string; description: string; plans: Array<{ title: string; monthlyPrice?: number; annualPrice?: number; features: string[]; isPopular?: boolean; buttonText: string; bgGradient?: string; textColor?: string; buttonColor?: string }> }> = {
     unicrm: {
       name: 'UniCRM',
       description: 'CRM & Lead Management',
       plans: [
-        { title: 'Monthly', monthly: 350, annual: 4200, features: ['Full CRM access', '1 user', '2,500 leads', 'Lead management', 'Basic reporting', 'API access', 'Email support'], buttonText: 'Start Free Trial' },
-        { title: '6 Months', monthly: 1167, annual: 7000, features: ['10 users', '50,000 leads', 'Advanced workflows', 'Analytics & insights', 'API access', 'Priority support', 'Additional users: ₹200/month'], isPopular: true, buttonText: 'Start Free Trial', bgGradient: 'bg-slate-900', textColor: 'text-white' },
-        { title: 'Annual', monthly: 833, annual: 10000, features: ['15 users', '100,000 leads', 'Custom integrations', 'API access', 'Dedicated account manager', '24/7 phone support', 'Additional users: ₹200/month'], buttonText: 'Contact Sales' }
+        { title: 'Monthly', monthlyPrice: 350, features: ['1 user', '2,500 leads', 'Lead management', 'Basic reporting', 'API access', 'Email support'], buttonText: 'Start Free Trial' },
+        { title: '6 Months', monthlyPrice: 7000, features: ['10 users', '50,000 leads', 'Advanced workflows', 'Analytics & insights', 'API access', 'Priority support', 'Additional users: ₹200/month'], isPopular: true, buttonText: 'Start Free Trial', bgGradient: 'bg-slate-900', textColor: 'text-white' },
+        { title: 'Annual', monthlyPrice: 10000, features: ['15 users', '100,000 leads', 'Custom integrations', 'API access', 'Dedicated account manager', '24/7 phone support', 'Additional users: ₹200/month'], buttonText: 'Contact Sales' }
       ]
     },
     unichat: {
       name: 'UniChat',
       description: 'WhatsApp Business API',
       plans: [
-        { title: 'Starter', monthly: 999, annual: 9590, features: ['5 Users', '20,000 Contacts', 'Basic Automation', 'Basic Analytics', 'API Access', 'Email Support'], buttonText: 'Get Started' },
-        { title: 'Growth', monthly: 2499, annual: 23990, features: ['10 Users', '50,000 Contacts', 'Full Automation', 'Advanced Analytics', 'API Access', 'Priority Support'], isPopular: true, buttonText: 'Get Started', bgGradient: 'border-2 border-emerald-400' },
-        { title: 'Pro', monthly: 4999, annual: 47990, features: ['15 Users', '100,000 Contacts', 'Advanced Automation', 'Advanced Analytics', 'API Access', 'Priority Support'], buttonText: 'Contact Sales' }
+        { title: 'Starter', monthlyPrice: 999, features: ['5 Users', '20,000 Contacts', 'Basic Automation', 'Basic Analytics', 'API Access', 'Email Support'], buttonText: 'Get Started' },
+        { title: 'Growth', monthlyPrice: 2499, features: ['10 Users', '50,000 Contacts', 'Full Automation', 'Advanced Analytics', 'API Access', 'Priority Support'], isPopular: true, buttonText: 'Get Started', bgGradient: 'border-2 border-emerald-400' },
+        { title: 'Pro', monthlyPrice: 4999, features: ['15 Users', '100,000 Contacts', 'Advanced Automation', 'Advanced Analytics', 'API Access', 'Priority Support'], buttonText: 'Contact Sales' }
       ]
     },
     unicom: {
       name: 'UniCOM',
       description: 'Business Intercom & Calling',
       plans: [
-        { title: 'Basic', monthly: 799, annual: 7690, features: ['Intercom & Voice Calls', '5 Team Members', '1,000 Conversations', 'Call Recording', 'Basic Analytics', 'Email Support'], buttonText: 'Get Started' },
-        { title: 'Professional', monthly: 1999, annual: 19190, features: ['15 Team Members', '10,000 Conversations', 'Video Calling', 'Advanced Analytics', 'API access', 'Priority Support'], isPopular: true, buttonText: 'Get Started', bgGradient: 'bg-gradient-to-br from-purple-600 to-pink-600', textColor: 'text-white' },
-        { title: 'Enterprise', monthly: 5999, annual: 57590, features: ['Unlimited Team Members', 'Unlimited Conversations', 'AI Call Assistant', 'Custom Integrations', 'API access', '24/7 Phone Support'], buttonText: 'Contact Sales' }
+        { title: 'Basic', monthlyPrice: 799, features: ['Intercom & Voice Calls', '5 Team Members', '1,000 Conversations', 'Call Recording', 'Basic Analytics', 'Email Support'], buttonText: 'Get Started' },
+        { title: 'Professional', monthlyPrice: 1999, features: ['15 Team Members', '10,000 Conversations', 'Video Calling', 'Advanced Analytics', 'API access', 'Priority Support'], isPopular: true, buttonText: 'Get Started', bgGradient: 'bg-gradient-to-br from-purple-600 to-pink-600', textColor: 'text-white' },
+        { title: 'Enterprise', monthlyPrice: 5999, features: ['Unlimited Team Members', 'Unlimited Conversations', 'AI Call Assistant', 'Custom Integrations', 'API access', '24/7 Phone Support'], buttonText: 'Contact Sales' }
       ]
     },
     uniads: {
       name: 'UniAds',
       description: 'Unified Ad Management',
       plans: [
-        { title: 'Starter', monthly: 599, annual: 5790, features: ['Facebook & Instagram Ads', '2 Ad Accounts', 'Basic Scheduling', 'Basic Analytics', 'Email Support'], buttonText: 'Get Started' },
-        { title: 'Professional', monthly: 1499, annual: 14390, features: ['All Platforms + Google Ads', '10 Ad Accounts', 'Advanced Scheduling', 'AI Optimization', 'Priority Support'], isPopular: true, buttonText: 'Get Started', bgGradient: 'bg-gradient-to-br from-red-500 to-orange-600', textColor: 'text-white' },
-        { title: 'Enterprise', monthly: 3999, annual: 38390, features: ['TikTok, Snapchat Ads', 'Unlimited Accounts', 'AI Campaign Builder', 'Custom Integrations', 'Dedicated Account Manager'], buttonText: 'Contact Sales' }
+        { title: 'Starter', monthlyPrice: 599, features: ['Facebook & Instagram Ads', '2 Ad Accounts', 'Basic Scheduling', 'Basic Analytics', 'Email Support'], buttonText: 'Get Started' },
+        { title: 'Professional', monthlyPrice: 1499, features: ['All Platforms + Google Ads', '10 Ad Accounts', 'Advanced Scheduling', 'AI Optimization', 'Priority Support'], isPopular: true, buttonText: 'Get Started', bgGradient: 'bg-gradient-to-br from-red-500 to-orange-600', textColor: 'text-white' },
+        { title: 'Enterprise', monthlyPrice: 3999, features: ['TikTok, Snapchat Ads', 'Unlimited Accounts', 'AI Campaign Builder', 'Custom Integrations', 'Dedicated Account Manager'], buttonText: 'Contact Sales' }
       ]
     },
     uniweb: {
       name: 'UniWeb',
       description: 'AI Website Builder',
       plans: [
-        { title: 'Starter', monthly: 499, annual: 4790, features: ['AI Website Builder', '1 Website', 'Basic Templates', 'Mobile Responsive', 'Free Domain (.unidesk.in)', 'Email Support'], buttonText: 'Get Started' },
-        { title: 'Professional', monthly: 1299, annual: 12490, features: ['5 Websites', 'Premium Templates', 'E-commerce Ready', 'Custom Domain', 'API Integration', 'Priority Support'], isPopular: true, buttonText: 'Get Started', bgGradient: 'bg-gradient-to-br from-cyan-500 to-blue-600', textColor: 'text-white' },
-        { title: 'Enterprise', monthly: 4999, annual: 47990, features: ['Unlimited Websites', 'Advanced AI Features', 'Custom Code Access', 'API Integration', 'Custom Integrations', 'Dedicated Support'], buttonText: 'Contact Sales' }
+        { title: 'Starter', monthlyPrice: 499, features: ['AI Website Builder', '1 Website', 'Basic Templates', 'Mobile Responsive', 'Free Domain (.unidesk.in)', 'Email Support'], buttonText: 'Get Started' },
+        { title: 'Professional', monthlyPrice: 1299, features: ['5 Websites', 'Premium Templates', 'E-commerce Ready', 'Custom Domain', 'API Integration', 'Priority Support'], isPopular: true, buttonText: 'Get Started', bgGradient: 'bg-gradient-to-br from-cyan-500 to-blue-600', textColor: 'text-white' },
+        { title: 'Enterprise', monthlyPrice: 4999, features: ['Unlimited Websites', 'Advanced AI Features', 'Custom Code Access', 'API Integration', 'Custom Integrations', 'Dedicated Support'], buttonText: 'Contact Sales' }
       ]
     },
     unipos: {
       name: 'UniPOS',
       description: 'AI-Powered POS System',
       plans: [
-        { title: 'Starter', monthly: 699, annual: 6690, features: ['AI POS System', '1 Terminal', 'Basic Inventory', 'Sales Reports', 'Offline Mode', 'Email Support'], buttonText: 'Get Started' },
-        { title: 'Professional', monthly: 1699, annual: 16290, features: ['5 Terminals', 'Advanced Inventory', 'Customer Loyalty', 'AI Recommendations', 'Advanced Analytics', 'Priority Support'], isPopular: true, buttonText: 'Get Started', bgGradient: 'bg-gradient-to-br from-emerald-500 to-teal-600', textColor: 'text-white' },
-        { title: 'Enterprise', monthly: 4999, annual: 47990, features: ['Unlimited Terminals', 'Multi-Store Management', 'Advanced AI Analytics', 'Custom Integrations', 'Advanced Analytics', 'Dedicated Account Manager'], buttonText: 'Contact Sales' }
+        { title: 'Starter', monthlyPrice: 699, features: ['AI POS System', '1 Terminal', 'Basic Inventory', 'Sales Reports', 'Offline Mode', 'Email Support'], buttonText: 'Get Started' },
+        { title: 'Professional', monthlyPrice: 1699, features: ['5 Terminals', 'Advanced Inventory', 'Customer Loyalty', 'AI Recommendations', 'Advanced Analytics', 'Priority Support'], isPopular: true, buttonText: 'Get Started', bgGradient: 'bg-gradient-to-br from-emerald-500 to-teal-600', textColor: 'text-white' },
+        { title: 'Enterprise', monthlyPrice: 4999, features: ['Unlimited Terminals', 'Multi-Store Management', 'Advanced AI Analytics', 'Custom Integrations', 'Advanced Analytics', 'Dedicated Account Manager'], buttonText: 'Contact Sales' }
       ]
     }
   };
@@ -140,80 +146,105 @@ export default function PricingPage() {
                                 <h2 className="text-3xl font-black text-slate-900 mb-6">{currentApp.description}</h2>
                             </>
                         )}
-                        
-                        {/* Monthly/Annual Toggle */}
-                        <div className="inline-flex items-center p-1 bg-white border border-slate-200 rounded-xl shadow-sm">
-                            <button 
-                                onClick={() => setBillingCycle('monthly')}
-                                className={`px-6 py-2.5 text-sm font-bold rounded-lg shadow-sm transition-all ${
-                                    billingCycle === 'monthly' 
-                                        ? 'bg-slate-900 text-white' 
-                                        : 'text-slate-600 hover:text-slate-900'
-                                }`}
-                            >
-                                Monthly
-                            </button>
-                            <button 
-                                onClick={() => setBillingCycle('annual')}
-                                className={`px-6 py-2.5 text-sm font-bold rounded-lg transition-all ${
-                                    billingCycle === 'annual' 
-                                        ? 'bg-slate-900 text-white' 
-                                        : 'text-slate-600 hover:text-slate-900'
-                                }`}
-                            >
-                                Annually <span className="text-brand-600 text-xs ml-1">(Save 20%)</span>
-                            </button>
-                        </div>
                     </div>
+
+                    {/* Billing Cycle Toggle - Only for non-UniCRM apps */}
+                    {selectedApp !== 'unicrm' && (
+                        <div className="mb-12 flex justify-center">
+                            <div className="inline-flex gap-4 bg-white rounded-2xl p-2 border border-slate-200 shadow-lg">
+                                <button
+                                    onClick={() => setBillingCycle('monthly')}
+                                    className={`px-8 py-3 rounded-xl font-bold transition-all ${
+                                        billingCycle === 'monthly'
+                                            ? 'bg-gradient-to-r from-brand-500 to-blue-600 text-white shadow-lg'
+                                            : 'text-slate-600 hover:text-slate-900'
+                                    }`}
+                                >
+                                    Monthly
+                                </button>
+                                <button
+                                    onClick={() => setBillingCycle('annual')}
+                                    className={`px-8 py-3 rounded-xl font-bold transition-all relative ${
+                                        billingCycle === 'annual'
+                                            ? 'bg-gradient-to-r from-brand-500 to-blue-600 text-white shadow-lg'
+                                            : 'text-slate-600 hover:text-slate-900'
+                                    }`}
+                                >
+                                    Annual
+                                    <span className={`absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 px-2 py-1 rounded-full text-xs font-bold ${
+                                        billingCycle === 'annual'
+                                            ? 'bg-green-400 text-white'
+                                            : 'bg-green-100 text-green-700'
+                                    }`}>
+                                        Save 20%
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    )}
 
                     {/* Single App Pricing Cards */}
                     {currentApp && (
                         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto items-stretch">
-                            {pricingData[selectedApp as AppType].plans.map((plan, idx) => (
-                                <div key={idx} className={`rounded-3xl p-8 flex flex-col relative transition-colors ${
-                                    plan.isPopular
-                                        ? plan.bgGradient || 'bg-slate-900 border-2 border-slate-800 shadow-2xl shadow-brand-500/20 text-white'
-                                        : 'bg-white border border-slate-200 shadow-lg shadow-slate-200/50 hover:border-brand-300'
-                                }`}>
-                                    {plan.isPopular && !plan.bgGradient && (
-                                        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-brand-500 to-blue-600 text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest shadow-lg">Most Popular</div>
-                                    )}
-                                    {plan.isPopular && plan.bgGradient && (
-                                        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white text-slate-600 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest shadow-lg">Most Popular</div>
-                                    )}
-                                    <div>
-                                        <h3 className={`text-2xl font-bold mb-2 ${plan.textColor || 'text-slate-900'}`}>{plan.title}</h3>
-                                        <p className={`text-sm mb-6 h-10 ${plan.textColor ? 'text-white/70' : 'text-slate-500'}`}></p>
-                                        <div className="mb-8 flex items-baseline gap-1 flex-wrap">
-                                            <span className={`text-5xl font-black ${plan.textColor || 'text-slate-900'}`}>₹{billingCycle === 'monthly' ? plan.monthly.toLocaleString('en-IN') : Math.floor(plan.annual / 12).toLocaleString('en-IN')}</span>
-                                            <span className={`${plan.textColor ? 'text-white/60' : 'text-slate-500'} font-medium`}>/mo</span>
-                                            {billingCycle === 'annual' && (
-                                                <div className={`w-full mt-2 text-sm font-semibold ${plan.textColor ? 'text-white/80' : 'text-emerald-600'}`}>Save ₹{(plan.monthly * 12 - plan.annual).toLocaleString('en-IN')}/year</div>
-                                            )}
+                            {pricingData[selectedApp as AppType].plans.map((plan, idx) => {
+                                let displayPrice = '';
+                                if (selectedApp === 'unicrm') {
+                                    // UniCRM shows fixed prices based on title
+                                    if (plan.title === 'Monthly') displayPrice = '₹350/user/month';
+                                    else if (plan.title === '6 Months') displayPrice = '₹7,000';
+                                    else if (plan.title === 'Annual') displayPrice = '₹10,000/year';
+                                } else {
+                                    // Other apps show monthly or annual pricing
+                                    if (billingCycle === 'monthly') {
+                                        displayPrice = `₹${plan.monthlyPrice}/month`;
+                                    } else {
+                                        const annualPrice = getAnnualPrice(plan.monthlyPrice || 0);
+                                        displayPrice = `₹${annualPrice}/year`;
+                                    }
+                                }
+
+                                return (
+                                    <div key={idx} className={`rounded-3xl p-8 flex flex-col relative transition-colors ${
+                                        plan.isPopular
+                                            ? plan.bgGradient || 'bg-slate-900 border-2 border-slate-800 shadow-2xl shadow-brand-500/20 text-white'
+                                            : 'bg-white border border-slate-200 shadow-lg shadow-slate-200/50 hover:border-brand-300'
+                                    }`}>
+                                        {plan.isPopular && !plan.bgGradient && (
+                                            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-brand-500 to-blue-600 text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest shadow-lg">Most Popular</div>
+                                        )}
+                                        {plan.isPopular && plan.bgGradient && (
+                                            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white text-slate-600 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest shadow-lg">Most Popular</div>
+                                        )}
+                                        <div>
+                                            <h3 className={`text-2xl font-bold mb-2 ${plan.textColor || 'text-slate-900'}`}>{plan.title}</h3>
+                                            <p className={`text-sm mb-6 h-10 ${plan.textColor ? 'text-white/70' : 'text-slate-500'}`}></p>
+                                            <div className="mb-8 flex items-baseline gap-1 flex-wrap">
+                                                <span className={`text-4xl font-black ${plan.textColor || 'text-slate-900'}`}>{displayPrice}</span>
+                                            </div>
+                                            <button className={`w-full py-4 px-4 rounded-xl font-bold hover:opacity-90 active:scale-[0.98] transition-all mb-8 ${
+                                                plan.isPopular && !plan.bgGradient
+                                                    ? 'bg-brand-600 text-white hover:bg-brand-500'
+                                                    : plan.isPopular && plan.bgGradient
+                                                    ? 'bg-white text-slate-900 hover:bg-slate-50'
+                                                    : 'bg-slate-100 text-slate-900 hover:bg-slate-200'
+                                            }`}>
+                                                {plan.buttonText}
+                                            </button>
                                         </div>
-                                        <button className={`w-full py-4 px-4 rounded-xl font-bold hover:opacity-90 active:scale-[0.98] transition-all mb-8 ${
-                                            plan.isPopular && !plan.bgGradient
-                                                ? 'bg-brand-600 text-white hover:bg-brand-500'
-                                                : plan.isPopular && plan.bgGradient
-                                                ? 'bg-white text-slate-900 hover:bg-slate-50'
-                                                : 'bg-slate-100 text-slate-900 hover:bg-slate-200'
-                                        }`}>
-                                            {plan.buttonText}
-                                        </button>
+                                        <div className="flex-1">
+                                            <p className={`text-sm font-bold mb-4 uppercase tracking-wider ${plan.textColor ? 'text-white/90' : 'text-slate-900'}`}>Plan includes:</p>
+                                            <ul className={`space-y-4 text-sm font-medium ${plan.textColor ? 'text-white/70' : 'text-slate-700'}`}>
+                                                {plan.features.map((feature, i) => (
+                                                    <li key={i} className="flex items-start gap-3">
+                                                        <i className={`ph-fill ph-check-circle text-lg shrink-0 ${plan.textColor ? 'text-white/50' : 'text-brand-500'}`}></i>
+                                                        {feature}
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
                                     </div>
-                                    <div className="flex-1">
-                                        <p className={`text-sm font-bold mb-4 uppercase tracking-wider ${plan.textColor ? 'text-white/90' : 'text-slate-900'}`}>Plan includes:</p>
-                                        <ul className={`space-y-4 text-sm font-medium ${plan.textColor ? 'text-white/70' : 'text-slate-700'}`}>
-                                            {plan.features.map((feature, i) => (
-                                                <li key={i} className="flex items-start gap-3">
-                                                    <i className={`ph-fill ph-check-circle text-lg shrink-0 ${plan.textColor ? 'text-white/50' : 'text-brand-500'}`}></i>
-                                                    {feature}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                </div>
-                            ))}
+                                );
+                            })}
                         </div>
                     )}
 
