@@ -29,9 +29,9 @@ export default function PricingPage() {
       name: 'UniCRM',
       description: 'CRM & Lead Management',
       plans: [
-        { title: 'Starter', monthly: 350, annual: 4200, features: ['Full CRM access', '1 user', '2,500 leads', 'Lead management', 'Basic reporting', 'API access', 'Email support'], buttonText: 'Start Free Trial' },
-        { title: 'Growth', monthly: 1167, annual: 7000, features: ['10 users', '50,000 leads', 'Advanced workflows', 'Analytics & insights', 'API access', 'Priority support', 'Additional users: ₹200/month'], isPopular: true, buttonText: 'Start Free Trial', bgGradient: 'bg-slate-900', textColor: 'text-white' },
-        { title: 'Pro', monthly: 833, annual: 10000, features: ['15 users', '100,000 leads', 'Custom integrations', 'API access', 'Dedicated account manager', '24/7 phone support', 'Additional users: ₹200/month'], buttonText: 'Contact Sales' }
+        { title: 'Monthly', monthly: 350, annual: 4200, features: ['Full CRM access', '1 user', '2,500 leads', 'Lead management', 'Basic reporting', 'API access', 'Email support'], buttonText: 'Start Free Trial' },
+        { title: '6 Months', monthly: 1167, annual: 7000, features: ['10 users', '50,000 leads', 'Advanced workflows', 'Analytics & insights', 'API access', 'Priority support', 'Additional users: ₹200/month'], isPopular: true, buttonText: 'Start Free Trial', bgGradient: 'bg-slate-900', textColor: 'text-white' },
+        { title: 'Annual', monthly: 833, annual: 10000, features: ['15 users', '100,000 leads', 'Custom integrations', 'API access', 'Dedicated account manager', '24/7 phone support', 'Additional users: ₹200/month'], buttonText: 'Contact Sales' }
       ]
     },
     unichat: {
