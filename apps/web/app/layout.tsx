@@ -12,6 +12,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Favicon & PWA */}
+        <link rel="icon" type="image/png" href="https://app-cdn.appgen.com/0e496fc5-3050-498f-ade1-610fc9ef6d40/assets/uploaded_1774277826530_hfkews.png" />
+        <link rel="shortcut icon" href="https://app-cdn.appgen.com/0e496fc5-3050-498f-ade1-610fc9ef6d40/assets/uploaded_1774277826530_hfkews.png" />
+        <link rel="apple-touch-icon" href="https://app-cdn.appgen.com/0e496fc5-3050-498f-ade1-610fc9ef6d40/assets/uploaded_1774277826530_hfkews.png" />
+        <link rel="manifest" href="/manifest.json" />
+        
         {/* Google Tag Manager */}
         <Script
           id="gtm-script"
@@ -76,6 +82,22 @@ export default function RootLayout({
         {/* Preconnect to External Resources */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        
+        {/* Enhanced SEO - Core Web Vitals & Performance */}
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        <meta httpEquiv="x-ua-compatible" content="IE=edge" />
+        <meta name="format-detection" content="telephone=no" />
+        
+        {/* Google Search Console & Rich Results */}
+        <meta name="title" content="UniDesk - All-in-One CRM & WhatsApp Business Platform | 2,500+ Businesses Trust Us" />
+        <meta name="description" content="UniDesk: The leading all-in-one CRM & WhatsApp Business API platform for Indian businesses. Manage leads, automate customer conversations, close more deals. Free 14-day trial. 2,500+ active businesses." />
+        
+        {/* Additional Business & Schema Markup */}
+        <script type=\"application/ld+json\">{JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":"UniDesk","description":"All-in-One CRM & WhatsApp Business Platform","url":"https://unidesk.in","logo":"https://app-cdn.appgen.com/0e496fc5-3050-498f-ade1-610fc9ef6d40/assets/uploaded_1774277826530_hfkews.png","image":"https://app-cdn.appgen.com/0e496fc5-3050-498f-ade1-610fc9ef6d40/assets/uploaded_1773130812759_gt5bks.png","telephone":"+917428251864","email":"support@unidesk.in","areaServed":"IN","priceRange":"₹₹","address":{"@type":"PostalAddress","addressCountry":"IN","addressRegion":"India"},"openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"09:00","closes":"19:00"}})}</script>
+        
+        {/* FAQ Schema for Rich Snippets */}
+        <script type=\"application/ld+json\">{JSON.stringify({"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is UniDesk?","acceptedAnswer":{"@type":"Answer","text":"UniDesk is an all-in-one CRM & WhatsApp Business API platform designed for Indian businesses to manage leads, automate customer conversations, and grow revenue."}},{"@type":"Question","name":"Does UniDesk offer a free trial?","acceptedAnswer":{"@type":"Answer","text":"Yes, UniDesk offers a completely free 14-day trial with full access to all features."}},{"@type":"Question","name":"What integrations does UniDesk support?","acceptedAnswer":{"@type":"Answer","text":"UniDesk integrates with WhatsApp Business API, Instagram DM, email, Google Forms, and 100+ other platforms."}}]})}</script>
       </head>
       <body className="antialiased">
         {/* Google Tag Manager (noscript) */}

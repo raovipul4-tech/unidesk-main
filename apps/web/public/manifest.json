@@ -1,0 +1,46 @@
+{
+  "name": "UniDesk - CRM & WhatsApp Business Platform",
+  "short_name": "UniDesk",
+  "description": "All-in-One CRM & WhatsApp Business API platform for Indian businesses. Manage leads, automate conversations, and grow revenue.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#00a8e8",
+  "background_color": "#ffffff",
+  "icons": [
+    {
+      "src": "https://app-cdn.appgen.com/0e496fc5-3050-498f-ade1-610fc9ef6d40/assets/uploaded_1774277826530_hfkews.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "https://app-cdn.appgen.com/0e496fc5-3050-498f-ade1-610fc9ef6d40/assets/uploaded_1774277826530_hfkews.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "https://app-cdn.appgen.com/0e496fc5-3050-498f-ade1-610fc9ef6d40/assets/uploaded_1774277826530_hfkews.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "categories": ["business", "productivity"],
+  "screenshots": [
+    {
+      "src": "https://app-cdn.appgen.com/0e496fc5-3050-498f-ade1-610fc9ef6d40/assets/uploaded_1773130812759_gt5bks.png",
+      "sizes": "540x720",
+      "type": "image/png",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "https://app-cdn.appgen.com/0e496fc5-3050-498f-ade1-610fc9ef6d40/assets/uploaded_1773130812759_gt5bks.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ]
+}
