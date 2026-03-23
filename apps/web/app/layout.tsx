@@ -13,9 +13,9 @@ export default function RootLayout({
     <html lang="en">
       <head>
         {/* Favicon & PWA */}
-        <link rel="icon" type="image/png" href="https://app-cdn.appgen.com/0e496fc5-3050-498f-ade1-610fc9ef6d40/assets/uploaded_1774277826530_hfkews.png" />
-        <link rel="shortcut icon" href="https://app-cdn.appgen.com/0e496fc5-3050-498f-ade1-610fc9ef6d40/assets/uploaded_1774277826530_hfkews.png" />
-        <link rel="apple-touch-icon" href="https://app-cdn.appgen.com/0e496fc5-3050-498f-ade1-610fc9ef6d40/assets/uploaded_1774277826530_hfkews.png" />
+        <link rel="icon" type="image/png" href="https://app-cdn.appgen.com/0e496fc5-3050-498f-ade1-610fc9ef6d40/assets/uploaded_1774278409392_gpry9s.png" />
+        <link rel="shortcut icon" href="https://app-cdn.appgen.com/0e496fc5-3050-498f-ade1-610fc9ef6d40/assets/uploaded_1774278409392_gpry9s.png" />
+        <link rel="apple-touch-icon" href="https://app-cdn.appgen.com/0e496fc5-3050-498f-ade1-610fc9ef6d40/assets/uploaded_1774278409392_gpry9s.png" />
         
         {/* Google Tag Manager */}
         <Script
