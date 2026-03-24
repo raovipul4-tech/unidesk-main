@@ -126,9 +126,9 @@ export default function Footer({ children }: FooterProps) {
               © 2024 UniDesk. All rights reserved. | Made for Indian Businesses | CRM Solutions | WhatsApp Business API
             </p>
             <div className="flex items-center gap-6 text-sm">
-              <button className="text-slate-400 hover:text-white transition-colors">Privacy Policy</button>
-              <button className="text-slate-400 hover:text-white transition-colors">Terms of Service</button>
-              <button className="text-slate-400 hover:text-white transition-colors">Cookie Policy</button>
+              <button onClick={() => router.push('/privacy-policy')} className="text-slate-400 hover:text-white transition-colors">Privacy Policy</button>
+              <button onClick={() => router.push('/terms')} className="text-slate-400 hover:text-white transition-colors">Terms of Service</button>
+              <button onClick={() => router.push('/cookie-policy')} className="text-slate-400 hover:text-white transition-colors">Cookie Policy</button>
             </div>
           </div>
         </div>
