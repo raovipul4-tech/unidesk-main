@@ -30,14 +30,38 @@ export default function PricingPage() {
   };
 
   // Pricing data for all apps
-  const pricingData: Record<AppType, { name: string; description: string; plans: Array<{ title: string; monthlyPrice?: number; annualPrice?: number; features: string[]; isPopular?: boolean; buttonText: string; bgGradient?: string; textColor?: string; buttonColor?: string }> }> = {
+  const pricingData: Record<AppType, { name: string; description: string; plans: Array<{ title: string; monthlyPrice?: number; annualPrice?: number; features: string[]; isPopular?: boolean; buttonText: string; bgGradient?: string; textColor?: string; buttonColor?: string; tag?: string; savingsText?: string; billingNote?: string }> }> = {
     unicrm: {
       name: 'UniCRM',
       description: 'CRM & Lead Management',
       plans: [
-        { title: 'Monthly', monthlyPrice: 350, features: ['1 user', '2,500 leads', 'Lead management', 'Basic reporting', 'API access', 'Email support'], buttonText: 'Start Free Trial' },
-        { title: '6 Months', monthlyPrice: 7000, features: ['10 users', '50,000 leads', 'Advanced workflows', 'Analytics & insights', 'API access', 'Priority support', 'Additional users: ₹200/month'], isPopular: true, buttonText: 'Start Free Trial', bgGradient: 'bg-slate-900', textColor: 'text-white' },
-        { title: 'Annual', monthlyPrice: 10000, features: ['15 users', '100,000 leads', 'Custom integrations', 'API access', 'Dedicated account manager', '24/7 phone support', 'Additional users: ₹200/month'], buttonText: 'Contact Sales' }
+        { 
+          title: 'Starter', 
+          monthlyPrice: 350, 
+          features: ['1 user', '2,500 leads', 'Lead management', 'Basic reporting', 'API access', 'Email support'], 
+          buttonText: 'Start Free Trial',
+          tag: ''
+        },
+        { 
+          title: 'Growth', 
+          monthlyPrice: 2000,
+          annualPrice: 10800,
+          features: ['10 users', '50,000 leads', 'Advanced workflows', 'Analytics & insights', 'API access', 'Priority support', 'Additional users: ₹200/month'], 
+          isPopular: true, 
+          buttonText: 'Start Free Trial', 
+          bgGradient: 'bg-slate-900', 
+          textColor: 'text-white',
+          tag: 'Most Popular',
+          savingsText: 'Save ₹1,200 with 6-month plan'
+        },
+        { 
+          title: 'Pro', 
+          monthlyPrice: 15000,
+          features: ['15 users', '100,000 leads', 'Custom integrations', 'API access', 'Dedicated account manager', '24/7 phone support', 'Additional users: ₹200/month'], 
+          buttonText: 'Contact Sales',
+          tag: 'Best Value',
+          billingNote: '₹1,250/month (billed annually)'
+        }
       ]
     },
     unichat: {
@@ -190,9 +214,9 @@ export default function PricingPage() {
                                 let displayPrice = '';
                                 if (selectedApp === 'unicrm') {
                                     // UniCRM shows fixed prices based on title
-                                    if (plan.title === 'Monthly') displayPrice = '₹350/user/month';
-                                    else if (plan.title === '6 Months') displayPrice = '₹7,000';
-                                    else if (plan.title === 'Annual') displayPrice = '₹10,000/year';
+                                    if (plan.title === 'Starter') displayPrice = '₹350/user/month';
+                                    else if (plan.title === 'Growth') displayPrice = '₹2,000/month';
+                                    else if (plan.title === 'Pro') displayPrice = '₹15,000/year';
                                 } else {
                                     // Other apps show monthly or annual pricing
                                     if (billingCycle === 'monthly') {
@@ -209,18 +233,30 @@ export default function PricingPage() {
                                             ? plan.bgGradient || 'bg-slate-900 border-2 border-slate-800 shadow-2xl shadow-brand-500/20 text-white'
                                             : 'bg-white border border-slate-200 shadow-lg shadow-slate-200/50 hover:border-brand-300'
                                     }`}>
-                                        {plan.isPopular && !plan.bgGradient && (
-                                            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-brand-500 to-blue-600 text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest shadow-lg">Most Popular</div>
-                                        )}
-                                        {plan.isPopular && plan.bgGradient && (
-                                            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white text-slate-600 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest shadow-lg">Most Popular</div>
+                                        {plan.tag && (
+                                            <div className={`absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest shadow-lg ${
+                                                plan.isPopular && plan.bgGradient
+                                                    ? 'bg-white text-slate-600'
+                                                    : 'bg-gradient-to-r from-brand-500 to-blue-600 text-white'
+                                            }`}>{plan.tag}</div>
                                         )}
                                         <div>
                                             <h3 className={`text-2xl font-bold mb-2 ${plan.textColor || 'text-slate-900'}`}>{plan.title}</h3>
-                                            <p className={`text-sm mb-6 h-10 ${plan.textColor ? 'text-white/70' : 'text-slate-500'}`}></p>
+                                            <p className={`text-sm mb-6 h-10 ${plan.textColor ? 'text-white/70' : 'text-slate-500'}`}>
+                                                {selectedApp === 'unicrm' && plan.title === 'Growth' && (
+                                                    <>OR<br />
+                                                    <span className="text-base font-bold">₹10,800 / 6 months (10% OFF)</span></>
+                                                )}
+                                            </p>
                                             <div className="mb-8 flex items-baseline gap-1 flex-wrap">
                                                 <span className={`text-4xl font-black ${plan.textColor || 'text-slate-900'}`}>{displayPrice}</span>
                                             </div>
+                                            {plan.savingsText && (
+                                                <p className={`text-sm font-semibold mb-6 ${plan.textColor ? 'text-green-300' : 'text-green-600'}`}>💚 {plan.savingsText}</p>
+                                            )}
+                                            {plan.billingNote && (
+                                                <p className={`text-sm font-semibold mb-6 ${plan.textColor ? 'text-blue-300' : 'text-blue-600'}`}>👉 {plan.billingNote}</p>
+                                            )}
                                             <button className={`w-full py-4 px-4 rounded-xl font-bold hover:opacity-90 active:scale-[0.98] transition-all mb-8 ${
                                                 plan.isPopular && !plan.bgGradient
                                                     ? 'bg-brand-600 text-white hover:bg-brand-500'
