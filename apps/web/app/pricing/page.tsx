@@ -257,7 +257,13 @@ export default function PricingPage() {
                                             {plan.billingNote && (
                                                 <p className={`text-sm font-semibold mb-6 ${plan.textColor ? 'text-blue-300' : 'text-blue-600'}`}>👉 {plan.billingNote}</p>
                                             )}
-                                            <button className={`w-full py-4 px-4 rounded-xl font-bold hover:opacity-90 active:scale-[0.98] transition-all mb-8 ${
+                                            <button 
+                                                onClick={() => {
+                                                  if (plan.buttonText === 'Start Free Trial') {
+                                                    router.push('/book-demo');
+                                                  }
+                                                }}
+                                                className={`w-full py-4 px-4 rounded-xl font-bold hover:opacity-90 active:scale-[0.98] transition-all mb-8 ${
                                                 plan.isPopular && !plan.bgGradient
                                                     ? 'bg-brand-600 text-white hover:bg-brand-500'
                                                     : plan.isPopular && plan.bgGradient
