@@ -38,7 +38,7 @@ export default function PricingPage() {
         { 
           title: 'Starter', 
           monthlyPrice: 350, 
-          features: ['1 user', '2,500 leads', 'Lead management', 'Basic reporting', 'API access', 'Email support'], 
+          features: ['1 user', '2,500 leads', 'Lead management', 'Basic reporting', 'API access', 'Email support', 'Addon: ₹350/user'], 
           buttonText: 'Start Free Trial',
           tag: ''
         },
@@ -46,7 +46,7 @@ export default function PricingPage() {
           title: 'Growth', 
           monthlyPrice: 2000,
           annualPrice: 10800,
-          features: ['10 users', '50,000 leads', 'Advanced workflows', 'Analytics & insights', 'API access', 'Priority support', 'Additional users: ₹200/month'], 
+          features: ['10 users', '1,00,000 leads', 'Advanced workflows', 'Analytics & insights', 'API access', 'Priority support', 'Addon: ₹250/user'], 
           isPopular: true, 
           buttonText: 'Start Free Trial', 
           bgGradient: 'bg-slate-900', 
@@ -57,7 +57,7 @@ export default function PricingPage() {
         { 
           title: 'Pro', 
           monthlyPrice: 15000,
-          features: ['15 users', '100,000 leads', 'Custom integrations', 'API access', 'Dedicated account manager', '24/7 phone support', 'Additional users: ₹200/month'], 
+          features: ['20 users', '2,00,000 leads', 'Custom integrations', 'API access', 'Dedicated account manager', '24/7 phone support', 'Addon: ₹250/user'], 
           buttonText: 'Contact Sales',
           tag: 'Best Value',
           billingNote: '₹1,250/month (billed annually)'
